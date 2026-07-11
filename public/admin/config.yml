@@ -1,6 +1,8 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: upstore-ec/upstore-frontend
   branch: main
+  base_url: ""
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
@@ -15,8 +17,8 @@ collections:
       - { label: "Nombre", name: "name", widget: "string" }
       - { label: "Descripción", name: "description", widget: "text" }
       - { label: "Precio (USD)", name: "price", widget: "number", min: 0, value_type: "float" }
-      - { label: "URL de Imagen", name: "imageUrl", widget: "string", hint: "URL de la imagen del producto" }
-      - { label: "Link del Fabricante", name: "productLink", widget: "string", required: false, hint: "URL opcional a la ficha técnica del fabricante" }
+      - { label: "URL de Imagen", name: "imageUrl", widget: "string", hint: "Ruta absoluta, ej: /images/products/mi-ups.png" }
+      - { label: "Link del Fabricante", name: "productLink", widget: "string", required: false, hint: "URL opcional a la ficha técnica" }
       - label: "Categoría"
         name: "category"
         widget: "select"
@@ -34,6 +36,7 @@ collections:
           - { label: "Por Llegar", value: "POR_LLEGAR" }
           - { label: "Bajo Pedido", value: "BAJO_PEDIDO" }
           - { label: "Agotado", value: "AGOTADO" }
+      - { label: "Contenido (Markdown)", name: "body", widget: "markdown", required: false, hint: "Especificaciones técnicas adicionales" }
 
   - name: "accesorios"
     label: "Accesorios"
@@ -44,7 +47,7 @@ collections:
       - { label: "Nombre", name: "name", widget: "string" }
       - { label: "Descripción", name: "description", widget: "text" }
       - { label: "Precio (USD)", name: "price", widget: "number", min: 0, value_type: "float" }
-      - { label: "URL de Imagen", name: "imageUrl", widget: "string", hint: "URL de la imagen del accesorio" }
+      - { label: "URL de Imagen", name: "imageUrl", widget: "string", hint: "Ruta absoluta, ej: /images/products/mi-accesorio.png" }
       - { label: "Link del Fabricante", name: "productLink", widget: "string", required: false }
       - label: "Categoría"
         name: "category"
@@ -64,6 +67,7 @@ collections:
           - { label: "Por Llegar", value: "POR_LLEGAR" }
           - { label: "Bajo Pedido", value: "BAJO_PEDIDO" }
           - { label: "Agotado", value: "AGOTADO" }
+      - { label: "Contenido (Markdown)", name: "body", widget: "markdown", required: false }
 
   - name: "servicios"
     label: "Servicios"
@@ -72,5 +76,6 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Nombre", name: "name", widget: "string" }
-      - { label: "Descripción Corta", name: "shortDescription", widget: "text", hint: "Descripción breve del servicio (1-2 líneas)" }
-      - { label: "URL de Imagen", name: "imageUrl", widget: "string", hint: "URL de la imagen del servicio" }
+      - { label: "Descripción Corta", name: "shortDescription", widget: "text", hint: "1-2 líneas descriptivas del servicio" }
+      - { label: "URL de Imagen", name: "imageUrl", widget: "string", hint: "Ruta absoluta, ej: /images/servicios/mantenimiento.jpg" }
+      - { label: "Contenido (Markdown)", name: "body", widget: "markdown", required: false, hint: "Detalles completos del servicio" }
