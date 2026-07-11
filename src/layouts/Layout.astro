@@ -1,0 +1,176 @@
+---
+import WhatsAppButton from '../components/ui/FloatingButtons/WhatsAppButton.astro';
+import SEO from '../components/SEO/SEO.astro';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  showWhatsApp?: boolean;
+  whatsAppProps?: {
+    phoneNumber?: string;
+    message?: string;
+    tooltipText?: string;
+    position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
+    className?: string;
+  };
+  // Props para SEO
+  seoProps?: {
+    pageType?: 'home' | 'upstore' | 'terms';
+    title?: string;
+    description?: string;
+    keywords?: string[];
+    canonical?: string;
+    path?: string;
+    locationKey?: string;
+    ogImage?: string;
+    ogType?: string;
+    noIndex?: boolean;
+    noFollow?: boolean;
+    breadcrumbs?: Array<{name: string; url: string}>;
+    serviceData?: {
+      title?: string;
+      description?: string;
+      services?: Array<{title: string; description: string}>;
+    };
+    productData?: {
+      name?: string;
+      category?: string;
+      price?: string;
+      availability?: string;
+      brand?: string;
+    };
+    newsData?: {
+      publishDate?: string;
+      author?: string;
+      category?: string;
+      tags?: string[];
+    };
+    storeProducts?: Array<{
+      name: string;
+      description: string;
+      price: string;
+      imageUrl: string;
+      status: string;
+    }>;
+  };
+}
+
+const { 
+  title,
+  description = "UPStore - Sistemas UPS y Respaldo Energético Ecuador",
+  showWhatsApp = true,
+  whatsAppProps = {},
+  seoProps = {}
+} = Astro.props;
+
+// Si se pasan props de SEO, usar el componente SEO, sino usar meta tags básicos
+const useSEOComponent = Object.keys(seoProps).length > 0 && seoProps.title;
+
+---
+
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1f2937">
+
+    <!-- Favicons MEJORADOS para Google y navegadores -->
+    <!-- Favicon principal para Google Search -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- Favicons PNG -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64x64.png">
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    
+    <!-- SVG Favicon para navegadores modernos -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    
+    <!-- Meta para PWA -->
+    <meta name="msapplication-TileColor" content="#1f2937">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+
+    {useSEOComponent ? (
+      <SEO {...seoProps} />
+    ) : (
+      <>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+      </>
+    )}
+    
+    <link rel="manifest" href="/site.webmanifest">
+        
+    <!-- CDN para Swiper si lo necesitas -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js"></script>
+        
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: system-ui, sans-serif;
+      }
+            
+      /* Estilos específicos para Swiper */
+      .swiper-container {
+        width: 100%;
+        height: 100vh; /* Altura completa de la ventana */
+      }
+            
+      .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+            
+      .swiper-button-next,
+      .swiper-button-prev {
+        color: white !important;
+        background: rgba(0, 0, 0, 0.3);
+        width: 50px !important;
+        height: 50px !important;
+        border-radius: 50%;
+      }
+            
+      .swiper-button-next:after,
+      .swiper-button-prev:after {
+        font-size: 20px !important;
+      }
+            
+      .swiper-pagination-bullet {
+        background: white !important;
+        opacity: 0.5;
+      }
+            
+      .swiper-pagination-bullet-active {
+        opacity: 1 !important;
+        background: white !important;
+      }
+            
+      /* Transiciones suaves para el cambio de tema */
+      * {
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
+    <slot />
+    
+    <!-- Botón flotante de WhatsApp usando el componente -->
+    {showWhatsApp && <WhatsAppButton {...whatsAppProps} />}
+        
+    <!-- Script del sistema de temas -->
+    <script>
+      import('../scripts/theme.js');
+    </script>
+  </body>
+</html>

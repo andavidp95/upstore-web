@@ -1,0 +1,12 @@
+<!-- filepath: e:\ELECTRO IP\WEB\electroip-web\electro-ip\public\images\partners\aws.svg -->
+<svg width="150" height="32" viewBox="0 0 150 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo oscuro para contraste -->
+  <rect width="150" height="32" fill="#252F3E"/>
+  <!-- Texto AWS en blanco, centrado -->
+  <text x="40" y="22" font-family="Arial, Helvetica, sans-serif" font-size="32" fill="#fff" font-weight="bold" letter-spacing="2">aws</text>
+  <!-- Línea curva naranja debajo (simula la sonrisa de AWS) -->
+  <path d="M50 26 Q75 32 100 26" stroke="#FF9900" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Puntos naranjas al final de la sonrisa -->
+  <circle cx="50" cy="26" r="2" fill="#FF9900"/>
+  <circle cx="100" cy="26" r="2" fill="#FF9900"/>
+</svg>

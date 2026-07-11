@@ -1,0 +1,337 @@
+---
+export const prerender = true;
+
+import Layout from '../layouts/Layout.astro';
+import SEO from '../components/SEO/SEO.astro';
+import GlobalNavbar from '../components/GlobalNavbar.astro';
+import GlobalFooter from '../components/GlobalFooter.astro';
+import BrandsSection from '../components/BrandsSection.astro';
+import { getCollection } from 'astro:content';
+
+// Obtener productos de los Markdowns locales
+const allProducts = await getCollection('equipos');
+const products = allProducts.map(product => ({
+  name: product.data.name,
+  description: product.data.description,
+  price: product.data.price,
+  imageUrl: product.data.imageUrl,
+  status: product.data.status,
+  category: product.data.category,
+  slug: product.slug
+}));
+
+let error = null;
+
+// Mapeo unificado de categorías
+const categoryConfig = {
+  'MINI_UPS': { name: 'Mini UPS', icon: '🔌' },
+  'MONOFASICO': { name: 'Monofásico', icon: '⚡' },
+  'BIFASICO': { name: 'Bifásico', icon: '⚡⚡' },
+  'TRIFASICO': { name: 'Trifásico', icon: '⚡⚡⚡' }
+};
+
+const getCategoryDisplay = (category, includeIcon = false) => {
+  const config = categoryConfig[category] || { name: category, icon: '' };
+  return includeIcon ? `${config.icon} ${config.name}` : config.name;
+};
+
+// Lógica de colores y textos por Status
+const getStatusConfig = (status) => {
+  switch (status) {
+    case 'STOCK':
+      return { bgClass: 'from-green-600 to-green-700', icon: '<svg class="w-3 h-3 inline mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>', text: 'DISPONIBLE', btnClass: 'bg-green-500 hover:bg-green-600', btnText: 'Comprar Ahora' };
+    case 'PREVENTA':
+      return { bgClass: 'from-blue-600 to-blue-700', icon: '<span class="mr-1">⏰</span>', text: 'PREVENTA', btnClass: 'bg-blue-500 hover:bg-blue-600', btnText: 'Reservar ahora' };
+    case 'POR_LLEGAR':
+      return { bgClass: 'from-purple-500 to-purple-600', icon: '<span class="mr-1">🚢</span>', text: 'POR LLEGAR', btnClass: 'bg-purple-500 hover:bg-purple-600', btnText: 'Reservar ahora' };
+    case 'BAJO_PEDIDO':
+      return { bgClass: 'from-gray-700 to-gray-800', icon: '<span class="mr-1">📋</span>', text: 'BAJO PEDIDO', btnClass: 'bg-gray-700 hover:bg-gray-800', btnText: 'Pedir ahora' };
+    default:
+      return { bgClass: 'from-gray-500 to-gray-600', icon: '', text: status, btnClass: 'bg-gray-500 hover:bg-gray-600', btnText: 'Consultar' };
+  }
+};
+
+const seoTitle = " Mini UPS & UPS – Sistemas de Alimentación Ininterrumpida (SAI) | UPStore Ecuador";
+const seoDescription = "🔥 UPStore Ecuador: Proteja sus equipos con nuestros sistemas UPS y de respaldo energético. Amplia gama de soluciones para hogares y empresas en Ecuador. Compra online con la mejor garantía. Protección profesional y doméstica. Envío nacional 72h.";
+const seoKeywords = [ "ups ecuador", "sistemas de respaldo energético", "ups online", "protección eléctrica", "reguladores de voltaje", 'Sistemas de alimentación ininterrumpida' ];
+
+const storeProductsData = products.map(product => ({
+  name: product.name,
+  description: product.description,
+  price: Number(product.price).toFixed(2),
+  imageUrl: product.imageUrl,
+  status: product.status === 'STOCK' ? 'En Stock' : 'Preventa'
+}));
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/' },
+  { name: 'Productos', url: '/productos' },
+];
+
+const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.ec'}`;
+---
+
+<Layout title={seoTitle}>
+  <SEO
+    pageType="upstore"
+    title={seoTitle}
+    description={seoDescription}
+    keywords={seoKeywords}
+    canonical={canonicalUrl}
+  />
+
+  <GlobalNavbar />
+  
+  <main class="pt-20 min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-20 left-10 w-72 h-72 bg-blue-500/5 dark:bg-blue-400/5 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/5 dark:bg-purple-400/5 rounded-full blur-3xl"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 py-8 relative z-10">
+      <div class="text-center mb-12">
+        <div class="flex justify-center items-center mb-4">
+          <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-500 rounded-xl flex items-center justify-center mr-4 shadow-lg">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white transition-colors duration-300">
+            <span class="bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+              UPStore
+            </span>
+          </h1>
+        </div>
+        <h2 class="text-xl md:text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
+          Su tienda online en Ecuador para sistemas de respaldo de energía
+        </h2>
+
+        <div role="region" aria-label="Mensajes promocionales" class="flex flex-col md:flex-row justify-center items-center gap-3 mb-4 px-2">
+          <div class="flex items-center bg-green-50 dark:bg-green-900/20 px-4 py-2 rounded-full border border-green-200 dark:border-green-800/50 hover:shadow-md transition">
+            <span class="text-2xl mr-2 align-middle leading-none relative -top-1">🇪🇨</span>
+            <span class="text-green-700 dark:text-green-300 font-semibold text-sm">ENVÍOS GRATIS A TODO EL ECUADOR*</span>
+          </div>
+          <div class="flex items-center bg-blue-50 dark:bg-blue-900/20 px-4 py-2 rounded-full border border-blue-200 dark:border-blue-800/50 hover:shadow-md transition">
+            <span class="text-2xl mr-2 align-middle leading-none">⚡</span>
+            <span class="text-blue-700 dark:text-blue-300 font-semibold text-sm">ENTREGA DE MINI UPS EN HASTA 72 HORAS*</span>
+          </div>
+          <div class="flex items-center bg-yellow-50 dark:bg-yellow-900/20 px-4 py-2 rounded-full border border-yellow-200 dark:border-yellow-800/50 hover:shadow-md transition">
+            <span class="text-2xl mr-2 align-middle leading-none relative -top-1">💳</span>
+            <span class="text-yellow-700 dark:text-yellow-300 font-semibold text-sm">ACEPTAMOS MÚLTIPLES FORMAS DE PAGO</span>
+          </div>
+          <div class="flex items-center bg-purple-50 dark:bg-purple-900/20 px-4 py-2 rounded-full border border-purple-200 dark:border-purple-800/50 hover:shadow-md transition">
+            <span class="text-2xl mr-2 align-middle leading-none">🔋</span>
+            <span class="text-purple-700 dark:text-purple-300 font-semibold text-sm">AUTONOMÍA A MEDIDA</span>
+          </div>
+        </div>
+      </div>
+      
+      {error ? (
+        <div class="text-center max-w-md mx-auto">
+          <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800/50 rounded-xl p-8 transition-colors duration-300">
+            <h3 class="text-lg font-semibold text-red-800 dark:text-red-200 mb-2">Error al cargar el catálogo</h3>
+            <p class="text-red-600 dark:text-red-400 mb-4">{error}</p>
+            <button onclick="window.location.reload()" class="mt-4 bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-medium">
+              Recargar Catálogo
+            </button>
+          </div>
+        </div>
+      ) : products.length === 0 ? (
+        <div class="text-center max-w-md mx-auto">
+          <div class="bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700/50 rounded-xl p-8 transition-colors duration-300">
+            <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">Catálogo en preparación</h3>
+            <p class="text-gray-600 dark:text-gray-400">Próximamente tendremos disponibles las mejores soluciones.</p>
+          </div>
+        </div>
+      ) : (
+        <>
+          <div class="flex justify-between items-center mb-8">
+            <div class="text-gray-600 dark:text-gray-400 transition-colors duration-300">
+              <span id="product-counter" class="font-semibold text-gray-900 dark:text-white">{products.length}</span>
+              <span id="product-counter-text"> {products.length === 1 ? ' UPS disponible' : 'UPS disponibles'}</span>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button class="filter-btn active px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 bg-blue-600 hover:bg-blue-700 text-white shadow-md" data-filter="all">
+                Todos
+              </button>
+              {Object.entries(categoryConfig).map(([key, config]) => (
+                <button class="filter-btn px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/20 hover:text-emerald-700 dark:hover:text-emerald-400" data-filter={key}>
+                  <span class="text-lg mr-2">{config.icon}</span>{config.name}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="products-grid" itemScope itemType="https://schema.org/ItemList">
+            {products.map((product, index) => {
+              const statusConfig = getStatusConfig(product.status);
+              const safeName = encodeURIComponent(product.name || '');
+              
+              return (
+              <div class="product-card bg-white dark:bg-gray-800 rounded-xl shadow-lg dark:shadow-gray-900/30 overflow-hidden hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 hover:scale-[1.02] group border border-gray-100 dark:border-gray-700 flex flex-col" data-category={product.category} itemScope itemType="https://schema.org/Product" itemProp="itemListElement">
+                <meta itemProp="position" content={(index + 1).toString()} />
+                
+                <a href={`/producto/${product.slug}`} class="relative overflow-hidden flex-shrink-0 bg-white block">
+                  <div class="watermark-overlay"></div>
+                  <img 
+                    src={product.imageUrl}
+                    alt={product.name}
+                    class="w-full h-48 object-cover object-center group-hover:scale-110 transition-transform duration-500 bg-white relative z-10"
+                    loading="lazy"
+                    onerror="this.src='/images/placeholder-ups.jpg'"
+                    itemProp="image"
+                    oncontextmenu="return false;"
+                    draggable="false"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20"></div>
+                  
+                  <div class="absolute top-3 right-3 z-30">
+                    <span class={`bg-gradient-to-r ${statusConfig.bgClass} text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg uppercase tracking-wide`}>
+                      <Fragment set:html={statusConfig.icon} />
+                      {statusConfig.text}
+                    </span>
+                  </div>
+                  
+                  <div class="absolute bottom-3 left-3 z-30">
+                    <div class="bg-black/70 text-white px-2 py-1 rounded text-xs font-medium backdrop-blur-sm shadow-md">
+                      <span class="mr-1">{categoryConfig[product.category]?.icon || ''}</span>
+                      {getCategoryDisplay(product.category)}
+                    </div>
+                  </div>
+                </a>
+                
+                <div class="p-5 flex flex-col flex-grow">
+                  <a href={`/producto/${product.slug}`}>
+                    <h3 class="font-semibold text-lg mb-3 text-gray-900 dark:text-white line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300" itemProp="name">
+                      {product.name}
+                    </h3>
+                  </a>
+                  <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2 flex-grow" itemProp="description">
+                    {product.description}
+                  </p>
+                  
+                  <meta itemProp="availability" content={product.status === 'STOCK' ? 'InStock' : 'PreOrder'} />
+
+                  <div class="flex justify-between items-center mt-auto border-t border-gray-100 dark:border-gray-700 pt-4">
+                    <div itemProp="offers" itemScope itemType="https://schema.org/Offer">
+                      <span class="text-2xl font-bold text-blue-600 dark:text-blue-400 transition-colors duration-300">
+                        ${Number(product.price).toFixed(2)}
+                      </span>
+                      <div class="text-[10px] text-gray-500 dark:text-gray-400 uppercase tracking-wider font-semibold">IVA Ya Incluido</div>
+                      <meta itemProp="price" content={Number(product.price).toFixed(2)} />
+                      <meta itemProp="priceCurrency" content="USD" />
+                    </div>
+
+                    <button 
+                      class={`${statusConfig.btnClass} text-white px-4 py-2.5 rounded-lg transition-all duration-200 text-sm font-bold hover:shadow-lg transform hover:-translate-y-0.5 group flex items-center shadow-md`}
+                      onclick={`contactProduct('${safeName}', '${product.price}', '${product.status}')`}
+                    >
+                      <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                      </svg>
+                      {statusConfig.btnText}
+                    </button> 
+                  </div>
+                </div>
+              </div>
+              );
+            })}
+          </div>
+        </>
+      )}
+    </div>
+  </main>
+  <BrandsSection themeColor="from-blue-600 to-purple-600" />
+  <GlobalFooter />
+</Layout>
+
+<style>
+  .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  
+  .watermark-overlay {
+    position: absolute; inset: 0%; z-index: 20; pointer-events: none;
+    background-image: url('/images/upstore-logo.svg');
+    background-repeat: no-repeat; background-position: 4px 7px;
+    background-size: 160px; opacity: 0.15;
+  }
+  .dark .watermark-overlay { filter: invert(1); opacity: 0.15; }
+  
+  *:not(.watermark-overlay) {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+</style>
+
+<script>
+  const WHATSAPP_NUMBER = '593987799459';
+  
+  window.contactProduct = function(productNameEnc, price, status) {
+    const productName = decodeURIComponent(productNameEnc);
+    let actionWord = "comprar";
+    if (status === 'BAJO_PEDIDO') actionWord = "cotizar";
+    if (status === 'PREVENTA' || status === 'POR_LLEGAR') actionWord = "reservar";
+    
+    const message = `¡Hola! Me interesa ${actionWord} este UPS: ${productName} (Precio ref: $${price}). ¿Podrían ayudarme con el proceso?`;
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  function initializeFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const productCards = document.querySelectorAll('.product-card');
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const filter = this.dataset.filter;
+        
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active', 'bg-blue-600', 'text-white');
+          btn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+        });
+        
+        this.classList.add('active', 'bg-blue-600', 'text-white');
+        this.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+        
+        let visibleCount = 0; 
+        
+        productCards.forEach(card => {
+          const shouldShow = filter === 'all' || card.dataset.category === filter;
+          if (shouldShow) {
+            card.style.display = 'flex'; 
+            card.classList.remove('animate-fadeOut');
+            card.classList.add('animate-fadeIn');
+            visibleCount++; 
+          } else {
+            card.classList.remove('animate-fadeIn');
+            card.classList.add('animate-fadeOut');
+            setTimeout(() => card.style.display = 'none', 200);
+          }
+        });
+
+        const counter = document.getElementById('product-counter');
+        const counterText = document.getElementById('product-counter-text');
+        if(counter && counterText) {
+            counter.textContent = visibleCount.toString();
+            counterText.textContent = visibleCount === 1 ? ' UPS disponible' : ' UPS disponibles';
+        }
+      });
+    });
+  }
+
+  function addAnimationStyles() {
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes fadeOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-10px); } }
+      .animate-fadeIn { animation: fadeIn 0.3s ease-out; }
+      .animate-fadeOut { animation: fadeOut 0.2s ease-out; }
+    `;
+    document.head.appendChild(style);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    initializeFilters();
+    addAnimationStyles();
+  });
+</script>

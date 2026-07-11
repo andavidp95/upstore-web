@@ -1,0 +1,231 @@
+---
+// components/GlobalFooter.astro
+
+const socialLinks = [
+  {
+    name: 'Instagram',
+    url: 'https://instagram.com/upstore_ec',
+    icon: 'M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z'
+  },
+  {
+    name: 'Facebook',
+    url: 'https://facebook.com/upstoreec',
+    icon: 'M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z'
+  }
+];
+
+const locations = ['Guayaquil', 'Samborondón', 'Quito', 'Cuenca'];
+---
+
+<footer class="bg-gradient-to-b from-gray-100 to-gray-200 border-t border-gray-300">
+  <!-- Sección principal del footer -->
+  <div class="container mx-auto px-4 pt-16 pb-8">
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-8">
+      
+      <!-- Columna 1: Logo y descripción -->
+      <div class="lg:col-span-1">
+        <div class="mb-6">
+          <img 
+            src="/images/upstore-logo.svg" 
+            alt="UPStore - Sistemas de Respaldo Energético Ecuador" 
+            class="h-12 w-auto mb-4"
+            onerror="this.style.display='none'"
+          >
+          <!-- Fallback si no se encuentran las imágenes -->
+          <div class="flex items-center space-x-3 text-gray-900 mb-4">
+            <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+              <span class="text-white font-bold text-xl">UP</span>
+            </div>
+            <span class="font-bold text-2xl">UPStore</span>
+          </div>
+        </div>
+        
+        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+          Tienda especializada en sistemas UPS y respaldo energético en Ecuador. 
+          Venta de UPS monofásicos, trifásicos, mini UPS, baterías y accesorios con envío a todo el país.
+        </p>
+
+        <!-- Certificaciones y badges SEO -->
+        <div class="flex flex-wrap gap-2 mb-6">
+          <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">
+            🇪🇨 Envíos a todo Ecuador
+          </span>
+          <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">
+            ✓ Garantía incluida
+          </span>
+          <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-medium">
+            ⚡ Entrega 72h
+          </span>
+        </div>
+
+        <!-- Redes sociales -->
+        <div class="flex space-x-4">
+          {socialLinks.map((social) => (
+            <a 
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-gray-500 hover:text-gray-700 transition-all duration-300 p-3 hover:bg-gray-200 rounded-lg transform hover:scale-110"
+              aria-label={`Síguenos en ${social.name}`}
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d={social.icon}/>
+              </svg>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Columna 2: Contacto -->
+      <div class="lg:col-span-1">
+        <!-- Contacto Directo -->
+        <h3 class="text-gray-900 font-bold text-lg mb-6 relative">
+          Contacto Directo
+          <div class="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-green-500 to-blue-500"></div>
+        </h3>
+        
+        <!-- WhatsApp destacado -->
+        <div class="mb-6 p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-lg border border-green-200">
+          <a 
+            href="https://wa.me/593987799459" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center space-x-3 text-green-600 hover:text-green-700 transition-colors group"
+          >
+            <div class="relative">
+              <svg class="w-8 h-8 transform group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.52 3.49A11.94 11.94 0 0012 0C5.37 0 0 5.37 0 12c0 2.11.55 4.09 1.51 5.81L0 24l6.36-1.49C8.04 23.41 9.98 24 12 24c6.63 0 12-5.37 12-12 0-3.19-1.24-6.19-3.48-8.51zM12 22c-1.78 0-3.5-.46-4.99-1.26l-.36-.21-3.64.85.77-3.58-.23-.37A9.93 9.93 0 012 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm5.5-7.5c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.49-.89-.8-1.49-1.78-1.67-2.08-.18-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.68-1.63-.93-2.23-.24-.58-.49-.5-.68-.51h-.58c-.2 0-.52.08-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.11 3.22 5.11 4.52.71.31 1.27.49 1.71.63.72.23 1.37.2 1.88.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35z"/>
+              </svg>
+              <div class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+            </div>
+            <div>
+              <div class="font-bold">+593 98 779 9459</div>
+              <div class="text-sm text-gray-500">Chat directo • Respuesta inmediata</div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Información de contacto -->
+        <div class="space-y-3 text-gray-600 mb-8">
+          <div class="flex items-center space-x-3">
+            <svg class="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/>
+            </svg>
+            <span class="text-sm">Ecuador</span>
+          </div>
+          
+          <div class="flex items-center space-x-3">
+            <svg class="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+            <span class="text-sm">info@upstore.com.ec</span>
+          </div>
+          
+          <div class="flex items-center space-x-3">
+            <svg class="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+            <span class="text-sm">Lun - Dom: 8:00 AM - 8:00 PM</span>
+          </div>
+        </div>
+
+        <!-- Cobertura Nacional -->
+        <div class="mt-8">
+          <h4 class="text-gray-900 font-bold text-lg mb-6 relative">
+            Cobertura Nacional
+            <div class="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-yellow-500 to-orange-500"></div>
+          </h4>
+          
+          <!-- Ciudades principales -->
+          <div class="mb-4">
+            <p class="text-gray-600 text-sm mb-3">Envíos a las siguientes ciudades:</p>
+            <div class="flex flex-wrap gap-2">
+              {locations.map((location) => (
+                <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded text-xs hover:bg-gray-300 transition-colors">
+                  {location}
+                </span>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Columna 3: Links -->
+      <div class="lg:col-span-1">
+        <h3 class="text-gray-900 font-bold text-lg mb-6 relative">
+          Navegación
+          <div class="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"></div>
+        </h3>
+        
+        <div class="space-y-3">
+          <a href="/" class="block text-gray-600 hover:text-gray-900 transition-colors font-medium">
+            Inicio
+          </a>
+          <a href="/#productos" class="block text-gray-600 hover:text-gray-900 transition-colors font-medium">
+            Catálogo UPS
+          </a>
+          <a href="/terminos-y-condiciones" class="block text-gray-600 hover:text-gray-900 transition-colors font-medium">
+            Términos y Condiciones
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barra inferior con copyright y enlaces legales -->
+  <div class="border-t border-gray-300 bg-gray-50">
+    <div class="container mx-auto px-4 py-8">
+      <div class="max-w-4xl mx-auto">
+        
+        <!-- Información principal centrada -->
+        <div class="text-center mb-6">
+          <div class="text-gray-600 text-sm mb-2">
+            <p>© 2026 <strong class="text-gray-900">UPStore</strong> - Todos los derechos reservados</p>
+            <p class="text-xs mt-1">Tienda oficial de sistemas UPS y respaldo energético en Ecuador</p>
+          </div>
+        </div>
+
+        <!-- Enlaces de navegación centrados y alineados -->
+        <div class="flex flex-wrap justify-center items-center gap-6 text-sm">
+          <!-- Términos y Condiciones -->
+          <a 
+            href="/terminos-y-condiciones" 
+            class="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors hover:underline py-2 px-3 rounded hover:bg-gray-100"
+          >
+            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/>
+              <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+            </svg>
+            Términos y Condiciones
+          </a>
+
+          <!-- Botón para ir al inicio de la página actual -->
+          <button 
+            onclick="scrollToTop()" 
+            class="inline-flex items-center text-blue-600 hover:text-blue-700 transition-all duration-300 font-medium hover:underline cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded py-2 px-3 hover:bg-blue-50"
+            title="Ir al inicio de esta página"
+          >
+            <svg class="w-4 h-4 mr-2 transform group-hover:-translate-y-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+            </svg>
+            Ir al Inicio
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
+window.scrollToTop = scrollToTop;
+</script>

@@ -1,0 +1,109 @@
+---
+export interface Props {
+  text?: string;
+  targetElementId?: string;
+  onClick?: string;
+  themeColor?: string;
+  tooltipText?: string;
+  position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
+  className?: string;
+  size?: 'sm' | 'md' | 'lg';
+  verticalOffset?: string;
+  showBadge?: boolean;
+}
+
+const {
+  text = 'Cotizar mi Proyecto',
+  targetElementId = 'contact',
+  onClick,
+  themeColor = 'from-orange-500 to-orange-600',
+  tooltipText = '💡 Respuesta en 24h • Asesoría gratuita',
+  position = 'bottom-left',
+  className = '',
+  size = 'md',
+  verticalOffset = '-8px',
+  showBadge = true
+} = Astro.props;
+
+// Función onclick por defecto (scroll suave al elemento)
+const defaultOnClick = `document.getElementById('${targetElementId}').scrollIntoView({behavior: 'smooth'})`;
+const buttonOnClick = onClick || defaultOnClick;
+
+// Validar themeColor
+const safeThemeColor = themeColor.includes('from-') ? themeColor : 'from-orange-500 to-orange-600';
+
+// Clases de posición
+const positionClasses = {
+  'bottom-right': 'bottom-6 right-6',
+  'bottom-left': 'bottom-6 left-6',
+  'top-right': 'top-6 right-6',
+  'top-left': 'top-6 left-6'
+};
+
+// Clases de tooltip según posición
+const tooltipClasses = {
+  'bottom-right': 'right-full mr-4',
+  'bottom-left': 'left-full ml-4',
+  'top-right': 'right-full mr-4',
+  'top-left': 'left-full ml-4'
+};
+
+// Clases de flecha del tooltip
+const arrowClasses = {
+  'bottom-right': 'right-0 top-1/2 transform -translate-y-1/2 translate-x-1 border-r border-t',
+  'bottom-left': 'left-0 top-1/2 transform -translate-y-1/2 -translate-x-1 border-l border-b',
+  'top-right': 'right-0 top-1/2 transform -translate-y-1/2 translate-x-1 border-r border-t',
+  'top-left': 'left-0 top-1/2 transform -translate-y-1/2 -translate-x-1 border-l border-b'
+};
+
+// Tamaños del botón
+const sizeClasses = {
+  'sm': 'px-4 py-3 text-xs min-w-[180px]',
+  'md': 'px-6 py-4 text-sm min-w-[220px]',
+  'lg': 'px-8 py-5 text-base min-w-[260px]'
+};
+
+// Tamaños del ícono
+const iconSizeClasses = {
+  'sm': 'w-5 h-5',
+  'md': 'w-6 h-6',
+  'lg': 'w-7 h-7'
+};
+
+// Estilo dinámico para offset vertical
+const dynamicStyle = verticalOffset !== '0' ? `transform: translateY(${verticalOffset});` : '';
+---
+
+<!-- Botón CTA Flotante -->
+<div 
+  class={`fixed ${positionClasses[position]} z-40 group ${className}`}
+  style={dynamicStyle}
+>
+  <button
+    id="cta-button"
+    onclick={buttonOnClick}
+    class={`relative bg-gradient-to-r ${safeThemeColor} text-white ${sizeClasses[size]} rounded-2xl font-bold hover:shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center space-x-3 border border-white/20 shadow-2xl`}
+    aria-label="Cotizar proyecto"
+  >
+    <div class="flex items-center justify-center space-x-3 relative">
+      <svg class={`${iconSizeClasses[size]} transition-transform duration-300 group-hover:scale-125 flex-shrink-0`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+      </svg>
+      <span class="whitespace-nowrap font-black leading-none">{text}</span>
+    </div>
+
+    <!-- Badge parpadeante exactamente como WhatsApp -->
+    {showBadge && (
+      <div class="absolute -top-1 -right-1 w-3 h-3 rounded-full border-2 border-white shadow-lg">
+        <div class={`absolute inset-0 bg-gradient-to-r ${safeThemeColor} rounded-full`}></div>
+        <div class={`absolute inset-0 bg-gradient-to-r ${safeThemeColor} rounded-full animate-ping opacity-75`} style="animation-duration: 2s;"></div>
+      </div>
+    )}
+  </button>
+
+  <!-- Tooltip -->
+  <span class={`absolute ${tooltipClasses[position]} top-1/2 transform -translate-y-1/2 bg-gray-900 text-white px-4 py-3 rounded-xl text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-xl border border-gray-700 pointer-events-none`}>
+    {tooltipText}
+    <div class={`absolute w-2 h-2 bg-gray-900 rotate-45 ${arrowClasses[position]} border-gray-700`}></div>
+  </span>
+</div>

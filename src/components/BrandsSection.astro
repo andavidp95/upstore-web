@@ -1,0 +1,322 @@
+---
+const brandsData = {
+  title: "Distribuidores oficiales",
+  subtitle: "Trabajamos con las mejores marcas del mercado mundial, ofreciendo productos de calidad y asesoría para su compra. ",
+  categories: [
+    {
+      name: "Mini UPS",
+      brands: [
+        {
+          name: "Shanqiu",
+          logo: "/images/brands/shanqiu.png" 
+        },
+        {
+          name: "HVIKI",
+          logo: "/images/brands/hviki.gif"
+        }
+      ]
+    },
+     {
+      name: "UPS",
+      brands: [
+        {
+          name: "APC by Schneider Electric",
+          logo: "/images/brands/apc.svg" 
+        },
+        {
+          name: "VERTIV",
+          logo: "/images/brands/vertiv.svg"
+        }
+      ]
+    }
+  ]
+};
+export interface Props {
+  themeColor?: string;
+}
+
+const { themeColor = "from-blue-600 to-purple-600" } = Astro.props;
+---
+
+<section
+  id="brands-section"
+  class="py-16 px-4 bg-gray-50 dark:bg-gray-800 relative overflow-hidden transition-colors duration-300"
+>
+  <!-- Efectos decorativos -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div
+      class="absolute top-16 right-8 w-28 h-28 rounded-full blur-3xl animate-pulse
+             bg-blue-200/20 dark:bg-blue-400/10"
+    ></div>
+    <div
+      class="absolute bottom-8 left-8 w-36 h-36 rounded-full blur-2xl
+             bg-purple-200/15 dark:bg-purple-400/8"
+      style="animation: slowBounce 8s ease-in-out infinite;"
+    ></div>
+  </div>
+
+  <div class="container mx-auto relative z-10">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 transition-colors duration-300">
+        <span class={`bg-gradient-to-r ${themeColor} bg-clip-text text-transparent`}>
+          {brandsData.title}
+        </span>
+      </h2>
+      <p class="max-w-3xl mx-auto text-sm md:text-base leading-relaxed transition-colors duration-300 text-gray-700 dark:text-gray-300">
+        {brandsData.subtitle}
+      </p>
+    </div>
+
+    <!-- Brands Carousel -->
+    <div class="relative">
+      <div class="brands-swiper-container">
+        <div class="swiper-wrapper">
+          {brandsData.categories.map((category) => (
+            <div class="swiper-slide">
+              <div class="text-center mb-8">
+                <h3 class="text-2xl font-bold mb-2 transition-colors duration-300 text-gray-900 dark:text-white">
+                  {category.name}
+                </h3>
+                <div class={`w-16 h-1 bg-gradient-to-r ${themeColor} mx-auto rounded-full mb-8`}></div>
+              </div>
+
+              <!-- Flex de marcas centrado -->
+              <div class="flex flex-wrap justify-center gap-6 px-4">
+                {category.brands.map((brand) => (
+                  <div class="group relative p-2 transition-all duration-500 hover:scale-105 hover:shadow-lg flex flex-col items-center rounded-lg">
+                    <!-- Logo container con imagen -->
+                    <div class="flex items-center justify-center h-16 w-36 mb-2 relative">
+                      <img
+                        src={brand.logo}
+                        alt={`${brand.name} logo`}
+                        class="
+                          max-w-full max-h-full object-contain
+                          filter brightness-90 dark:brightness-110
+                          group-hover:brightness-110 transition-all duration-300
+                        "
+                        loading="lazy"
+                        onError="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                      />
+                      <!-- Fallback cuando no se puede cargar la imagen -->
+                      <div
+                        class="absolute inset-0 flex items-center justify-center rounded-lg"
+                        style="display: none; background: transparent;"
+                      >
+                        <span class="text-2xl font-bold text-gray-500 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-white transition-colors duration-300">
+                          {brand.name.charAt(0)}
+                        </span>
+                      </div>
+                    </div>
+
+                    <!-- Nombre de la marca -->
+                    <div class="text-center mb-2">
+                      <h4 class="text-sm font-semibold transition-colors duration-300 text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white leading-tight">
+                        {brand.name}
+                      </h4>
+                    </div>
+
+                    <!-- Logro/Achievement -->
+                    <div class="text-center">
+                      <p class="text-xs text-gray-600 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300 leading-relaxed">
+                        {brand.achievement}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Navigation -->
+        <div class="brands-swiper-button-next"></div>
+        <div class="brands-swiper-button-prev"></div>
+
+        <!-- Pagination -->
+        <div class="brands-swiper-pagination"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  // Inicializar Brands Swiper cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof Swiper !== 'undefined') {
+      new Swiper('.brands-swiper-container', {
+        direction: 'horizontal',
+        loop: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        effect: 'slide',
+        slidesPerView: 1,
+        spaceBetween: 0,
+        pagination: {
+          el: '.brands-swiper-pagination',
+          clickable: true,
+          renderBullet: function (index, className) {
+            return '<span class="' + className + ' !bg-gray-400/40 dark:!bg-gray-300/40 hover:!bg-gray-500/60 dark:hover:!bg-gray-200/60"></span>';
+          },
+        },
+        navigation: {
+          nextEl: '.brands-swiper-button-next',
+          prevEl: '.brands-swiper-button-prev',
+        },
+        breakpoints: {
+          640: { slidesPerView: 1 },
+          768: { slidesPerView: 1 },
+          1024: { slidesPerView: 1 }
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  @keyframes slowBounce {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+  }
+
+  /* Estilos del carousel */
+  .brands-swiper-container {
+    position: relative;
+    padding-bottom: 40px;
+  }
+
+  /* Botones de navegación */
+  .brands-swiper-button-next,
+  .brands-swiper-button-prev {
+    color: rgba(75, 85, 99, 0.8) !important;
+    transition: all 0.3s ease;
+    width: 32px !important;
+    height: 48px !important;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .brands-swiper-button-next:hover,
+  .brands-swiper-button-prev:hover {
+    color: rgba(59, 130, 246, 0.9) !important;
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  /* Modo oscuro para botones */
+  html.dark .brands-swiper-button-next,
+  html.dark .brands-swiper-button-prev {
+    color: rgba(209, 213, 219, 0.8) !important;
+    background: rgba(31, 41, 55, 0.8);
+    border-color: rgba(75, 85, 99, 0.3);
+  }
+
+  html.dark .brands-swiper-button-next:hover,
+  html.dark .brands-swiper-button-prev:hover {
+    color: rgba(96, 165, 250, 0.9) !important;
+    background: rgba(31, 41, 55, 0.95);
+  }
+
+  /* Posicionamiento */
+  .brands-swiper-button-next { 
+    right: -50px; 
+  }
+  .brands-swiper-button-prev { 
+    left: -50px; 
+  }
+
+  /* Iconos */
+  .brands-swiper-button-next:after,
+  .brands-swiper-button-prev:after {
+    font-family: 'swiper-icons';
+    font-size: 16px;
+    color: currentColor;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .brands-swiper-button-next,
+    .brands-swiper-button-prev {
+      display: none;
+    }
+    .brands-swiper-container { 
+      padding-bottom: 30px; 
+    }
+  }
+
+  /* Paginación */
+  .brands-swiper-pagination {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+  }
+
+  .brands-swiper-pagination .swiper-pagination-bullet {
+    width: 14px !important;
+    height: 14px !important;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 1 !important;
+    background: rgba(156, 163, 175, 0.6) !important;
+    border: 2px solid rgba(156, 163, 175, 0.3);
+  }
+
+  .brands-swiper-pagination .swiper-pagination-bullet:hover {
+    background: rgba(75, 85, 99, 0.8) !important;
+    transform: scale(1.2);
+  }
+
+  .brands-swiper-pagination .swiper-pagination-bullet-active {
+    background: rgba(59, 130, 246, 0.9) !important;
+    border-color: rgba(59, 130, 246, 0.6);
+    transform: scale(1.3);
+  }
+
+  /* Modo oscuro para paginación */
+  html.dark .brands-swiper-pagination .swiper-pagination-bullet {
+    background: rgba(209, 213, 219, 0.4) !important;
+    border-color: rgba(209, 213, 219, 0.2);
+  }
+
+  html.dark .brands-swiper-pagination .swiper-pagination-bullet:hover {
+    background: rgba(209, 213, 219, 0.6) !important;
+  }
+
+  html.dark .brands-swiper-pagination .swiper-pagination-bullet-active {
+    background: rgba(96, 165, 250, 0.9) !important;
+    border-color: rgba(96, 165, 250, 0.6);
+  }
+
+  /* Animaciones */
+  .swiper-slide-active .text-center {
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

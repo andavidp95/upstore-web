@@ -1,0 +1,95 @@
+---
+export interface Props {
+  benefits: any[];
+  themeColor: string;
+  serviceTitle: string;
+  benefitsDescription: string;
+}
+
+const { benefits, themeColor, serviceTitle, benefitsDescription } = Astro.props;
+---
+
+<section id="benefits-section" class="py-16 px-4 bg-gradient-to-b from-gray-50 to-gray-200 dark:from-black dark:to-gray-900 relative overflow-hidden border-t border-gray-300/50 dark:border-transparent transition-colors duration-300">
+  <!-- Efectos decorativos de fondo -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute top-8 left-8 w-40 h-40 bg-gray-400/5 dark:bg-white/2 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-12 right-12 w-48 h-48 bg-gray-500/8 dark:bg-white/3 rounded-full blur-2xl" style="animation: float 8s ease-in-out infinite;"></div>
+    <div class="absolute top-1/3 left-1/3 w-32 h-32 bg-gray-400/6 dark:bg-white/2 rounded-full blur-xl animate-bounce" style="animation-duration: 6s;"></div>
+  </div>
+
+  <div class="container mx-auto relative z-10">
+    <!-- Header de la sección - Más compacto -->
+    <div class="text-center mb-12">
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-6 leading-tight transition-colors duration-300">
+        ¿Por qué elegir
+        <span class={`bg-gradient-to-r ${themeColor} bg-clip-text text-transparent`}>
+          {serviceTitle}?
+        </span>
+      </h2>
+      <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-sm md:text-base leading-relaxed transition-colors duration-300">
+        {benefitsDescription}
+      </p>
+    </div>
+
+    <!-- Grid de beneficios - Más compacto -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {benefits.map((benefit, index) => (
+        <div 
+          class="group relative bg-white/70 dark:bg-gray-900/50 hover:bg-white/90 dark:hover:bg-gray-900/70 backdrop-blur-md rounded-xl p-6 border border-gray-300/50 dark:border-gray-700/30 hover:border-gray-400/70 dark:hover:border-gray-600/50 transition-all duration-500 hover:scale-[1.02] hover:shadow-xl dark:hover:shadow-2xl"
+          style={`animation-delay: ${index * 0.1}s`}
+        >
+          <!-- Icono con efecto hover -->
+          <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-gray-200/80 to-gray-300/80 dark:from-gray-800/60 dark:to-gray-900/60 group-hover:scale-110 transition-transform duration-300 mb-4">
+            <span class="text-2xl group-hover:scale-110 transition-transform duration-300 filter dark:filter-none grayscale-0 dark:grayscale">
+              {benefit.icon}
+            </span>
+          </div>
+          
+          <!-- Contenido -->
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3 group-hover:text-gray-800 dark:group-hover:text-gray-100 transition-colors duration-300">
+            {benefit.title}
+          </h3>
+          
+          <p class="text-gray-600 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300 leading-relaxed transition-colors duration-300 text-sm">
+            {benefit.description}
+          </p>
+
+          <!-- Efectos visuales -->
+          <div class={`absolute inset-0 bg-gradient-to-br ${themeColor} opacity-0 group-hover:opacity-10 dark:group-hover:opacity-5 transition-opacity duration-500 rounded-xl pointer-events-none`}></div>
+          
+          <!-- Brillo sutil en hover -->
+          <div class="absolute inset-0 bg-gradient-to-br from-gray-300/20 to-transparent dark:from-white/3 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"></div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+  }
+  
+  /* Animación de entrada para los beneficios */
+  .group {
+    opacity: 0;
+    transform: translateY(15px);
+    animation: slideInUp 0.6s ease-out forwards;
+  }
+  
+  @keyframes slideInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Media queries para responsividad */
+  @media (max-width: 768px) {
+    .group {
+      animation-delay: 0s !important;
+    }
+  }
+</style>

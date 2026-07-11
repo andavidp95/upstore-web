@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemap SIEMPRE con HTTPS
+Sitemap: https://electroipec.com/sitemap.xml
+
+
+# Crawl-delay para evitar sobrecarga
+Crawl-delay: 1

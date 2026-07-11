@@ -1,0 +1,76 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "equipos"
+    label: "Equipos UPS"
+    folder: "src/content/equipos"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nombre", name: "name", widget: "string" }
+      - { label: "Descripción", name: "description", widget: "text" }
+      - { label: "Precio (USD)", name: "price", widget: "number", min: 0, value_type: "float" }
+      - { label: "URL de Imagen", name: "imageUrl", widget: "string", hint: "URL de la imagen del producto" }
+      - { label: "Link del Fabricante", name: "productLink", widget: "string", required: false, hint: "URL opcional a la ficha técnica del fabricante" }
+      - label: "Categoría"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Mini UPS", value: "MINI_UPS" }
+          - { label: "Monofásico", value: "MONOFASICO" }
+          - { label: "Bifásico", value: "BIFASICO" }
+          - { label: "Trifásico", value: "TRIFASICO" }
+      - label: "Estado"
+        name: "status"
+        widget: "select"
+        options:
+          - { label: "En Stock", value: "STOCK" }
+          - { label: "Preventa", value: "PREVENTA" }
+          - { label: "Por Llegar", value: "POR_LLEGAR" }
+          - { label: "Bajo Pedido", value: "BAJO_PEDIDO" }
+          - { label: "Agotado", value: "AGOTADO" }
+
+  - name: "accesorios"
+    label: "Accesorios"
+    folder: "src/content/accesorios"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nombre", name: "name", widget: "string" }
+      - { label: "Descripción", name: "description", widget: "text" }
+      - { label: "Precio (USD)", name: "price", widget: "number", min: 0, value_type: "float" }
+      - { label: "URL de Imagen", name: "imageUrl", widget: "string", hint: "URL de la imagen del accesorio" }
+      - { label: "Link del Fabricante", name: "productLink", widget: "string", required: false }
+      - label: "Categoría"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Batería", value: "BATERIA" }
+          - { label: "Tarjeta SNMP", value: "TARJETA_SNMP" }
+          - { label: "Rack", value: "RACK" }
+          - { label: "Cableado", value: "CABLEADO" }
+          - { label: "Otros", value: "OTROS" }
+      - label: "Estado"
+        name: "status"
+        widget: "select"
+        options:
+          - { label: "En Stock", value: "STOCK" }
+          - { label: "Preventa", value: "PREVENTA" }
+          - { label: "Por Llegar", value: "POR_LLEGAR" }
+          - { label: "Bajo Pedido", value: "BAJO_PEDIDO" }
+          - { label: "Agotado", value: "AGOTADO" }
+
+  - name: "servicios"
+    label: "Servicios"
+    folder: "src/content/servicios"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nombre", name: "name", widget: "string" }
+      - { label: "Descripción Corta", name: "shortDescription", widget: "text", hint: "Descripción breve del servicio (1-2 líneas)" }
+      - { label: "URL de Imagen", name: "imageUrl", widget: "string", hint: "URL de la imagen del servicio" }

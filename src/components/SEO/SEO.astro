@@ -1,0 +1,193 @@
+---
+// components/SEO/SEO.astro - Componente SEO optimizado y simplificado
+import { 
+  SEO_CONFIG,
+  generateMetadata,
+  getStructuredData,
+  getFAQSchema,
+  getBreadcrumbSchema,
+  getProductSchema,
+  getStoreProductSchema,
+  getStoreAvailabilitySchema
+} from '../../data/SEOData.js';
+
+export interface Props {
+  // Configuración básica
+  pageType?: 'home' | 'upstore' | 'terms';
+  title?: string;
+  description?: string;
+  keywords?: string[];
+  canonical?: string;
+  path?: string;
+
+  // Open Graph personalizado
+  ogImage?: string;
+  ogType?: string;
+  
+  // Configuraciones especiales
+  noIndex?: boolean;
+  noFollow?: boolean;
+  
+  // Breadcrumbs
+  breadcrumbs?: Array<{name: string; url: string}>;
+  
+  // Datos específicos por tipo
+  productData?: {
+    name?: string;
+    category?: string;
+    price?: string;
+    availability?: string;
+    brand?: string;
+  };
+
+  storeProducts?: Array<{
+    name: string;
+    description: string;
+    price: string;
+    imageUrl: string;
+    status: string;
+  }>;
+}
+
+const {
+  pageType = 'home',
+  title,
+  description,
+  keywords = [],
+  canonical,
+  path,
+  ogImage,
+  ogType,
+  noIndex = false,
+  noFollow = false,
+  breadcrumbs = [],
+  productData,
+  storeProducts = []
+} = Astro.props;
+
+const metadata = generateMetadata({
+    pageType,
+    title,
+    description,
+    keywords,
+    canonical,
+    path,
+    ogImage,
+    ogType
+  });
+
+// Generar esquemas JSON-LD basados en el tipo de página
+const schemas: any[] = [];
+
+const pageConfig = {
+  home: ['organization', 'localBusiness', 'faq'],
+  upstore: ['organization', 'localBusiness'],
+  terms: ['organization', 'legalDocument', 'faq']
+};
+
+// Agregar esquemas base
+(pageConfig[pageType] || []).forEach(schemaType => {
+  if (schemaType === 'faq') {
+    const faqSchema = getFAQSchema(pageType);
+    if (faqSchema) schemas.push(faqSchema);
+    
+  } else if (schemaType === 'legalDocument') {
+    const schema = getStructuredData('legalDocument');
+    if (schema) schemas.push(schema);
+
+  } else if (schemaType === 'localBusiness' && pageType === 'upstore') {
+    schemas.push(getStoreAvailabilitySchema());
+    if (storeProducts.length > 0) {
+      schemas.push(getStoreProductSchema(storeProducts));
+    }
+
+  } else {
+    const schema = getStructuredData(schemaType);
+    if (schema) schemas.push(schema);
+  }
+});
+
+// Esquemas adicionales
+if (breadcrumbs.length > 0) {
+  schemas.push(getBreadcrumbSchema(breadcrumbs));
+}
+
+// Configuración robots
+const robotsContent = [
+  noIndex ? 'noindex' : 'index',
+  noFollow ? 'nofollow' : 'follow',
+  'max-snippet:-1',
+  'max-image-preview:large',
+  'max-video-preview:-1'
+].filter(Boolean).join(', ');
+---
+
+<title>{metadata.title}</title>
+<meta name="description" content={metadata.description} />
+<meta name="keywords" content={metadata.keywords} />
+<meta name="robots" content={robotsContent} />
+<meta name="author" content="UPStore Ecuador" />
+
+<link rel="canonical" href={metadata.canonical} />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+<meta property="og:type" content={metadata.openGraph.type} />
+<meta property="og:url" content={metadata.canonical} />
+<meta property="og:title" content={metadata.openGraph.title} />
+<meta property="og:description" content={metadata.openGraph.description} />
+<meta property="og:site_name" content={metadata.openGraph.siteName} />
+<meta property="og:locale" content={metadata.openGraph.locale} />
+{metadata.openGraph.images && metadata.openGraph.images.map(image => (
+  <>
+    <meta property="og:image" content={image.url} />
+    <meta property="og:image:width" content={image.width.toString()} />
+    <meta property="og:image:height" content={image.height.toString()} />
+    <meta property="og:image:alt" content={image.alt} />
+  </>
+))}
+
+<meta name="twitter:card" content={metadata.twitter.card} />
+<meta name="twitter:title" content={metadata.twitter.title} />
+<meta name="twitter:description" content={metadata.twitter.description} />
+<meta name="twitter:site" content="@upstore_ec" />
+{metadata.twitter.images && metadata.twitter.images.map(image => (
+  <meta name="twitter:image" content={image} />
+))}
+
+<meta name="geo.region" content="EC" />
+<meta name="geo.country" content="Ecuador" />
+<meta name="language" content="Spanish" />
+<meta name="contact" content={SEO_CONFIG.CONTACT.email} />
+
+<meta name="theme-color" content={SEO_CONFIG.PWA.themeColor} />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-status-bar-style" content="black-translucent" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
+
+<link rel="alternate" hreflang="es" href={metadata.canonical} />
+<link rel="alternate" hreflang="es-EC" href={metadata.canonical} />
+<link rel="alternate" hreflang="x-default" href={metadata.canonical} />
+
+{schemas.filter(schema => schema).map(schema => (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+))}
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0" />
+
+<style>
+  /* Optimización CLS y performance */
+  html { font-display: swap; }
+  img { 
+    content-visibility: auto;
+    contain: layout style paint;
+    loading: lazy;
+  }
+  img[loading="eager"] { loading: eager; }
+</style>
