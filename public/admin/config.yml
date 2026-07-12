@@ -37,8 +37,7 @@ collections:
         options:
           - { label: "APC by Schneider Electric", value: "APC" }
           - { label: "Vertiv", value: "VERTIV" }
-          - { label: "Eaton", value: "EATON" }
-          - { label: "Victron Energy", value: "VICTRON" }
+          - { label: "Hbit", value: "HBIT" }
           - { label: "Otros", value: "OTROS" }
       - label: "Categoría"
         name: "category"
@@ -87,8 +86,7 @@ collections:
         options:
           - { label: "APC by Schneider Electric", value: "APC" }
           - { label: "Vertiv", value: "VERTIV" }
-          - { label: "Eaton", value: "EATON" }
-          - { label: "Victron Energy", value: "VICTRON" }
+          - { label: "Hbit", value: "HBIT" }
           - { label: "Otros", value: "OTROS" }
       - label: "Categoría"
         name: "category"
@@ -127,8 +125,7 @@ collections:
         options:
           - { label: "APC by Schneider Electric", value: "APC" }
           - { label: "Vertiv", value: "VERTIV" }
-          - { label: "Eaton", value: "EATON" }
-          - { label: "Victron Energy", value: "VICTRON" }
+          - { label: "Hbit", value: "HBIT" }
           - { label: "Otros", value: "OTROS" }
         required: false
       - label: "Categoría"
@@ -179,3 +176,37 @@ collections:
       - { label: "Orden", name: "order", widget: "number", hint: "Menor = primero", required: false }
       - { label: "Activo", name: "active", widget: "boolean", default: true }
       - { label: "Descripción", name: "body", widget: "markdown", required: false }
+
+  - name: "promos"
+    label: "Promos del Mes"
+    folder: "src/content/promos"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nombre", name: "name", widget: "string" }
+      - { label: "Descripción", name: "description", widget: "text" }
+      - { label: "Precio Promo (USD)", name: "price", widget: "number", min: 0, value_type: "float" }
+      - { label: "Precio Original (USD)", name: "originalPrice", widget: "number", min: 0, value_type: "float", required: false }
+      - { label: "URL de Imagen", name: "imageUrl", widget: "string" }
+      - label: "Marca"
+        name: "brand"
+        widget: "select"
+        options:
+          - { label: "APC", value: "APC" }
+          - { label: "Vertiv", value: "VERTIV" }
+          - { label: "Hbit", value: "HBIT" }
+          - { label: "Otros", value: "OTROS" }
+      - label: "Categoría"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Mini UPS", value: "MINI_UPS" }
+          - { label: "Monofásico", value: "MONOFASICO" }
+          - { label: "Bifásico", value: "BIFASICO" }
+          - { label: "Trifásico", value: "TRIFASICO" }
+          - { label: "Batería", value: "BATERIA" }
+          - { label: "Accesorio", value: "ACCESORIO" }
+      - { label: "Descuento", name: "discount", widget: "string", hint: "Ej: -20%, -150$", required: false }
+      - { label: "Badge", name: "badge", widget: "string", hint: "Ej: OFERTA, NUEVO", required: false }
+      - { label: "Orden", name: "order", widget: "number", hint: "Menor = primero", required: false }
+      - { label: "Activo", name: "active", widget: "boolean", default: true }

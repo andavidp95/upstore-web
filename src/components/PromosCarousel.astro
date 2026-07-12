@@ -1,0 +1,109 @@
+---
+import { getCollection } from 'astro:content';
+
+const allPromos = await getCollection('promos');
+const promos = allPromos
+  .filter(p => p.data.active !== false)
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
+  .map(p => ({
+    name: p.data.name,
+    description: p.data.description,
+    price: p.data.price,
+    originalPrice: p.data.originalPrice,
+    imageUrl: p.data.imageUrl,
+    brand: p.data.brand,
+    discount: p.data.discount,
+    badge: p.data.badge,
+    slug: p.slug
+  }));
+
+const WHATSAPP_NUMBER = '593987799459';
+---
+
+{promos.length > 0 && (
+  <section class="py-10 bg-white dark:bg-[#13151d] border-t border-gray-100 dark:border-white/5 transition-colors duration-500">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <p class="text-[11px] font-semibold text-red-500 dark:text-red-400 uppercase tracking-widest mb-1">Ofertas del mes</p>
+          <h2 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white tracking-tight">Promociones imperdibles</h2>
+        </div>
+        <div class="flex gap-1.5">
+          <button class="promo-prev w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 dark:border-white/10 text-gray-400 hover:text-gray-900 dark:hover:text-white hover:border-gray-300 dark:hover:border-white/20 transition-colors" aria-label="Anterior">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <button class="promo-next w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 dark:border-white/10 text-gray-400 hover:text-gray-900 dark:hover:text-white hover:border-gray-300 dark:hover:border-white/20 transition-colors" aria-label="Siguiente">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="promo-swiper pb-4">
+        <div class="swiper-wrapper">
+          {promos.map((promo) => (
+            <div class="swiper-slide">
+              <a href={`/producto/${promo.slug}`} class="group flex flex-col sm:flex-row items-stretch bg-gray-50 dark:bg-[#181b25] rounded-2xl border border-gray-100 dark:border-white/5 overflow-hidden hover:border-gray-200 dark:hover:border-white/10 hover:shadow-[0_4px_24px_-6px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_4px_24px_-6px_rgba(0,0,0,0.5)] transition-all duration-300">
+                <div class="sm:w-2/5 bg-gray-100 dark:bg-[#1a1d27] flex items-center justify-center p-6 relative min-h-[200px]">
+                  <img
+                    src={promo.imageUrl}
+                    alt={promo.name}
+                    class="max-h-44 object-contain"
+                    loading="lazy"
+                    onerror="this.style.display='none'"
+                  />
+                  {promo.badge && (
+                    <span class="absolute top-3 left-3 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-md">
+                      {promo.badge}
+                    </span>
+                  )}
+                  {promo.discount && (
+                    <span class="absolute top-3 right-3 bg-gray-900 dark:bg-white dark:text-gray-900 text-white text-[10px] font-bold px-2 py-0.5 rounded-md">
+                      {promo.discount}
+                    </span>
+                  )}
+                </div>
+                <div class="sm:w-3/5 p-5 flex flex-col justify-center">
+                  <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug">
+                    {promo.name}
+                  </h3>
+                  <p class="text-sm text-gray-500 dark:text-gray-400 mb-4 line-clamp-2">{promo.description}</p>
+                  <div class="flex items-end gap-3">
+                    <span class="text-2xl font-bold text-gray-900 dark:text-white">${Number(promo.price).toFixed(0)}</span>
+                    {promo.originalPrice && (
+                      <span class="text-sm text-gray-400 dark:text-gray-500 line-through">${Number(promo.originalPrice).toFixed(0)}</span>
+                    )}
+                  </div>
+                  <div class="mt-4">
+                    <span class="inline-flex items-center text-xs font-medium text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors">
+                      Ver producto
+                      <svg class="w-3.5 h-3.5 ml-1 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                    </span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    const promoSwiperEl = document.querySelector('.promo-swiper');
+    if (!promoSwiperEl || typeof Swiper === 'undefined') return;
+
+    new Swiper('.promo-swiper', {
+      loop: promos.length > 1,
+      autoplay: promos.length > 1 ? { delay: 5000, disableOnInteraction: false } : false,
+      slidesPerView: 1,
+      spaceBetween: 16,
+      navigation: { nextEl: '.promo-next', prevEl: '.promo-prev' },
+    });
+  });
+</script>
+
+<style>
+  .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+</style>

@@ -28,8 +28,7 @@ const categoryConfig = {
 const brandConfig = {
   'APC': { name: 'APC', color: 'bg-red-100 text-red-700 border-red-200' },
   'VERTIV': { name: 'Vertiv', color: 'bg-blue-100 text-blue-700 border-blue-200' },
-  'EATON': { name: 'Eaton', color: 'bg-yellow-100 text-yellow-700 border-yellow-200' },
-  'VICTRON': { name: 'Victron', color: 'bg-cyan-100 text-cyan-700 border-cyan-200' },
+  'HBIT': { name: 'Hbit', color: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
   'OTROS': { name: 'Otros', color: 'bg-gray-100 text-gray-600 border-gray-200' }
 };
 
@@ -69,7 +68,7 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
 
       <div class="bg-white dark:bg-[#181b25] rounded-2xl border border-gray-100 dark:border-white/5 overflow-hidden flex flex-col md:flex-row transition-colors duration-500">
 
-        <div class="md:w-1/2 p-0 flex justify-center items-center bg-gray-50 dark:bg-white/[0.02] relative overflow-hidden min-h-[300px] md:min-h-[500px]">
+        <div class="md:w-1/2 p-0 flex justify-center items-center bg-gray-50 dark:bg-[#1a1d27] relative overflow-hidden min-h-[300px] md:min-h-[500px]">
           <img
             src={product.imageUrl}
             alt={product.name}
@@ -149,14 +148,20 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
             <p class="text-center text-xs text-gray-400 mt-3">Te responderemos por WhatsApp a la brevedad</p>
           </div>
 
-          <div class="flex justify-center items-center gap-5 mt-4 pt-4 border-t border-gray-100 dark:border-white/5">
-            <div class="flex items-center gap-1.5">
-              <img src="/images/trust/payphone.svg" alt="Payphone" class="h-5 object-contain opacity-60 dark:opacity-40" onerror="this.style.display='none'">
-              <span class="text-[10px] text-gray-400 dark:text-gray-500">Payphone</span>
-            </div>
-            <div class="flex items-center gap-1.5">
-              <img src="/images/trust/servientrega.svg" alt="Servientrega" class="h-5 object-contain opacity-60 dark:opacity-40" onerror="this.style.display='none'">
-              <span class="text-[10px] text-gray-400 dark:text-gray-500">Servientrega</span>
+          <div class="mt-4 pt-4 border-t border-gray-100 dark:border-white/5">
+            <div class="flex items-center justify-between text-[11px] text-gray-400 dark:text-gray-500">
+              <div class="flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H18.75m-7.5-3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+                <span>Envío a todo Ecuador</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+                <span>Garantía incluida</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/></svg>
+                <span>Payphone · Tarjeta · Transferencia</span>
+              </div>
             </div>
           </div>
 

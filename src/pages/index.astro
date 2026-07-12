@@ -6,6 +6,7 @@ import SEO from '../components/SEO/SEO.astro';
 import GlobalNavbar from '../components/GlobalNavbar.astro';
 import GlobalFooter from '../components/GlobalFooter.astro';
 import BrandsSection from '../components/BrandsSection.astro';
+import PromosCarousel from '../components/PromosCarousel.astro';
 import { getCollection } from 'astro:content';
 
 const allProducts = await getCollection('equipos');
@@ -35,8 +36,7 @@ const categoryConfig = {
 const brandConfig = {
   'APC': { name: 'APC', color: 'bg-red-100 text-red-700 border-red-200' },
   'VERTIV': { name: 'Vertiv', color: 'bg-blue-100 text-blue-700 border-blue-200' },
-  'EATON': { name: 'Eaton', color: 'bg-yellow-100 text-yellow-700 border-yellow-200' },
-  'VICTRON': { name: 'Victron', color: 'bg-cyan-100 text-cyan-700 border-cyan-200' },
+  'HBIT': { name: 'Hbit', color: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
   'OTROS': { name: 'Otros', color: 'bg-gray-100 text-gray-600 border-gray-200' }
 };
 
@@ -47,7 +47,10 @@ const capacityGroups = [
   { key: '2000VA', label: '2000-2200VA', filter: (c) => ['2000VA','2200VA'].includes(c) },
   { key: '3000VA', label: '3000VA', filter: (c) => c === '3000VA' },
   { key: '6000VA', label: '6000VA', filter: (c) => c === '6000VA' },
-  { key: '10K+', label: '10KVA+', filter: (c) => ['10000VA','15000VA','20000VA','10KVA','20KVA','30KVA'].includes(c) },
+  { key: '10KVA', label: '10KVA', filter: (c) => ['10000VA','10KVA'].includes(c) },
+  { key: '12KVA', label: '12KVA', filter: (c) => c === '12KVA' },
+  { key: '15KVA', label: '15KVA', filter: (c) => ['15000VA','15KVA'].includes(c) },
+  { key: '20K+', label: '20KVA+', filter: (c) => ['20000VA','20KVA','30KVA','30000VA','40KVA','50KVA','60KVA','80KVA','100KVA'].includes(c) },
 ];
 
 const formFactorConfig = {
@@ -85,35 +88,19 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
       <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-blue-500/5 to-transparent dark:from-blue-400/3 rounded-full blur-3xl"></div>
       <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-indigo-500/5 to-transparent dark:from-indigo-400/3 rounded-full blur-3xl"></div>
 
-      <div class="container mx-auto px-4 py-12 md:py-20 relative z-10">
+      <div class="container mx-auto px-4 py-14 md:py-24 relative z-10">
         <div class="max-w-3xl mx-auto text-center">
-          <div class="inline-flex items-center gap-2 bg-white/70 dark:bg-white/5 backdrop-blur-sm border border-gray-200/50 dark:border-white/10 rounded-full px-4 py-1.5 mb-6">
-            <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
-            <span class="text-xs font-medium text-gray-500 dark:text-gray-400">Distribuidores oficiales en Ecuador</span>
-          </div>
-
           <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] font-bold text-gray-900 dark:text-white leading-[1.15] mb-5 tracking-tight">
             Respaldo energético para<br class="hidden sm:block" /> hogares y empresas
           </h1>
-
-          <p class="text-gray-500 dark:text-gray-400 text-base md:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
+          <p class="text-gray-500 dark:text-gray-400 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
             UPS monofásicos, trifásicos, mini UPS, baterías y accesorios con envío a todo el país.
           </p>
-
-          <div class="flex flex-wrap justify-center gap-4 mb-4">
-            {products.filter(p => p.status === 'STOCK').slice(0, 3).map((product) => (
-              <a href={`/producto/${product.slug}`} class="group flex items-center gap-3 bg-white dark:bg-white/5 backdrop-blur-sm border border-gray-200/60 dark:border-white/10 rounded-xl px-4 py-2.5 hover:border-blue-300 dark:hover:border-blue-500/30 hover:shadow-md transition-all duration-200">
-                <img src={product.imageUrl} alt={product.name} class="w-10 h-10 object-contain rounded" loading="lazy" onerror="this.style.display='none'" />
-                <div class="text-left">
-                  <p class="text-xs font-medium text-gray-900 dark:text-white line-clamp-1 group-hover:text-blue-600 transition-colors">{product.name}</p>
-                  <p class="text-xs text-gray-400">${Number(product.price).toFixed(0)}</p>
-                </div>
-              </a>
-            ))}
-          </div>
         </div>
       </div>
     </section>
+
+    <PromosCarousel />
 
     <!-- VALUE PROPS - Clean horizontal strip -->
     <section class="border-b border-gray-100 dark:border-white/5 bg-white dark:bg-[#13151d]">
@@ -263,7 +250,7 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
               data-capacity={product.capacity}
               data-ff={product.formFactor}
             >
-              <a href={`/producto/${product.slug}`} class="block relative bg-gray-50 dark:bg-white/[0.02]">
+              <a href={`/producto/${product.slug}`} class="block relative bg-gray-50 dark:bg-[#1a1d27]">
                 <img
                   src={product.imageUrl}
                   alt={product.name}
@@ -369,7 +356,10 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
       '2000VA': (c) => ['2000VA','2200VA'].includes(c),
       '3000VA': (c) => c === '3000VA',
       '6000VA': (c) => c === '6000VA',
-      '10K+': (c) => ['10000VA','15000VA','20000VA','10KVA','20KVA','30KVA'].includes(c),
+      '10KVA': (c) => ['10000VA','10KVA'].includes(c),
+      '12KVA': (c) => c === '12KVA',
+      '15KVA': (c) => ['15000VA','15KVA'].includes(c),
+      '20K+': (c) => ['20000VA','20KVA','30KVA','30000VA','40KVA','50KVA','60KVA','80KVA','100KVA'].includes(c),
     };
     return groups[key] || (() => true);
   }
