@@ -15,8 +15,7 @@ export const SEO_CONFIG = {
   },
 
   CONTACT: {
-    email: 'info@upstore.com.ec',
-    salesEmail: 'ventas@upstore.com.ec',
+    email: 'ventas@upstore.com.ec',
     whatsapp: {
       number: '+593987799459',
       link: 'https://wa.me/593987799459',
@@ -407,7 +406,7 @@ export const getFAQSchema = (pageType = 'home') => {
       },
       {
         question: "¿Puedo solicitar la eliminación de mis datos enviados?",
-        answer: "Sí, tienes derecho al olvido. Puedes solicitar la eliminación de tus datos escribiendo a info@upstore.com.ec en cualquier momento."
+        answer: "Sí, tienes derecho al olvido. Puedes solicitar la eliminación de tus datos escribiendo a ventas@upstore.com.ec en cualquier momento."
       },
       {
         question: "¿Los archivos que envío están protegidos legalmente?",

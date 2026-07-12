@@ -62,7 +62,7 @@ export const POST = async ({ request }) => {
     // 5. Enviar Email al Administrador (A ti)
     await transporter.sendMail({
       from: `"Notificaciones UPStore" <${process.env.ZOHO_SMTP_USER}>`,
-      to: process.env.ADMIN_EMAIL || 'info@upstore.com.ec',
+      to: process.env.ADMIN_EMAIL || 'ventas@upstore.com.ec',
       subject: `🔔 Nuevo proyecto: ${name} - ${service_type}`,
       attachments: attachments, // Enviamos los documentos del cliente
       html: `

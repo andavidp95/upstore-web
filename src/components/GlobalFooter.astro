@@ -1,6 +1,4 @@
 ---
-// components/GlobalFooter.astro
-
 const socialLinks = [
   {
     name: 'Instagram',
@@ -14,16 +12,14 @@ const socialLinks = [
   }
 ];
 
-const locations = ['Guayaquil', 'Samborondón', 'Quito', 'Cuenca'];
+const locations = ['Guayaquil', 'Samborondón', 'Quito', 'Cuenca', 'Ambato', 'Machala', 'Portoviejo', 'Loja', 'Riobamba', 'Ibarra', 'Santa Elena', 'Manta'];
 ---
 
-<footer class="bg-gradient-to-b from-gray-100 to-gray-200 border-t border-gray-300">
-  <!-- Sección principal del footer -->
+<footer class="bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-950 border-t border-gray-300 dark:border-gray-700 transition-colors duration-300">
   <div class="container mx-auto px-4 pt-16 pb-8">
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-8">
       
-      <!-- Columna 1: Logo y descripción -->
       <div class="lg:col-span-1">
         <div class="mb-6">
           <img 
@@ -32,8 +28,7 @@ const locations = ['Guayaquil', 'Samborondón', 'Quito', 'Cuenca'];
             class="h-12 w-auto mb-4"
             onerror="this.style.display='none'"
           >
-          <!-- Fallback si no se encuentran las imágenes -->
-          <div class="flex items-center space-x-3 text-gray-900 mb-4">
+          <div class="flex items-center space-x-3 text-gray-900 dark:text-white mb-4">
             <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
               <span class="text-white font-bold text-xl">UP</span>
             </div>
@@ -41,32 +36,30 @@ const locations = ['Guayaquil', 'Samborondón', 'Quito', 'Cuenca'];
           </div>
         </div>
         
-        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+        <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6">
           Tienda especializada en sistemas UPS y respaldo energético en Ecuador. 
           Venta de UPS monofásicos, trifásicos, mini UPS, baterías y accesorios con envío a todo el país.
         </p>
 
-        <!-- Certificaciones y badges SEO -->
         <div class="flex flex-wrap gap-2 mb-6">
-          <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">
+          <span class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 px-3 py-1 rounded-full text-xs font-medium">
             🇪🇨 Envíos a todo Ecuador
           </span>
-          <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">
+          <span class="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 px-3 py-1 rounded-full text-xs font-medium">
             ✓ Garantía incluida
           </span>
-          <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-medium">
+          <span class="bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 px-3 py-1 rounded-full text-xs font-medium">
             ⚡ Entrega 72h
           </span>
         </div>
 
-        <!-- Redes sociales -->
         <div class="flex space-x-4">
           {socialLinks.map((social) => (
             <a 
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-gray-500 hover:text-gray-700 transition-all duration-300 p-3 hover:bg-gray-200 rounded-lg transform hover:scale-110"
+              class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white transition-all duration-300 p-3 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-lg transform hover:scale-110"
               aria-label={`Síguenos en ${social.name}`}
             >
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -77,16 +70,13 @@ const locations = ['Guayaquil', 'Samborondón', 'Quito', 'Cuenca'];
         </div>
       </div>
 
-      <!-- Columna 2: Contacto -->
       <div class="lg:col-span-1">
-        <!-- Contacto Directo -->
-        <h3 class="text-gray-900 font-bold text-lg mb-6 relative">
+        <h3 class="text-gray-900 dark:text-white font-bold text-lg mb-6 relative">
           Contacto Directo
           <div class="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-green-500 to-blue-500"></div>
         </h3>
         
-        <!-- WhatsApp destacado -->
-        <div class="mb-6 p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-lg border border-green-200">
+        <div class="mb-6 p-4 bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-900/10 rounded-lg border border-green-200 dark:border-green-800">
           <a 
             href="https://wa.me/593987799459" 
             target="_blank"
@@ -106,8 +96,7 @@ const locations = ['Guayaquil', 'Samborondón', 'Quito', 'Cuenca'];
           </a>
         </div>
 
-        <!-- Información de contacto -->
-        <div class="space-y-3 text-gray-600 mb-8">
+        <div class="space-y-3 text-gray-600 dark:text-gray-400 mb-8">
           <div class="flex items-center space-x-3">
             <svg class="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/>
@@ -119,11 +108,7 @@ const locations = ['Guayaquil', 'Samborondón', 'Quito', 'Cuenca'];
             <svg class="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
               <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
             </svg>
-            <div class="text-sm">
-              <a href="mailto:info@upstore.com.ec" class="hover:text-gray-900 transition-colors">info@upstore.com.ec</a>
-              <span class="text-gray-400 mx-1">|</span>
-              <a href="mailto:ventas@upstore.com.ec" class="hover:text-gray-900 transition-colors">ventas@upstore.com.ec</a>
-            </div>
+            <a href="mailto:ventas@upstore.com.ec" class="text-sm hover:text-gray-900 dark:hover:text-white transition-colors">ventas@upstore.com.ec</a>
           </div>
           
           <div class="flex items-center space-x-3">
@@ -134,52 +119,48 @@ const locations = ['Guayaquil', 'Samborondón', 'Quito', 'Cuenca'];
           </div>
         </div>
 
-        <!-- Cobertura Nacional -->
         <div class="mt-8">
-          <h4 class="text-gray-900 font-bold text-lg mb-6 relative">
+          <h4 class="text-gray-900 dark:text-white font-bold text-lg mb-6 relative">
             Cobertura Nacional
             <div class="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-yellow-500 to-orange-500"></div>
           </h4>
           
-          <!-- Ciudades principales -->
           <div class="mb-4">
-            <p class="text-gray-600 text-sm mb-3">Envíos a las siguientes ciudades:</p>
+            <p class="text-gray-600 dark:text-gray-400 text-sm mb-3">Envíos a las siguientes ciudades:</p>
             <div class="flex flex-wrap gap-2">
               {locations.map((location) => (
-                <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded text-xs hover:bg-gray-300 transition-colors">
+                <span class="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-xs hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
                   {location}
                 </span>
               ))}
             </div>
           </div>
-
         </div>
       </div>
 
-      <!-- Columna 3: Links -->
       <div class="lg:col-span-1">
-        <h3 class="text-gray-900 font-bold text-lg mb-6 relative">
+        <h3 class="text-gray-900 dark:text-white font-bold text-lg mb-6 relative">
           Navegación
           <div class="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"></div>
         </h3>
         
         <div class="space-y-3">
-          <a href="/" class="block text-gray-600 hover:text-gray-900 transition-colors font-medium">
+          <a href="/" class="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium">
             Inicio
           </a>
-          <a href="/#equipos" class="block text-gray-600 hover:text-gray-900 transition-colors font-medium">
+          <a href="/#equipos" class="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium">
             Equipos UPS
           </a>
-          <a href="/baterias" class="block text-gray-600 hover:text-gray-900 transition-colors font-medium">
+          <a href="/baterias" class="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium">
             Baterías
           </a>
-          <a href="/accesorios" class="block text-gray-600 hover:text-gray-900 transition-colors font-medium">
+          <a href="/accesorios" class="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium">
             Accesorios
           </a>
-          <a href="/servicios" class="block text-gray-600 hover:text-gray-900 transition-colors font-medium">
+          <a href="/servicios" class="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium">
             Servicios
           </a>
-          <a href="/terminos-y-condiciones" class="block text-gray-600 hover:text-gray-900 transition-colors font-medium">
+          <a href="/terminos-y-condiciones" class="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium">
             Términos y Condiciones
           </a>
         </div>
@@ -187,25 +168,21 @@ const locations = ['Guayaquil', 'Samborondón', 'Quito', 'Cuenca'];
     </div>
   </div>
 
-  <!-- Barra inferior con copyright y enlaces legales -->
-  <div class="border-t border-gray-300 bg-gray-50">
+  <div class="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-950">
     <div class="container mx-auto px-4 py-8">
       <div class="max-w-4xl mx-auto">
         
-        <!-- Información principal centrada -->
         <div class="text-center mb-6">
-          <div class="text-gray-600 text-sm mb-2">
-            <p>© 2026 <strong class="text-gray-900">UPStore</strong> - Todos los derechos reservados</p>
+          <div class="text-gray-600 dark:text-gray-400 text-sm mb-2">
+            <p>© 2026 <strong class="text-gray-900 dark:text-white">UPStore</strong> - Todos los derechos reservados</p>
             <p class="text-xs mt-1">Tienda oficial de sistemas UPS y respaldo energético en Ecuador</p>
           </div>
         </div>
 
-        <!-- Enlaces de navegación centrados y alineados -->
         <div class="flex flex-wrap justify-center items-center gap-6 text-sm">
-          <!-- Términos y Condiciones -->
           <a 
             href="/terminos-y-condiciones" 
-            class="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors hover:underline py-2 px-3 rounded hover:bg-gray-100"
+            class="inline-flex items-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors hover:underline py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800"
           >
             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
               <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/>
@@ -214,13 +191,11 @@ const locations = ['Guayaquil', 'Samborondón', 'Quito', 'Cuenca'];
             Términos y Condiciones
           </a>
 
-          <!-- Botón para ir al inicio de la página actual -->
           <button 
             onclick="scrollToTop()" 
-            class="inline-flex items-center text-blue-600 hover:text-blue-700 transition-all duration-300 font-medium hover:underline cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded py-2 px-3 hover:bg-blue-50"
-            title="Ir al inicio de esta página"
+            class="inline-flex items-center text-blue-600 hover:text-blue-700 transition-all duration-300 font-medium hover:underline cursor-pointer rounded py-2 px-3 hover:bg-blue-50 dark:hover:bg-blue-900/20"
           >
-            <svg class="w-4 h-4 mr-2 transform group-hover:-translate-y-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
               <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
             </svg>
             Ir al Inicio
@@ -231,14 +206,9 @@ const locations = ['Guayaquil', 'Samborondón', 'Quito', 'Cuenca'];
   </div>
 </footer>
 
-
 <script>
 function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-
 window.scrollToTop = scrollToTop;
 </script>
