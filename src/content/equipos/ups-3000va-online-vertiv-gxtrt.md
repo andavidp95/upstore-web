@@ -7,6 +7,9 @@ productLink: "https://www.vertiv.com/493aef/globalassets/products/critical-power
 brand: VERTIV
 category: "MONOFASICO"
 status: "POR_LLEGAR"
+capacity: "3000VA"
+voltage: "120V"
+formFactor: "AMBOS"
 ---
 UPS Online de doble conversión 3000 VA / 2700 W con onda sinusoidal pura y salida 120 V. 
 Diseño rack/tower 2U, respaldo aproximado de 10 min a media carga. Toma de entrada L5-30P. 

@@ -7,6 +7,9 @@ productLink: "https://www.se.com/co/es/product/SRV3KRA/apc-easy-ups-srv-rm-3000v
 brand: APC
 category: "MONOFASICO"
 status: "STOCK"
+capacity: "3000VA"
+voltage: "120V"
+formFactor: "RACK"
 ---
 UPS Online 3000 VA / 2400 W de doble conversión con salida 120 V en formato rack. 
 Respaldo estimado de 12,4 min al 50 % de carga y 4,2 min al 100 %. 

@@ -7,6 +7,9 @@ productLink: "https://www.vertiv.com/es-latam/products-catalog/potencia-critica/
 brand: VERTIV
 category: "TRIFASICO"
 status: "STOCK"
+capacity: "30KVA"
+voltage: "208/220V"
+formFactor: "OTRO"
 ---
 UPS Trifásico Online 30 kVA / 30 kW, onda pura, entrada/salida 208/220 V, sin transformador, alta eficiencia. 
 Gabinete torre compacto, protección en línea para grandes cargas industriales o data centers. 

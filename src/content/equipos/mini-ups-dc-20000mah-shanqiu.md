@@ -6,6 +6,9 @@ imageUrl: "/images/products/mini-ups-shanqiu.jpg"
 brand: OTROS
 category: "MINI_UPS"
 status: "BAJO_PEDIDO"
+capacity: "MINI_20000MAH"
+voltage: "120V"
+formFactor: "OTRO"
 ---
 ✅ Batería de Li-polymer 20000 mAh (74 Wh) – ¡Hasta 10-12 horas de autonomía para tu router/módem! 🌐🔋
 ✅ Voltaje de entrada: 100~240 VAC 

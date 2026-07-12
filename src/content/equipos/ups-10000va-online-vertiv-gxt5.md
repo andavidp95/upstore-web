@@ -7,6 +7,9 @@ productLink: "https://www.vertiv.com/en-us/products-catalog/critical-power/unint
 brand: VERTIV
 category: "BIFASICO"
 status: "POR_LLEGAR"
+capacity: "10000VA"
+voltage: "120/208V"
+formFactor: "OTRO"
 ---
 UPS Online 10 000 VA / 10 000 W, onda sinusoidal pura, salida 120/208 V. 
 Terminales hard-wired 3W+G en entrada y salida, puertos USB/RS-232, respaldo ≈2 min a plena carga y ≈7 min a media carga. 

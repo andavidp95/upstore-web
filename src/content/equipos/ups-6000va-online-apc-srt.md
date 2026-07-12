@@ -7,6 +7,9 @@ productLink: "https://www.se.com/co/es/product/SRT6KXLT-5KTF/unidad-smartups-srt
 brand: APC
 category: "BIFASICO"
 status: "STOCK"
+capacity: "6000VA"
+voltage: "120V"
+formFactor: "OTRO"
 ---
 UPS DE 6000VA CON TRANSFORMADOR PARA SALIDA DE VOLTAJE 120V. UPS Online 6000 VA / 5400 W, onda sinusoidal pura, salida 120 V. 
 Rack/Torre con múltiples tomas NEMA, USB/SmartSlot/serial, protección avanzada y respaldo mínimo 2 min, extendido hasta 7 min a media carga. 

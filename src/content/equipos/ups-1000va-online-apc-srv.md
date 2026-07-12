@@ -7,6 +7,9 @@ productLink: "https://www.se.com/in/en/product/SRV1KI/apc-easy-ups-online-1000va
 brand: APC
 category: "MONOFASICO"
 status: "STOCK"
+capacity: "1000VA"
+voltage: "120V"
+formFactor: "OTRO"
 ---
 UPS Online de doble conversión con potencia nominal 1000 VA / 800 W, forma de onda sinusoidal pura y voltaje de salida 120 V. 
 Respaldo aproximado de 10 min al 50 % de carga y 4 min al 100 %. 

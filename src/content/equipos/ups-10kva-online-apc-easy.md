@@ -7,6 +7,9 @@ productLink: "https://www.se.com/co/es/product/E3SUPS10KFB/easy-ups-3s-10-kva-20
 brand: APC
 category: "TRIFASICO"
 status: "POR_LLEGAR"
+capacity: "10KVA"
+voltage: "208V/220V"
+formFactor: "OTRO"
 ---
 UPS trifásico online de 10 kVA / 10 kW, con onda sinusoidal pura y topología de doble conversión. 
 Entrada y salida 208/220 V trifásica, diseño sin transformador y alta eficiencia energética. 

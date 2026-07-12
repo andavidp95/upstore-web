@@ -7,6 +7,9 @@ productLink: "https://www.se.com/co/es/product/SRV6KIL-6KTF/sai-easy-ups-en-l%C3
 brand: APC
 category: "BIFASICO"
 status: "STOCK"
+capacity: "6000VA"
+voltage: "230V"
+formFactor: "TORRE"
 ---
 UPS Online de doble conversión 6000 VA / 5400 W con entrada 230 V y salida 120 V. 
 Onda sinusoidal pura, respaldo aproximado de 8 min a plena carga. Conexión de entrada por bornera. Tipo torre. 

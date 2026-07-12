@@ -7,6 +7,9 @@ productLink: "https://www.se.com/mx/es/product/SRT10KRMXLT/smartups-en-l%C3%ADne
 brand: APC
 category: "BIFASICO"
 status: "STOCK"
+capacity: "10000VA"
+voltage: "120V"
+formFactor: "OTRO"
 ---
 UPS DE 10KVA + 1 TRANSFORMADOR 10KVA. UPS Online rack-mount 10 kVA / 10 kW, onda pura, voltaje 208 V. 
 Salidas hard-wired, USB/SmartSlot/serial, respaldo mínimo 2 min y hasta 7 min a media carga. 

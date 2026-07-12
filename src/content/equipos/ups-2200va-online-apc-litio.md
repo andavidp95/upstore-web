@@ -7,6 +7,9 @@ productLink: "https://www.se.com/co/es/product/SRTL2K2RM1UNC/smartups-ultra-de-a
 brand: APC
 category: "MONOFASICO"
 status: "STOCK"
+capacity: "2200VA"
+voltage: "120V"
+formFactor: "OTRO"
 ---
 Smart-UPS Ultra con batería de litio 2200 VA / 1950 W, operación On-Line y salida 120 V. 
 Comunicación: RJ-45 Serial / Smart-Slot / USB. Entrada NEMA 5-20P; salidas típicas: (5) NEMA 5-20R + (1) NEMA L5-20R. 

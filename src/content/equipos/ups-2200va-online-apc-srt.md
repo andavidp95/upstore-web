@@ -7,6 +7,9 @@ productLink: "https://www.se.com/co/es/product/SRT2200XLA/apc-smartups-srt-2200v
 brand: APC
 category: "MONOFASICO"
 status: "STOCK"
+capacity: "2200VA"
+voltage: "120V"
+formFactor: "OTRO"
 ---
 UPS Online 2200 VA / 1800 W con forma de onda pura y voltaje 120 V. 
 Extrae 6 tomas NEMA 5-20R y 1 NEMA L5-20R, puertos USB/RJ-45/SmartSlot, protección de 340 J. 

@@ -7,6 +7,9 @@ productLink: "https://www.se.com/es/es/product/SRT3000XLA/smartups-srt-de-apc-30
 brand: APC
 category: "MONOFASICO"
 status: "STOCK"
+capacity: "3000VA"
+voltage: "120V"
+formFactor: "OTRO"
 ---
 UPS Online de doble conversión 3000 VA / 2700 W con onda sinusoidal pura, voltaje 120 V. 
 Dispone de 8 tomas NEMA 5-20R y 1 NEMA L5-30R, puertos USB/SmartSlot/L5-30P entrada.

@@ -7,6 +7,9 @@ productLink: "https://www.se.com/co/es/product/SRV2KRA/apc-easy-ups-srv-rm-2000v
 brand: APC
 category: "MONOFASICO"
 status: "STOCK"
+capacity: "2000VA"
+voltage: "120V"
+formFactor: "RACK"
 ---
 UPS Online de doble conversión 2000 VA / 1600 W con onda senoidal pura y salida 120 V en formato rack. 
 Respaldo aproximado de 11,4 min al 50 % de carga y 4,2 min al 100 %. 

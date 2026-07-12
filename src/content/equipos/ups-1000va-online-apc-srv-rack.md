@@ -7,6 +7,9 @@ productLink: "https://www.se.com/ar/es/product/SRV1KRA/apc-easy-ups-online-srv-1
 brand: APC
 category: "MONOFASICO"
 status: "STOCK"
+capacity: "1000VA"
+voltage: "120V"
+formFactor: "RACK"
 ---
 UPS Online de doble conversión 1000 VA / 800 W con onda sinusoidal pura y salida 120 V. Formato rack. 
 Respaldo aproximado de 10 min al 50 % de carga y 4 min al 100 %. 

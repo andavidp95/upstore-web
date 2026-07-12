@@ -7,6 +7,9 @@ productLink: "https://www.se.com/co/es/product/E3SUPS30KFB/ups-3s-de-easy-30-kva
 brand: APC
 category: "TRIFASICO"
 status: "STOCK"
+capacity: "30KVA"
+voltage: "208V/220V"
+formFactor: "OTRO"
 ---
 UPS trifásico online de 30 kVA / 30 kW, con onda sinusoidal pura y topología de doble conversión. 
 Entrada y salida 208/220 V trifásica, diseño sin transformador y alta eficiencia energética. 

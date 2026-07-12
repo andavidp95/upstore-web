@@ -7,6 +7,9 @@ productLink: "https://www.vertiv.com/4909ac/globalassets/products/critical-power
 brand: VERTIV
 category: "MONOFASICO"
 status: "STOCK"
+capacity: "2000VA"
+voltage: "120V"
+formFactor: "OTRO"
 ---
 UPS Online 2000 VA / 1800 W con onda sinusoidal pura y voltaje 120 V. 
 Montaje 2U rack/torre, 8 salidas NEMA 5-20R, puertos USB/RS-232, respaldo ≈9 min a media carga, cable L5-20P en entrada. 

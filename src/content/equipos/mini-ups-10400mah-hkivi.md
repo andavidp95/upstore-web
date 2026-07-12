@@ -6,6 +6,9 @@ imageUrl: "/images/products/mini-ups-hkivi.webp"
 brand: OTROS
 category: "MINI_UPS"
 status: "STOCK"
+capacity: "MINI_10400MAH"
+voltage: "120V"
+formFactor: "OTRO"
 ---
 ✅ 10400 mAh (≈38 Wh) – Hasta aproximadamente 6 horas de autonomía para un router estándar 🌐📶
 ✅ Voltaje de entrada: 100~240 VAC    

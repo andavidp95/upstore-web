@@ -7,5 +7,8 @@ productLink: "https://www.vertiv.com/en-us/products-catalog/critical-power/unint
 brand: VERTIV
 category: "MONOFASICO"
 status: "STOCK"
+capacity: "3000VA"
+voltage: "120V"
+formFactor: "OTRO"
 ---
 UPS Online 3000 VA / 2700 W (GXT5, rack/tower), onda sinusoidal pura, salida 120 V. Puertos RS-232 y USB. Conector de entrada NEMA L5-30P. Salidas típicas: 1 x L5-30R + 6 x NEMA 5-20R. Respaldo aproximado 3 min (plena carga) / 9 min (a media carga). Ideal para racks y equipos críticos en sitios medianos. Compatible con baterías externas para mayor autonomía. Garantía del fabricante de 2 años, incluyendo baterías 🔋.

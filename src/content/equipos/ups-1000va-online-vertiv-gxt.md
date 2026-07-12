@@ -7,6 +7,9 @@ productLink: "https://www.vertiv.com/es-latam/products-catalog/potencia-critica/
 brand: VERTIV
 category: "MONOFASICO"
 status: "STOCK"
+capacity: "1000VA"
+voltage: "120V"
+formFactor: "OTRO"
 ---
 UPS Online de doble conversión 1000 VA / 900 W con onda sinusoidal pura, voltaje 120 V.
 Respaldo ≈12 min al 50 % y ≈4 min al 100 %, entradas y salidas NEMA 5-15, puertos USB y RS-232 inteligentes. 

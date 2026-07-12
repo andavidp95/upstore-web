@@ -7,6 +7,9 @@ productLink: "https://www.vertiv.com/es-latam/products-catalog/potencia-critica/
 brand: VERTIV
 category: "MONOFASICO"
 status: "STOCK"
+capacity: "1500VA"
+voltage: "120V"
+formFactor: "OTRO"
 ---
 UPS Online de doble conversión 1500 VA / 1350 W con onda sinusoidal pura y salida 120 V. Diseño torre compacto.
 Respaldo aproximado de 11 min a media carga y 3.5 min a plena carga. Incluye puertos USB y RS-232 inteligentes, bypass automático y display LCD. 

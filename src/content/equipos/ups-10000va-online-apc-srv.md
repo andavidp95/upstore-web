@@ -7,6 +7,9 @@ productLink: "https://www.se.com/co/es/product/SRV10KIL-10KTF/sai-easy-ups-en-l%
 brand: APC
 category: "BIFASICO"
 status: "STOCK"
+capacity: "10000VA"
+voltage: "230V"
+formFactor: "TORRE"
 ---
 UPS Online de alta capacidad 10 000 VA / 9 000 W con onda sinusoidal pura, entrada 230 V y salida 120 V. 
 Respaldo aproximado de 3,1 min a plena carga. Conexión por bornera, diseño torre para aplicaciones críticas. 

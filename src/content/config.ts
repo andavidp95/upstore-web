@@ -11,6 +11,9 @@ const equiposCollection = defineCollection({
     brand: z.enum(['APC', 'VERTIV', 'EATON', 'VICTRON', 'OTROS']),
     category: z.enum(['MINI_UPS', 'MONOFASICO', 'BIFASICO', 'TRIFASICO']),
     status: z.enum(['STOCK', 'PREVENTA', 'POR_LLEGAR', 'BAJO_PEDIDO', 'AGOTADO']),
+    capacity: z.string().optional(),
+    voltage: z.string().optional(),
+    formFactor: z.enum(['TORRE', 'RACK', 'AMBOS', 'OTRO']).optional(),
   }),
 });
 

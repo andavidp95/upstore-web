@@ -7,6 +7,9 @@ productLink: "https://www.vertiv.com/en-us/products-catalog/critical-power/unint
 brand: VERTIV
 category: "TRIFASICO"
 status: "STOCK"
+capacity: "20KVA"
+voltage: "208/220V"
+formFactor: "OTRO"
 ---
 UPS Trifásico Online 20 kVA / 20 kW, diseño monolítico sin transformador, sin interrupciones y alta eficiencia. 
 Entrada/salida 208/220 V, estructura en torre compacta, ideal para data centers y cargas críticas. 

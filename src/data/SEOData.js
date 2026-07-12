@@ -16,6 +16,7 @@ export const SEO_CONFIG = {
 
   CONTACT: {
     email: 'info@upstore.com.ec',
+    salesEmail: 'ventas@upstore.com.ec',
     whatsapp: {
       number: '+593987799459',
       link: 'https://wa.me/593987799459',
