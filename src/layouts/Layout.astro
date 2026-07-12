@@ -73,7 +73,7 @@ const useSEOComponent = Object.keys(seoProps).length > 0 && seoProps.title;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#1f2937">
+    <meta name="theme-color" content="#0f1117">
 
     <!-- Favicons MEJORADOS para Google y navegadores -->
     <!-- Favicon principal para Google Search -->
@@ -123,7 +123,7 @@ const useSEOComponent = Object.keys(seoProps).length > 0 && seoProps.title;
       /* Estilos específicos para Swiper */
       .swiper-container {
         width: 100%;
-        height: 100vh; /* Altura completa de la ventana */
+        height: 100vh;
       }
             
       .swiper-slide {
@@ -155,14 +155,9 @@ const useSEOComponent = Object.keys(seoProps).length > 0 && seoProps.title;
         opacity: 1 !important;
         background: white !important;
       }
-            
-      /* Transiciones suaves para el cambio de tema */
-      * {
-        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-      }
     </style>
   </head>
-  <body class="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
+  <body class="min-h-screen bg-[#f8f9fb] dark:bg-[#0f1117] text-gray-900 dark:text-gray-100 transition-colors duration-500">
     <slot />
     
     <!-- Botón flotante de WhatsApp usando el componente -->

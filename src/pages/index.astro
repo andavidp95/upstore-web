@@ -59,7 +59,7 @@ const formFactorConfig = {
 
 const getStatusBadge = (status) => {
   switch (status) {
-    case 'STOCK': return { class: 'bg-green-50 text-green-700 border-green-200', text: 'Disponible' };
+    case 'STOCK': return { class: 'bg-emerald-50 text-emerald-700 border-emerald-200', text: 'Disponible' };
     case 'PREVENTA': return { class: 'bg-blue-50 text-blue-700 border-blue-200', text: 'Preventa' };
     case 'POR_LLEGAR': return { class: 'bg-purple-50 text-purple-700 border-purple-200', text: 'Por llegar' };
     case 'BAJO_PEDIDO': return { class: 'bg-gray-100 text-gray-600 border-gray-200', text: 'Bajo pedido' };
@@ -69,7 +69,7 @@ const getStatusBadge = (status) => {
 
 const seoTitle = "Mini UPS & UPS – Sistemas de Alimentación Ininterrumpida (SAI) | UPStore Ecuador";
 const seoDescription = "UPStore Ecuador: Sistemas UPS, baterías y accesorios de respaldo energético. Marcas APC, Vertiv, Eaton, Victron Energy. Envío a todo Ecuador.";
-const seoKeywords = ["ups ecuador", "sistemas de respaldo energético", "ups online", "protección eléctrica", "mini ups", "baterias ups", "mantenimiento ups"];
+const seoKeywords = ["ups ecuador", "sistemas de respaldo energético", "ups online", "protección eléctrica", "mini ups", "baterias ups", "mantenimiento ups", "tienda ups guayaquil", "ups quito", "ups cuenca", "respaldo energético empresas ecuador"];
 const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.ec'}`;
 ---
 
@@ -77,127 +77,179 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
   <SEO pageType="home" title={seoTitle} description={seoDescription} keywords={seoKeywords} canonical={canonicalUrl} />
   <GlobalNavbar />
 
-  <main class="pt-20 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-    <div class="container mx-auto px-4 py-8">
+  <main class="pt-14 min-h-screen bg-[#f8f9fb] dark:bg-[#0f1117] transition-colors duration-500">
 
-      <section class="mb-10">
-        <div class="flex flex-col lg:flex-row items-center gap-8 mb-8">
-          <div class="flex-1 text-center lg:text-left">
-            <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white leading-tight mb-3 transition-colors">
-              Respaldo energético para hogares y empresas
-            </h1>
-            <p class="text-gray-500 dark:text-gray-400 text-base md:text-lg max-w-xl mx-auto lg:mx-0 mb-6 transition-colors">
-              UPS monofásicos, trifásicos, mini UPS, baterías y accesorios con envío a todo el país.
-            </p>
+    <!-- HERO -->
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-[#e8ecf4] via-[#f0f2f8] to-[#e4e8f2] dark:from-[#12151e] dark:via-[#0f1117] dark:to-[#151922]"></div>
+      <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-blue-500/5 to-transparent dark:from-blue-400/3 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-indigo-500/5 to-transparent dark:from-indigo-400/3 rounded-full blur-3xl"></div>
+
+      <div class="container mx-auto px-4 py-12 md:py-20 relative z-10">
+        <div class="max-w-3xl mx-auto text-center">
+          <div class="inline-flex items-center gap-2 bg-white/70 dark:bg-white/5 backdrop-blur-sm border border-gray-200/50 dark:border-white/10 rounded-full px-4 py-1.5 mb-6">
+            <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+            <span class="text-xs font-medium text-gray-500 dark:text-gray-400">Distribuidores oficiales en Ecuador</span>
           </div>
-          <div class="hidden lg:block w-px h-48 bg-gray-200 dark:bg-gray-700"></div>
-          <div class="flex-shrink-0 grid grid-cols-2 gap-3">
-            <div class="bg-green-50 border border-green-100 rounded-xl px-4 py-3 text-center min-w-[140px]">
-              <span class="text-2xl block mb-1">🚚</span>
-              <span class="text-green-700 font-semibold text-xs leading-tight block">ENVÍOS GRATIS<br/>A TODO EL ECUADOR*</span>
+
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] font-bold text-gray-900 dark:text-white leading-[1.15] mb-5 tracking-tight">
+            Respaldo energético para<br class="hidden sm:block" /> hogares y empresas
+          </h1>
+
+          <p class="text-gray-500 dark:text-gray-400 text-base md:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
+            UPS monofásicos, trifásicos, mini UPS, baterías y accesorios con envío a todo el país.
+          </p>
+
+          <div class="flex flex-wrap justify-center gap-4 mb-4">
+            {products.filter(p => p.status === 'STOCK').slice(0, 3).map((product) => (
+              <a href={`/producto/${product.slug}`} class="group flex items-center gap-3 bg-white dark:bg-white/5 backdrop-blur-sm border border-gray-200/60 dark:border-white/10 rounded-xl px-4 py-2.5 hover:border-blue-300 dark:hover:border-blue-500/30 hover:shadow-md transition-all duration-200">
+                <img src={product.imageUrl} alt={product.name} class="w-10 h-10 object-contain rounded" loading="lazy" onerror="this.style.display='none'" />
+                <div class="text-left">
+                  <p class="text-xs font-medium text-gray-900 dark:text-white line-clamp-1 group-hover:text-blue-600 transition-colors">{product.name}</p>
+                  <p class="text-xs text-gray-400">${Number(product.price).toFixed(0)}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUE PROPS - Clean horizontal strip -->
+    <section class="border-b border-gray-100 dark:border-white/5 bg-white dark:bg-[#13151d]">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-100 dark:divide-white/5">
+          <div class="flex items-center gap-3 px-4 py-4 md:py-5">
+            <div class="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H18.75m-7.5-3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
             </div>
-            <div class="bg-blue-50 border border-blue-100 rounded-xl px-4 py-3 text-center min-w-[140px]">
-              <span class="text-2xl block mb-1">⚡</span>
-              <span class="text-blue-700 font-semibold text-xs leading-tight block">ENTREGA EN HASTA<br/>72 HORAS*</span>
+            <div>
+              <p class="text-xs font-semibold text-gray-900 dark:text-white">Envío gratis</p>
+              <p class="text-[11px] text-gray-400 dark:text-gray-500">A todo Ecuador</p>
             </div>
-            <div class="bg-yellow-50 border border-yellow-100 rounded-xl px-4 py-3 text-center min-w-[140px]">
-              <span class="text-2xl block mb-1">💳</span>
-              <span class="text-yellow-700 font-semibold text-xs leading-tight block">MÚLTIPLES FORMAS<br/>DE PAGO</span>
+          </div>
+          <div class="flex items-center gap-3 px-4 py-4 md:py-5">
+            <div class="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
-            <div class="bg-purple-50 border border-purple-100 rounded-xl px-4 py-3 text-center min-w-[140px]">
-              <span class="text-2xl block mb-1">🔋</span>
-              <span class="text-purple-700 font-semibold text-xs leading-tight block">AUTONOMÍA<br/>A MEDIDA</span>
+            <div>
+              <p class="text-xs font-semibold text-gray-900 dark:text-white">Entrega 72h</p>
+              <p class="text-[11px] text-gray-400 dark:text-gray-500">Mismo día en Guayaquil</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 px-4 py-4 md:py-5">
+            <div class="w-8 h-8 rounded-lg bg-amber-50 dark:bg-amber-500/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/></svg>
+            </div>
+            <div>
+              <p class="text-xs font-semibold text-gray-900 dark:text-white">Payphone</p>
+              <p class="text-[11px] text-gray-400 dark:text-gray-500">Tarjeta y transferencia</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 px-4 py-4 md:py-5">
+            <div class="w-8 h-8 rounded-lg bg-violet-50 dark:bg-violet-500/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-violet-600 dark:text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+            </div>
+            <div>
+              <p class="text-xs font-semibold text-gray-900 dark:text-white">Garantía</p>
+              <p class="text-[11px] text-gray-400 dark:text-gray-500">Soporte especializado</p>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="mb-10">
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <a href="#equipos" class="flex items-center gap-4 bg-white dark:bg-gray-800 rounded-xl p-5 border border-gray-200 dark:border-gray-700 hover:border-blue-300 hover:shadow-md transition-all duration-200 group">
-            <div class="w-12 h-12 bg-blue-50 dark:bg-blue-900/30 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-blue-100 transition-colors">
-              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+    <!-- CATEGORIES - Minimal nav cards -->
+    <section class="py-8 md:py-10">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <a href="#equipos" class="group relative flex items-center gap-4 bg-white dark:bg-[#181b25] rounded-xl p-4 border border-gray-100 dark:border-white/5 hover:border-gray-200 dark:hover:border-white/10 transition-all duration-300 hover:shadow-[0_2px_20px_-4px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_2px_20px_-4px_rgba(0,0,0,0.4)]">
+            <div class="w-11 h-11 rounded-lg bg-gray-50 dark:bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-50 dark:group-hover:bg-blue-500/10 transition-colors">
+              <svg class="w-5 h-5 text-gray-400 dark:text-gray-500 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
             </div>
-            <div class="flex-grow">
-              <h3 class="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors">Equipos UPS</h3>
-              <p class="text-gray-500 dark:text-gray-400 text-sm">{allProducts.length} productos</p>
+            <div class="flex-grow min-w-0">
+              <h3 class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Equipos UPS</h3>
+              <p class="text-xs text-gray-400 dark:text-gray-500">{allProducts.length} productos</p>
             </div>
-            <svg class="w-5 h-5 text-gray-400 group-hover:text-blue-500 group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            <svg class="w-4 h-4 text-gray-300 dark:text-gray-600 group-hover:text-blue-400 group-hover:translate-x-0.5 transition-all flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </a>
-          <a href="/baterias" class="flex items-center gap-4 bg-white dark:bg-gray-800 rounded-xl p-5 border border-gray-200 dark:border-gray-700 hover:border-amber-300 hover:shadow-md transition-all duration-200 group">
-            <div class="w-12 h-12 bg-amber-50 dark:bg-amber-900/30 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-amber-100 transition-colors">
-              <span class="text-2xl">🔋</span>
+          <a href="/baterias" class="group relative flex items-center gap-4 bg-white dark:bg-[#181b25] rounded-xl p-4 border border-gray-100 dark:border-white/5 hover:border-gray-200 dark:hover:border-white/10 transition-all duration-300 hover:shadow-[0_2px_20px_-4px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_2px_20px_-4px_rgba(0,0,0,0.4)]">
+            <div class="w-11 h-11 rounded-lg bg-gray-50 dark:bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-amber-50 dark:group-hover:bg-amber-500/10 transition-colors">
+              <svg class="w-5 h-5 text-gray-400 dark:text-gray-500 group-hover:text-amber-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 10.5h.375c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125H21M3.75 18h15A2.25 2.25 0 0021 15.75v-6a2.25 2.25 0 00-2.25-2.25h-15A2.25 2.25 0 001.5 9.75v6A2.25 2.25 0 003.75 18z"/></svg>
             </div>
-            <div class="flex-grow">
-              <h3 class="font-semibold text-gray-900 dark:text-white group-hover:text-amber-600 transition-colors">Baterías</h3>
-              <p class="text-gray-500 dark:text-gray-400 text-sm">{allBaterias.length} productos</p>
+            <div class="flex-grow min-w-0">
+              <h3 class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">Baterías</h3>
+              <p class="text-xs text-gray-400 dark:text-gray-500">{allBaterias.length} productos</p>
             </div>
-            <svg class="w-5 h-5 text-gray-400 group-hover:text-amber-500 group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            <svg class="w-4 h-4 text-gray-300 dark:text-gray-600 group-hover:text-amber-400 group-hover:translate-x-0.5 transition-all flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </a>
-          <a href="/accesorios" class="flex items-center gap-4 bg-white dark:bg-gray-800 rounded-xl p-5 border border-gray-200 dark:border-gray-700 hover:border-emerald-300 hover:shadow-md transition-all duration-200 group">
-            <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-100 transition-colors">
-              <span class="text-2xl">🔌</span>
+          <a href="/accesorios" class="group relative flex items-center gap-4 bg-white dark:bg-[#181b25] rounded-xl p-4 border border-gray-100 dark:border-white/5 hover:border-gray-200 dark:hover:border-white/10 transition-all duration-300 hover:shadow-[0_2px_20px_-4px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_2px_20px_-4px_rgba(0,0,0,0.4)]">
+            <div class="w-11 h-11 rounded-lg bg-gray-50 dark:bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/10 transition-colors">
+              <svg class="w-5 h-5 text-gray-400 dark:text-gray-500 group-hover:text-emerald-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25z"/></svg>
             </div>
-            <div class="flex-grow">
-              <h3 class="font-semibold text-gray-900 dark:text-white group-hover:text-emerald-600 transition-colors">Accesorios</h3>
-              <p class="text-gray-500 dark:text-gray-400 text-sm">SNMP, PDUs, racks y más</p>
+            <div class="flex-grow min-w-0">
+              <h3 class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Accesorios</h3>
+              <p class="text-xs text-gray-400 dark:text-gray-500">SNMP, PDUs, racks y más</p>
             </div>
-            <svg class="w-5 h-5 text-gray-400 group-hover:text-emerald-500 group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            <svg class="w-4 h-4 text-gray-300 dark:text-gray-600 group-hover:text-emerald-400 group-hover:translate-x-0.5 transition-all flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </a>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="equipos" class="mb-12">
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-white transition-colors">Equipos UPS</h2>
-          <div class="flex flex-wrap gap-2">
-            <button class="filter-brand active px-3 py-1.5 rounded-lg text-sm font-medium transition-all bg-blue-600 text-white" data-brand="all">
+    <!-- PRODUCTS GRID -->
+    <section id="equipos" class="pb-16">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-5 gap-4">
+          <h2 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white tracking-tight">Equipos UPS</h2>
+          <div class="flex flex-wrap gap-1.5">
+            <button class="filter-brand active px-3 py-1.5 rounded-lg text-xs font-medium transition-all bg-gray-900 dark:bg-white dark:text-gray-900 text-white" data-brand="all">
               Marcas
             </button>
             {Object.entries(brandConfig).filter(([k]) => k !== 'OTROS').map(([key, config]) => (
-              <button class="filter-brand px-3 py-1.5 rounded-lg text-sm font-medium transition-all bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-600 hover:border-gray-300" data-brand={key}>
+              <button class="filter-brand px-3 py-1.5 rounded-lg text-xs font-medium transition-all bg-white dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20" data-brand={key}>
                 {config.name}
               </button>
             ))}
           </div>
         </div>
 
-        <div class="flex flex-wrap gap-2 mb-4">
-          <button class="filter-btn active px-3 py-1.5 rounded-md text-xs font-medium transition-all bg-gray-900 text-white" data-filter="all">
+        <div class="flex flex-wrap gap-1.5 mb-3">
+          <button class="filter-btn active px-3 py-1.5 rounded-lg text-xs font-medium transition-all bg-gray-900 dark:bg-white dark:text-gray-900 text-white" data-filter="all">
             Todos ({products.length})
           </button>
           {Object.entries(categoryConfig).map(([key, config]) => (
-            <button class="filter-btn px-3 py-1.5 rounded-md text-xs font-medium transition-all bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-600 hover:border-gray-300" data-filter={key}>
+            <button class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium transition-all bg-white dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20" data-filter={key}>
               {config.name}
             </button>
           ))}
         </div>
 
-        <div class="flex flex-wrap gap-2 mb-4" id="capacity-filters">
-          <span class="text-xs text-gray-400 self-center mr-1">Capacidad:</span>
-          <button class="filter-capacity active px-2.5 py-1 rounded-md text-xs font-medium transition-all bg-gray-900 text-white" data-capacity="all">
+        <div class="flex flex-wrap gap-1.5 mb-3" id="capacity-filters">
+          <span class="text-[11px] text-gray-400 dark:text-gray-500 self-center mr-1">Capacidad:</span>
+          <button class="filter-capacity active px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all bg-gray-900 dark:bg-white dark:text-gray-900 text-white" data-capacity="all">
             Todas
           </button>
           {capacityGroups.map((cap) => (
-            <button class="filter-capacity px-2.5 py-1 rounded-md text-xs font-medium transition-all bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-600 hover:border-gray-300" data-capacity={cap.key}>
+            <button class="filter-capacity px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all bg-white dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20" data-capacity={cap.key}>
               {cap.label}
             </button>
           ))}
         </div>
 
-        <div class="flex flex-wrap gap-2 mb-6" id="formFactor-filters">
-          <span class="text-xs text-gray-400 self-center mr-1">Tipo:</span>
-          <button class="filter-ff active px-2.5 py-1 rounded-md text-xs font-medium transition-all bg-gray-900 text-white" data-ff="all">
+        <div class="flex flex-wrap gap-1.5 mb-6" id="formFactor-filters">
+          <span class="text-[11px] text-gray-400 dark:text-gray-500 self-center mr-1">Tipo:</span>
+          <button class="filter-ff active px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all bg-gray-900 dark:bg-white dark:text-gray-900 text-white" data-ff="all">
             Todos
           </button>
           {Object.entries(formFactorConfig).filter(([k]) => k !== 'OTRO').map(([key, config]) => (
-            <button class="filter-ff px-2.5 py-1 rounded-md text-xs font-medium transition-all bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-600 hover:border-gray-300" data-ff={key}>
-              {config.icon} {config.name}
+            <button class="filter-ff px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all bg-white dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20" data-ff={key}>
+              {config.name}
             </button>
           ))}
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="products-grid">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4" id="products-grid">
           {products.map((product) => {
             const statusBadge = getStatusBadge(product.status);
             const brandBadge = brandConfig[product.brand] || brandConfig['OTROS'];
@@ -205,40 +257,40 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
 
             return (
             <div
-              class="product-card bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-sm transition-all duration-200 flex flex-col"
+              class="product-card bg-white dark:bg-[#181b25] rounded-xl border border-gray-100 dark:border-white/5 overflow-hidden hover:border-gray-200 dark:hover:border-white/10 hover:shadow-[0_4px_24px_-6px_rgba(0,0,0,0.07)] dark:hover:shadow-[0_4px_24px_-6px_rgba(0,0,0,0.5)] transition-all duration-300 flex flex-col"
               data-category={product.category}
               data-brand={product.brand}
               data-capacity={product.capacity}
               data-ff={product.formFactor}
             >
-              <a href={`/producto/${product.slug}`} class="block relative bg-gray-50 dark:bg-gray-700/50">
+              <a href={`/producto/${product.slug}`} class="block relative bg-gray-50 dark:bg-white/[0.02]">
                 <img
                   src={product.imageUrl}
                   alt={product.name}
-                  class="w-full h-40 object-contain p-3"
+                  class="w-full h-36 md:h-44 object-contain p-4"
                   loading="lazy"
                   onerror="this.style.display='none'"
                 />
-                <span class={`absolute top-2 left-2 text-[10px] font-medium px-2 py-0.5 rounded border ${brandBadge.class}`}>
+                <span class={`absolute top-2 left-2 text-[10px] font-medium px-2 py-0.5 rounded-md ${brandBadge.class}`}>
                   {brandBadge.name}
                 </span>
-                <span class={`absolute top-2 right-2 text-[10px] font-medium px-2 py-0.5 rounded border ${statusBadge.class}`}>
+                <span class={`absolute top-2 right-2 text-[10px] font-medium px-2 py-0.5 rounded-md ${statusBadge.class}`}>
                   {statusBadge.text}
                 </span>
               </a>
-              <div class="p-3 flex flex-col flex-grow">
+              <div class="p-3 md:p-4 flex flex-col flex-grow">
                 <a href={`/producto/${product.slug}`}>
-                  <h3 class="text-sm font-medium text-gray-900 dark:text-white line-clamp-2 mb-2 hover:text-blue-600 transition-colors leading-snug">
+                  <h3 class="text-[13px] font-medium text-gray-900 dark:text-white line-clamp-2 mb-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors leading-snug">
                     {product.name}
                   </h3>
                 </a>
                 <div class="mt-auto flex items-end justify-between">
                   <div>
-                    <span class="text-lg font-bold text-gray-900 dark:text-white">${Number(product.price).toFixed(0)}</span>
-                    <span class="text-xs text-gray-400 ml-0.5">.00</span>
+                    <span class="text-base md:text-lg font-bold text-gray-900 dark:text-white">${Number(product.price).toFixed(0)}</span>
+                    <span class="text-[10px] text-gray-400 dark:text-gray-500 ml-0.5">.00</span>
                   </div>
                   <button
-                    class="text-xs bg-gray-900 dark:bg-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100 text-white px-3 py-1.5 rounded-md font-medium transition-colors"
+                    class="text-[11px] bg-gray-900 dark:bg-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100 text-white px-3 py-1.5 rounded-lg font-medium transition-colors"
                     onclick={`contactProduct('${safeName}', '${product.price}', '${product.status}')`}
                   >
                     Consultar
@@ -250,42 +302,42 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
           })}
         </div>
 
-        <div id="no-results" class="hidden text-center py-12">
-          <p class="text-gray-400 text-lg">No se encontraron productos con estos filtros.</p>
-          <button onclick="resetFilters()" class="mt-3 text-blue-600 hover:text-blue-700 text-sm font-medium">Limpiar filtros</button>
+        <div id="no-results" class="hidden text-center py-16">
+          <p class="text-gray-400 dark:text-gray-500 text-base">No se encontraron productos con estos filtros.</p>
+          <button onclick="resetFilters()" class="mt-3 text-blue-600 dark:text-blue-400 hover:text-blue-700 text-sm font-medium">Limpiar filtros</button>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   </main>
+
   <BrandsSection />
 
-  <section class="py-12 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 transition-colors">
+  <!-- CLIENTES SECTION -->
+  <section class="py-14 bg-white dark:bg-[#13151d] border-t border-gray-100 dark:border-white/5 transition-colors duration-500">
     <div class="container mx-auto px-4">
-      <div class="text-center mb-8">
-        <p class="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Medios de pago y envío de confianza</p>
+      <div class="text-center mb-10">
+        <p class="text-[11px] font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-2">Nuestros clientes</p>
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white tracking-tight">Empresas que confían en nosotros</h2>
+        <div class="w-12 h-0.5 bg-gray-900 dark:bg-white mx-auto mt-4 rounded-full"></div>
       </div>
-      <div class="flex flex-wrap justify-center items-center gap-8 md:gap-14">
-        <div class="flex flex-col items-center gap-2 group">
-          <div class="w-28 h-14 flex items-center justify-center rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 px-4 py-2 group-hover:border-gray-200 dark:group-hover:border-gray-600 group-hover:shadow-sm transition-all">
-            <img src="/images/trust/paypal.svg" alt="PayPal" class="max-w-full max-h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <span class="text-sm font-bold text-blue-600 hidden">PayPal</span>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        {[
+          { name: 'PICA Plásticos Industriales', logo: '/images/clients/pica.svg' },
+          { name: 'GSS Security', logo: '/images/clients/gss.svg' },
+        ].map((client) => (
+          <div class="group flex flex-col items-center justify-center bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/5 rounded-xl p-6 hover:border-gray-200 dark:hover:border-white/10 hover:shadow-sm transition-all duration-300">
+            <img
+              src={client.logo}
+              alt={client.name}
+              class="h-10 md:h-12 object-contain mb-3 opacity-60 dark:opacity-40 group-hover:opacity-100 dark:group-hover:opacity-70 transition-opacity"
+              loading="lazy"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"
+            />
+            <span class="text-sm font-medium text-gray-600 dark:text-gray-400 hidden">{client.name}</span>
+            <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">{client.name}</p>
           </div>
-          <span class="text-xs text-gray-500 font-medium">PayPal</span>
-        </div>
-        <div class="flex flex-col items-center gap-2 group">
-          <div class="w-28 h-14 flex items-center justify-center rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 px-4 py-2 group-hover:border-gray-200 dark:group-hover:border-gray-600 group-hover:shadow-sm transition-all">
-            <img src="/images/trust/servientrega.svg" alt="Servientrega" class="max-w-full max-h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <span class="text-sm font-bold text-red-600 hidden">Servientrega</span>
-          </div>
-          <span class="text-xs text-gray-500 font-medium">Envíos Servientrega</span>
-        </div>
-        <div class="flex flex-col items-center gap-2 group">
-          <div class="w-28 h-14 flex items-center justify-center rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 px-4 py-2 group-hover:border-gray-200 dark:group-hover:border-gray-600 group-hover:shadow-sm transition-all">
-            <img src="/images/trust/tarjeta.svg" alt="Tarjeta de crédito" class="max-w-full max-h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <span class="text-sm font-bold text-gray-600 hidden">Tarjeta</span>
-          </div>
-          <span class="text-xs text-gray-500 font-medium">Tarjeta de crédito</span>
-        </div>
+        ))}
       </div>
     </div>
   </section>
@@ -365,49 +417,52 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', function() {
-        setActive(filterBtns, this, ['bg-gray-900', 'text-white'], ['bg-white', 'text-gray-600', 'border', 'border-gray-200']);
+        setActive(filterBtns, this, ['bg-gray-900', 'text-white', 'dark:bg-white', 'dark:text-gray-900'], ['bg-white', 'text-gray-600', 'border', 'border-gray-200', 'dark:bg-white/5', 'dark:text-gray-400', 'dark:border-white/10']);
         applyFilters();
       });
     });
 
     brandBtns.forEach(btn => {
       btn.addEventListener('click', function() {
-        setActive(brandBtns, this, ['bg-blue-600', 'text-white'], ['bg-white', 'text-gray-600', 'border', 'border-gray-200']);
+        setActive(brandBtns, this, ['bg-gray-900', 'text-white', 'dark:bg-white', 'dark:text-gray-900'], ['bg-white', 'text-gray-600', 'border', 'border-gray-200', 'dark:bg-white/5', 'dark:text-gray-400', 'dark:border-white/10']);
         applyFilters();
       });
     });
 
     capBtns.forEach(btn => {
       btn.addEventListener('click', function() {
-        setActive(capBtns, this, ['bg-gray-900', 'text-white'], ['bg-white', 'text-gray-600', 'border', 'border-gray-200']);
+        setActive(capBtns, this, ['bg-gray-900', 'text-white', 'dark:bg-white', 'dark:text-gray-900'], ['bg-white', 'text-gray-600', 'border', 'border-gray-200', 'dark:bg-white/5', 'dark:text-gray-400', 'dark:border-white/10']);
         applyFilters();
       });
     });
 
     ffBtns.forEach(btn => {
       btn.addEventListener('click', function() {
-        setActive(ffBtns, this, ['bg-gray-900', 'text-white'], ['bg-white', 'text-gray-600', 'border', 'border-gray-200']);
+        setActive(ffBtns, this, ['bg-gray-900', 'text-white', 'dark:bg-white', 'dark:text-gray-900'], ['bg-white', 'text-gray-600', 'border', 'border-gray-200', 'dark:bg-white/5', 'dark:text-gray-400', 'dark:border-white/10']);
         applyFilters();
       });
     });
   }
 
   window.resetFilters = function() {
+    const activeClasses = ['bg-gray-900', 'text-white', 'dark:bg-white', 'dark:text-gray-900'];
+    const inactiveClasses = ['bg-white', 'text-gray-600', 'border', 'border-gray-200', 'dark:bg-white/5', 'dark:text-gray-400', 'dark:border-white/10'];
+
     document.querySelectorAll('.filter-btn').forEach((b, i) => {
-      if (i === 0) { b.classList.add('active', 'bg-gray-900', 'text-white'); b.classList.remove('bg-white', 'text-gray-600', 'border', 'border-gray-200'); }
-      else { b.classList.remove('active', 'bg-gray-900', 'text-white'); b.classList.add('bg-white', 'text-gray-600', 'border', 'border-gray-200'); }
+      if (i === 0) { b.classList.add('active', ...activeClasses); b.classList.remove(...inactiveClasses); }
+      else { b.classList.remove('active', ...activeClasses); b.classList.add(...inactiveClasses); }
     });
     document.querySelectorAll('.filter-brand').forEach((b, i) => {
-      if (i === 0) { b.classList.add('active', 'bg-blue-600', 'text-white'); b.classList.remove('bg-white', 'text-gray-600', 'border', 'border-gray-200'); }
-      else { b.classList.remove('active', 'bg-blue-600', 'text-white'); b.classList.add('bg-white', 'text-gray-600', 'border', 'border-gray-200'); }
+      if (i === 0) { b.classList.add('active', ...activeClasses); b.classList.remove(...inactiveClasses); }
+      else { b.classList.remove('active', ...activeClasses); b.classList.add(...inactiveClasses); }
     });
     document.querySelectorAll('.filter-capacity').forEach((b, i) => {
-      if (i === 0) { b.classList.add('active', 'bg-gray-900', 'text-white'); b.classList.remove('bg-white', 'text-gray-600', 'border', 'border-gray-200'); }
-      else { b.classList.remove('active', 'bg-gray-900', 'text-white'); b.classList.add('bg-white', 'text-gray-600', 'border', 'border-gray-200'); }
+      if (i === 0) { b.classList.add('active', ...activeClasses); b.classList.remove(...inactiveClasses); }
+      else { b.classList.remove('active', ...activeClasses); b.classList.add(...inactiveClasses); }
     });
     document.querySelectorAll('.filter-ff').forEach((b, i) => {
-      if (i === 0) { b.classList.add('active', 'bg-gray-900', 'text-white'); b.classList.remove('bg-white', 'text-gray-600', 'border', 'border-gray-200'); }
-      else { b.classList.remove('active', 'bg-gray-900', 'text-white'); b.classList.add('bg-white', 'text-gray-600', 'border', 'border-gray-200'); }
+      if (i === 0) { b.classList.add('active', ...activeClasses); b.classList.remove(...inactiveClasses); }
+      else { b.classList.remove('active', ...activeClasses); b.classList.add(...inactiveClasses); }
     });
     document.querySelectorAll('.product-card').forEach(c => c.style.display = 'flex');
     document.getElementById('no-results')?.classList.add('hidden');

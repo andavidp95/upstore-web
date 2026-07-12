@@ -59,7 +59,7 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
 
   <GlobalNavbar />
 
-  <main class="pt-20 pb-16 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+  <main class="pt-20 pb-16 min-h-screen bg-[#f8f9fb] dark:bg-[#0f1117] transition-colors duration-500">
     <div class="container mx-auto px-4 max-w-6xl">
 
       <a href="/" class="inline-flex items-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-medium mb-6 transition-colors">
@@ -67,9 +67,9 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
         Volver al Catálogo
       </a>
 
-      <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col md:flex-row transition-colors">
+      <div class="bg-white dark:bg-[#181b25] rounded-2xl border border-gray-100 dark:border-white/5 overflow-hidden flex flex-col md:flex-row transition-colors duration-500">
 
-        <div class="md:w-1/2 p-0 flex justify-center items-center bg-gray-50 dark:bg-gray-700/30 relative overflow-hidden min-h-[400px] md:min-h-[500px]">
+        <div class="md:w-1/2 p-0 flex justify-center items-center bg-gray-50 dark:bg-white/[0.02] relative overflow-hidden min-h-[300px] md:min-h-[500px]">
           <img
             src={product.imageUrl}
             alt={product.name}
@@ -89,7 +89,7 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
           </div>
         </div>
 
-        <div class="md:w-1/2 p-6 lg:p-8 border-t md:border-t-0 md:border-l border-gray-100 dark:border-gray-700 flex flex-col">
+        <div class="md:w-1/2 p-6 lg:p-8 border-t md:border-t-0 md:border-l border-gray-100 dark:border-white/5 flex flex-col">
 
           <div class="flex items-center gap-2 mb-3">
             <span class="text-xs text-gray-400 dark:text-gray-500">{catConfig.icon} {catConfig.name}</span>
@@ -149,14 +149,14 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
             <p class="text-center text-xs text-gray-400 mt-3">Te responderemos por WhatsApp a la brevedad</p>
           </div>
 
-          <div class="flex justify-center items-center gap-6 mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+          <div class="flex justify-center items-center gap-5 mt-4 pt-4 border-t border-gray-100 dark:border-white/5">
             <div class="flex items-center gap-1.5">
-              <img src="/images/trust/paypal.svg" alt="PayPal" class="h-5 object-contain opacity-60" onerror="this.style.display='none'">
-              <span class="text-[10px] text-gray-400">PayPal</span>
+              <img src="/images/trust/payphone.svg" alt="Payphone" class="h-5 object-contain opacity-60 dark:opacity-40" onerror="this.style.display='none'">
+              <span class="text-[10px] text-gray-400 dark:text-gray-500">Payphone</span>
             </div>
             <div class="flex items-center gap-1.5">
-              <img src="/images/trust/servientrega.svg" alt="Servientrega" class="h-5 object-contain opacity-60" onerror="this.style.display='none'">
-              <span class="text-[10px] text-gray-400">Servientrega</span>
+              <img src="/images/trust/servientrega.svg" alt="Servientrega" class="h-5 object-contain opacity-60 dark:opacity-40" onerror="this.style.display='none'">
+              <span class="text-[10px] text-gray-400 dark:text-gray-500">Servientrega</span>
             </div>
           </div>
 

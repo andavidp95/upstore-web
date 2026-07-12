@@ -57,6 +57,17 @@ collections:
           - { label: "Por Llegar", value: "POR_LLEGAR" }
           - { label: "Bajo Pedido", value: "BAJO_PEDIDO" }
           - { label: "Agotado", value: "AGOTADO" }
+      - { label: "Capacidad", name: "capacity", widget: "string", hint: "Ej: 1000VA, MINI_12V, 3000VA", required: false }
+      - { label: "Voltaje", name: "voltage", widget: "string", hint: "Ej: 120V, 220V", required: false }
+      - label: "Forma Factor"
+        name: "formFactor"
+        widget: "select"
+        options:
+          - { label: "Torre", value: "TORRE" }
+          - { label: "Rack", value: "RACK" }
+          - { label: "Rack/Torre", value: "AMBOS" }
+          - { label: "Otro", value: "OTRO" }
+        required: false
       - { label: "Contenido (Markdown)", name: "body", widget: "markdown", required: false }
 
   - name: "baterias"
@@ -155,3 +166,16 @@ collections:
       - { label: "URL de Imagen", name: "imageUrl", widget: "string", hint: "Ruta absoluta, ej: /images/servicios/mantenimiento.jpg" }
       - { label: "Orden", name: "order", widget: "number", hint: "Menor = primero", required: false }
       - { label: "Contenido (Markdown)", name: "body", widget: "markdown", required: false }
+
+  - name: "clientes"
+    label: "Clientes"
+    folder: "src/content/clientes"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nombre", name: "name", widget: "string" }
+      - { label: "Logo (ruta)", name: "logo", widget: "string", hint: "Ruta absoluta, ej: /images/clients/nombre.svg" }
+      - { label: "Sitio Web", name: "url", widget: "string", required: false }
+      - { label: "Orden", name: "order", widget: "number", hint: "Menor = primero", required: false }
+      - { label: "Activo", name: "active", widget: "boolean", default: true }
+      - { label: "Descripción", name: "body", widget: "markdown", required: false }

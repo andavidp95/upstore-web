@@ -66,10 +66,22 @@ const marcasCollection = defineCollection({
   }),
 });
 
+const clientesCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    name: z.string(),
+    logo: z.string(),
+    url: z.string().url().optional(),
+    order: z.number().optional(),
+    active: z.boolean().default(true),
+  }),
+});
+
 export const collections = {
   'equipos': equiposCollection,
   'baterias': bateriasCollection,
   'accesorios': accesoriosCollection,
   'servicios': serviciosCollection,
   'marcas': marcasCollection,
+  'clientes': clientesCollection,
 };
