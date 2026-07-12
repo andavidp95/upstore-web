@@ -18,7 +18,7 @@ collections:
       - { label: "Descripción", name: "description", widget: "text" }
       - { label: "Precio (USD)", name: "price", widget: "number", min: 0, value_type: "float" }
       - { label: "URL de Imagen", name: "imageUrl", widget: "string", hint: "Ruta absoluta, ej: /images/products/mi-ups.png" }
-      - { label: "Link del Fabricante", name: "productLink", widget: "string", required: false, hint: "URL opcional a la ficha técnica" }
+      - { label: "Link del Fabricante", name: "productLink", widget: "string", required: false }
       - label: "Categoría"
         name: "category"
         widget: "select"
@@ -36,10 +36,41 @@ collections:
           - { label: "Por Llegar", value: "POR_LLEGAR" }
           - { label: "Bajo Pedido", value: "BAJO_PEDIDO" }
           - { label: "Agotado", value: "AGOTADO" }
-      - { label: "Contenido (Markdown)", name: "body", widget: "markdown", required: false, hint: "Especificaciones técnicas adicionales" }
+      - { label: "Contenido (Markdown)", name: "body", widget: "markdown", required: false }
+
+  - name: "baterias"
+    label: "Baterías"
+    folder: "src/content/baterias"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nombre", name: "name", widget: "string" }
+      - { label: "Descripción", name: "description", widget: "text" }
+      - { label: "Precio (USD)", name: "price", widget: "number", min: 0, value_type: "float" }
+      - { label: "URL de Imagen", name: "imageUrl", widget: "string", hint: "Ruta absoluta, ej: /images/products/bateria.png" }
+      - { label: "Link del Fabricante", name: "productLink", widget: "string", required: false }
+      - label: "Categoría"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Batería VRLA", value: "VRLA" }
+          - { label: "Batería AGM", value: "AGM" }
+          - { label: "Banco de Baterías", value: "BANCO_BATERIAS" }
+          - { label: "Gabinete para Batería", value: "GABINETE_BATERIA" }
+          - { label: "Otros", value: "OTROS" }
+      - label: "Estado"
+        name: "status"
+        widget: "select"
+        options:
+          - { label: "En Stock", value: "STOCK" }
+          - { label: "Preventa", value: "PREVENTA" }
+          - { label: "Por Llegar", value: "POR_LLEGAR" }
+          - { label: "Bajo Pedido", value: "BAJO_PEDIDO" }
+          - { label: "Agotado", value: "AGOTADO" }
+      - { label: "Contenido (Markdown)", name: "body", widget: "markdown", required: false }
 
   - name: "accesorios"
-    label: "Accesorios"
+    label: "Accesorios para UPS"
     folder: "src/content/accesorios"
     create: true
     slug: "{{slug}}"
@@ -47,16 +78,20 @@ collections:
       - { label: "Nombre", name: "name", widget: "string" }
       - { label: "Descripción", name: "description", widget: "text" }
       - { label: "Precio (USD)", name: "price", widget: "number", min: 0, value_type: "float" }
-      - { label: "URL de Imagen", name: "imageUrl", widget: "string", hint: "Ruta absoluta, ej: /images/products/mi-accesorio.png" }
+      - { label: "URL de Imagen", name: "imageUrl", widget: "string", hint: "Ruta absoluta, ej: /images/products/accesorio.png" }
       - { label: "Link del Fabricante", name: "productLink", widget: "string", required: false }
       - label: "Categoría"
         name: "category"
         widget: "select"
         options:
-          - { label: "Batería", value: "BATERIA" }
           - { label: "Tarjeta SNMP", value: "TARJETA_SNMP" }
+          - { label: "Tarjeta de Comunicación", value: "TARJETA_COMUNICACION" }
+          - { label: "PDU", value: "PDU" }
+          - { label: "Bypass", value: "BYPASS" }
           - { label: "Rack", value: "RACK" }
           - { label: "Cableado", value: "CABLEADO" }
+          - { label: "Kit de Montaje", value: "KIT_MONTAJE" }
+          - { label: "Repuesto", value: "REPUESTO" }
           - { label: "Otros", value: "OTROS" }
       - label: "Estado"
         name: "status"
@@ -76,6 +111,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Nombre", name: "name", widget: "string" }
-      - { label: "Descripción Corta", name: "shortDescription", widget: "text", hint: "1-2 líneas descriptivas del servicio" }
+      - { label: "Descripción Corta", name: "shortDescription", widget: "text", hint: "1-2 líneas descriptivas" }
       - { label: "URL de Imagen", name: "imageUrl", widget: "string", hint: "Ruta absoluta, ej: /images/servicios/mantenimiento.jpg" }
-      - { label: "Contenido (Markdown)", name: "body", widget: "markdown", required: false, hint: "Detalles completos del servicio" }
+      - { label: "Orden", name: "order", widget: "number", hint: "Número para ordenar (menor = primero)", required: false }
+      - { label: "Contenido (Markdown)", name: "body", widget: "markdown", required: false }
