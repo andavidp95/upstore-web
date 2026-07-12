@@ -4,6 +4,7 @@ description: "UPS Online de doble conversión 3000 VA / 2400 W con onda sinusoid
 price: 860.00
 imageUrl: "/images/products/mono-apc-srv3ka.png"
 productLink: "https://www.se.com/cr/es/product/SRV3KA/unidad-easy-ups-srv-de-apc-3000-va-y-120-v/"
+brand: APC
 category: "MONOFASICO"
 status: "STOCK"
 ---

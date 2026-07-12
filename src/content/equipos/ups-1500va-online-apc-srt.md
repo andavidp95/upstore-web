@@ -4,6 +4,7 @@ description: "UPS Online de doble conversión 1500 VA / 1350 W, onda sinusoidal 
 price: 1190.00
 imageUrl: "/images/products/mono-apc-srt1500xla.png"
 productLink: "https://www.se.com/cr/es/product/SRT1500XLA/unidad-smartups-srt-de-apc-de-1500-va-y-120-v/"
+brand: APC
 category: "MONOFASICO"
 status: "STOCK"
 ---

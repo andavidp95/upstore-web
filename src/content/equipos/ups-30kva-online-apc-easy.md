@@ -4,6 +4,7 @@ description: "UPS trifásico online de 30 kVA / 30 kW, diseño sin transformador
 price: 14900.00
 imageUrl: "/images/products/trifasico-apc-e3sups30kfb.png"
 productLink: "https://www.se.com/co/es/product/E3SUPS30KFB/ups-3s-de-easy-30-kva-208-v-33-ups-para-bater%C3%ADas-internas/"
+brand: APC
 category: "TRIFASICO"
 status: "STOCK"
 ---

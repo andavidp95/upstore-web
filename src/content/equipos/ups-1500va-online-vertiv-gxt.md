@@ -4,6 +4,7 @@ description: "UPS Online de doble conversión 1500 VA / 1350 W con onda sinusoid
 price: 450.00
 imageUrl: "/images/products/mono-vertiv-gxt-1500mtplus.png"
 productLink: "https://www.vertiv.com/es-latam/products-catalog/potencia-critica/uninterruptible-power-supplies-ups/liebert-gxt-mt-1kva---3kva2/"
+brand: VERTIV
 category: "MONOFASICO"
 status: "STOCK"
 ---

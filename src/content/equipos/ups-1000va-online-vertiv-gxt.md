@@ -4,6 +4,7 @@ description: "UPS Online de doble conversión 1000 VA / 900 W con onda sinusoida
 price: 380.00
 imageUrl: "/images/products/mono-vertiv-gxt-1000mtplus.png"
 productLink: "https://www.vertiv.com/es-latam/products-catalog/potencia-critica/uninterruptible-power-supplies-ups/liebert-gxt-mt-1kva---3kva2/"
+brand: VERTIV
 category: "MONOFASICO"
 status: "STOCK"
 ---

@@ -4,6 +4,7 @@ description: "UPS Trifásico Online 30 kVA / 30 kW, onda pura, entrada/salida 20
 price: 12650.00
 imageUrl: "/images/products/trifasico-vertiv-exs-30kva.png"
 productLink: "https://www.vertiv.com/es-latam/products-catalog/potencia-critica/uninterruptible-power-supplies-ups/liebert-exs-ups-30kvakw-208220v/"
+brand: VERTIV
 category: "TRIFASICO"
 status: "STOCK"
 ---

@@ -4,6 +4,7 @@ description: "UPS Online 2000 VA / 1800 W con onda sinusoidal pura y voltaje 120
 price: 725.00
 imageUrl: "/images/products/mono-vertiv-gxtrt-2000lvrt2uxl.png"
 productLink: "https://www.vertiv.com/4909ac/globalassets/products/critical-power/uninterruptible-power-supplies-ups/ups-vertiv-liebert-gxt-rt-1000---3000-va-120-v-brochure-spanish.pdf"
+brand: VERTIV
 category: "MONOFASICO"
 status: "STOCK"
 ---

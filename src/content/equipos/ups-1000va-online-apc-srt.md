@@ -4,6 +4,7 @@ description: "UPS Online 1000 VA / 900 W. Doble conversión (On-Line) con salida
 price: 1040.00
 imageUrl: "/images/products/mono-apc-srt1000xla.png"
 productLink: "https://www.se.com/co/es/product/SRT1000XLA/unidad-smartups-srt-de-apc-de-1000-va-y-120-v/"
+brand: APC
 category: "MONOFASICO"
 status: "STOCK"
 ---

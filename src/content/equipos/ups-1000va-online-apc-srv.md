@@ -4,6 +4,7 @@ description: "UPS Online de doble conversión con potencia nominal 1000 VA / 800
 price: 360.00
 imageUrl: "/images/products/mono-apc-srv1ka.png"
 productLink: "https://www.se.com/in/en/product/SRV1KI/apc-easy-ups-online-1000va-800w-tower-230v-3x-iec-c13-outlets-intelligent-card-slot-lcd/"
+brand: APC
 category: "MONOFASICO"
 status: "STOCK"
 ---

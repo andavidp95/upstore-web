@@ -4,6 +4,7 @@ description: "UPS Online 15 000 VA / 15 000 W (GXT5), salida 120/208 V. Aptitud 
 price: 7690.00
 imageUrl: "/images/products/bifasico-vertiv-gxt5-15kmvrt11uxln.png"
 productLink: "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/gxt5-15kmvrt11uxln-vertiv-liebert-gxt5-ups---15kva15kw--208-and-120vac--online-ups-racktower/"
+brand: VERTIV
 category: "BIFASICO"
 status: "STOCK"
 ---

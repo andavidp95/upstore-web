@@ -4,6 +4,7 @@ description: "UPS Online de doble conversión 2000 VA / 1600 W con onda senoidal
 price: 740.00
 imageUrl: "/images/products/mono-apc-srv2kra.png"
 productLink: "https://www.se.com/co/es/product/SRV2KRA/apc-easy-ups-srv-rm-2000va-120v/"
+brand: APC
 category: "MONOFASICO"
 status: "STOCK"
 ---

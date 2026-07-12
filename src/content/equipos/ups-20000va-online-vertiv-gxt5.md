@@ -4,6 +4,7 @@ description: "UPS Online de alta capacidad 20 000 VA / 20 000 W con onda sinusoi
 price: 10190.00
 imageUrl: "/images/products/bifasico-vertiv-gxt5-20kmvrt11uxln.png"
 productLink: "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/gxt5-20kmvrt11uxln-vertiv-liebert-gxt5-ups---20kva20kw--208120vac--online-ups-racktower/"
+brand: VERTIV
 category: "BIFASICO"
 status: "STOCK"
 ---

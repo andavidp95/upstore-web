@@ -4,6 +4,7 @@ description: "UPS Online 6000 VA / 6000 W (GXT5), salida 120/208 V. Diseñado pa
 price: 2990.00
 imageUrl: "/images/products/bifasico-vertiv-gxt5-6000mvrt4uxln.png"
 productLink: "https://www.vertiv.com/es-latam/products-catalog/potencia-critica/uninterruptible-power-supplies-ups/gxt5-6000mvrt4uxln-liebert-gxt5-6000va6000w-208vac-/"
+brand: VERTIV
 category: "BIFASICO"
 status: "STOCK"
 ---

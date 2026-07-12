@@ -3,6 +3,7 @@ name: "Mini UPS 10400mAh 2A 36W - HKIVI DC1036"
 description: "10400 mAh (≈38 Wh) – Hasta aproximadamente 6 horas de autonomía para un router estándar. Función Mini Power Bank."
 price: 50.00
 imageUrl: "/images/products/mini-ups-hkivi.webp"
+brand: OTROS
 category: "MINI_UPS"
 status: "STOCK"
 ---

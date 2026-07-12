@@ -4,6 +4,7 @@ description: "UPS Online 3000 VA / 2700 W con onda pura y voltaje 120 V. Tipo to
 price: 720.00
 imageUrl: "/images/products/mono-vertiv-gxt-3000mtplus.png"
 productLink: "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/liebert-gxt-mt-1kva---3kva2/"
+brand: VERTIV
 category: "MONOFASICO"
 status: "STOCK"
 ---

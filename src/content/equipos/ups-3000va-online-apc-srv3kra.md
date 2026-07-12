@@ -4,6 +4,7 @@ description: "UPS Online 3000 VA / 2400 W de doble conversión con salida 120 V 
 price: 930.00
 imageUrl: "/images/products/mono-apc-srv3kra.png"
 productLink: "https://www.se.com/co/es/product/SRV3KRA/apc-easy-ups-srv-rm-3000va-120v/"
+brand: APC
 category: "MONOFASICO"
 status: "STOCK"
 ---

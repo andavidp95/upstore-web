@@ -4,6 +4,7 @@ description: "UPS Online 2000 VA / 1600 W de doble conversión con forma de onda
 price: 620.00
 imageUrl: "/images/products/mono-apc-srv2ka.png"
 productLink: "https://www.se.com/mx/es/product/SRV2KA/unidad-easy-ups-online-srv-de-apc-de-2000-va-y-120-v/"
+brand: APC
 category: "MONOFASICO"
 status: "STOCK"
 ---

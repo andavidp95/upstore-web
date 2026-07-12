@@ -4,6 +4,7 @@ description: "UPS DE 10KVA + 1 TRANSFORMADOR 10KVA. UPS Online rack-mount 10 kVA
 price: 9150.00
 imageUrl: "/images/products/bifasico-apc-srt10krmxlt.png"
 productLink: "https://www.se.com/mx/es/product/SRT10KRMXLT/smartups-en-l%C3%ADnea-de-apc-10-kva-10-kw-montaje-en-bastidor-6u-208-v-4-tomacorrientes-l620r+2x-l630r-nema-tarjeta-de-red+smartslot-autonom%C3%ADa-extendida-kit-de-rieles-incluido/"
+brand: APC
 category: "BIFASICO"
 status: "STOCK"
 ---

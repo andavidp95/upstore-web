@@ -4,6 +4,7 @@ description: "UPS Online 10 000 VA / 10 000 W, onda sinusoidal pura, salida 120/
 price: 4320.00
 imageUrl: "/images/products/bifasico-vertiv-gxt5-10kmvrt6uxln.png"
 productLink: "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-gxt5-ups-3000-10000va-208vac-ups/"
+brand: VERTIV
 category: "BIFASICO"
 status: "POR_LLEGAR"
 ---

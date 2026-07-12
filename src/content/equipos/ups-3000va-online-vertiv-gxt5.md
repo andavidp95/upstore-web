@@ -4,6 +4,7 @@ description: "UPS Online 3000 VA / 2700 W (GXT5, rack/tower), onda sinusoidal pu
 price: 1550.00
 imageUrl: "/images/products/bifasico-vertiv-gxt5-3000lvrt2uxl.png"
 productLink: "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/gxt5-3000lvrt2uxl-vertiv-liebert-gxt5-3000va2700w-120v-online-double-conversion-ups/"
+brand: VERTIV
 category: "MONOFASICO"
 status: "STOCK"
 ---

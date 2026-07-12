@@ -8,6 +8,18 @@ media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
+  - name: "marcas"
+    label: "Marcas"
+    folder: "src/content/marcas"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nombre", name: "name", widget: "string" }
+      - { label: "Logo (ruta)", name: "logo", widget: "string", hint: "Ruta absoluta, ej: /images/partners/marca.svg" }
+      - { label: "Sitio Web", name: "url", widget: "string", required: false }
+      - { label: "Orden", name: "order", widget: "number", hint: "Menor = primero", required: false }
+      - { label: "Activa", name: "active", widget: "boolean", default: true }
+
   - name: "equipos"
     label: "Equipos UPS"
     folder: "src/content/equipos"
@@ -19,6 +31,15 @@ collections:
       - { label: "Precio (USD)", name: "price", widget: "number", min: 0, value_type: "float" }
       - { label: "URL de Imagen", name: "imageUrl", widget: "string", hint: "Ruta absoluta, ej: /images/products/mi-ups.png" }
       - { label: "Link del Fabricante", name: "productLink", widget: "string", required: false }
+      - label: "Marca"
+        name: "brand"
+        widget: "select"
+        options:
+          - { label: "APC by Schneider Electric", value: "APC" }
+          - { label: "Vertiv", value: "VERTIV" }
+          - { label: "Eaton", value: "EATON" }
+          - { label: "Victron Energy", value: "VICTRON" }
+          - { label: "Otros", value: "OTROS" }
       - label: "Categoría"
         name: "category"
         widget: "select"
@@ -49,6 +70,15 @@ collections:
       - { label: "Precio (USD)", name: "price", widget: "number", min: 0, value_type: "float" }
       - { label: "URL de Imagen", name: "imageUrl", widget: "string", hint: "Ruta absoluta, ej: /images/products/bateria.png" }
       - { label: "Link del Fabricante", name: "productLink", widget: "string", required: false }
+      - label: "Marca"
+        name: "brand"
+        widget: "select"
+        options:
+          - { label: "APC by Schneider Electric", value: "APC" }
+          - { label: "Vertiv", value: "VERTIV" }
+          - { label: "Eaton", value: "EATON" }
+          - { label: "Victron Energy", value: "VICTRON" }
+          - { label: "Otros", value: "OTROS" }
       - label: "Categoría"
         name: "category"
         widget: "select"
@@ -80,6 +110,16 @@ collections:
       - { label: "Precio (USD)", name: "price", widget: "number", min: 0, value_type: "float" }
       - { label: "URL de Imagen", name: "imageUrl", widget: "string", hint: "Ruta absoluta, ej: /images/products/accesorio.png" }
       - { label: "Link del Fabricante", name: "productLink", widget: "string", required: false }
+      - label: "Marca"
+        name: "brand"
+        widget: "select"
+        options:
+          - { label: "APC by Schneider Electric", value: "APC" }
+          - { label: "Vertiv", value: "VERTIV" }
+          - { label: "Eaton", value: "EATON" }
+          - { label: "Victron Energy", value: "VICTRON" }
+          - { label: "Otros", value: "OTROS" }
+        required: false
       - label: "Categoría"
         name: "category"
         widget: "select"
@@ -113,5 +153,5 @@ collections:
       - { label: "Nombre", name: "name", widget: "string" }
       - { label: "Descripción Corta", name: "shortDescription", widget: "text", hint: "1-2 líneas descriptivas" }
       - { label: "URL de Imagen", name: "imageUrl", widget: "string", hint: "Ruta absoluta, ej: /images/servicios/mantenimiento.jpg" }
-      - { label: "Orden", name: "order", widget: "number", hint: "Número para ordenar (menor = primero)", required: false }
+      - { label: "Orden", name: "order", widget: "number", hint: "Menor = primero", required: false }
       - { label: "Contenido (Markdown)", name: "body", widget: "markdown", required: false }

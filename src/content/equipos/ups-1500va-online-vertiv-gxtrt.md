@@ -4,6 +4,7 @@ description: "UPS Online de doble conversión 1500 VA / 1350 W con salida 120 V 
 price: 640.00
 imageUrl: "/images/products/mono-vertiv-gxtrt-1500lvrt2uxl.png"
 productLink: "https://www.vertiv.com/es-latam/products-catalog/potencia-critica/uninterruptible-power-supplies-ups/gxt5-1500lvrt2uxl-vertiv-liebert-gxt5-1500va1350w-120v-online-double-conversion-ups-/"
+brand: VERTIV
 category: "MONOFASICO"
 status: "STOCK"
 ---

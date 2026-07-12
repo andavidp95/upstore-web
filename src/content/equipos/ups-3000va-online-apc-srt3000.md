@@ -4,6 +4,7 @@ description: "UPS Online de doble conversión 3000 VA / 2700 W con onda sinusoid
 price: 1850.00
 imageUrl: "/images/products/mono-apc-srt3000xla.png"
 productLink: "https://www.se.com/es/es/product/SRT3000XLA/smartups-srt-de-apc-3000-va-120-v/"
+brand: APC
 category: "MONOFASICO"
 status: "STOCK"
 ---

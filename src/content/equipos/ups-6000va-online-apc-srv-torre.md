@@ -4,6 +4,7 @@ description: "UPS Online de doble conversión 6000 VA / 5400 W con entrada 230 V
 price: 2610.00
 imageUrl: "/images/products/bifasico-apc-srv6kil-6ktf.png"
 productLink: "https://www.se.com/co/es/product/SRV6KIL-6KTF/sai-easy-ups-en-l%C3%ADnea-srv-de-apc-de-6000-va-con-transformador-reductor-de-230-a-120-v/"
+brand: APC
 category: "BIFASICO"
 status: "STOCK"
 ---

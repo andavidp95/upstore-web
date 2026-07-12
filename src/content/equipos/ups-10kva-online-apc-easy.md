@@ -4,6 +4,7 @@ description: "UPS trifásico online de 10 kVA / 10 kW, diseño sin transformador
 price: 9590.00
 imageUrl: "/images/products/trifasico-apc-e3sups30kfb.png"
 productLink: "https://www.se.com/co/es/product/E3SUPS10KFB/easy-ups-3s-10-kva-208v-33-ups-para-bater%C3%ADas-internas/"
+brand: APC
 category: "TRIFASICO"
 status: "POR_LLEGAR"
 ---

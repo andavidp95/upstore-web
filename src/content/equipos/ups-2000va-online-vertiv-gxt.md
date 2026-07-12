@@ -4,6 +4,7 @@ description: "UPS Online de doble conversión 2000 VA / 1800 W con forma de onda
 price: 620.00
 imageUrl: "/images/products/mono-vertiv-gxt-2000mtplus.png"
 productLink: "https://www.google.com/search?q=Liebert+GXT-2000MTPLUS120"
+brand: VERTIV
 category: "MONOFASICO"
 status: "POR_LLEGAR"
 ---

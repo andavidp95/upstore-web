@@ -4,6 +4,7 @@ description: "UPS Online 2200 VA / 1800 W con forma de onda pura y voltaje 120 V
 price: 1490.00
 imageUrl: "/images/products/mono-apc-srt2200xla.png"
 productLink: "https://www.se.com/co/es/product/SRT2200XLA/apc-smartups-srt-2200va-120v/"
+brand: APC
 category: "MONOFASICO"
 status: "STOCK"
 ---

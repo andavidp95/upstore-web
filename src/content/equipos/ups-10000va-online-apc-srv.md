@@ -4,6 +4,7 @@ description: "UPS Online de alta capacidad 10 000 VA / 9 000 W con onda sinusoid
 price: 3480.00
 imageUrl: "/images/products/bifasico-apc-srv10kil-10ktf.png"
 productLink: "https://www.se.com/co/es/product/SRV10KIL-10KTF/sai-easy-ups-en-l%C3%ADnea-srv-de-apc-de-10000-va-con-transformador-reductor-de-230-a-120-v/"
+brand: APC
 category: "BIFASICO"
 status: "STOCK"
 ---

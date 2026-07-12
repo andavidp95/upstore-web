@@ -4,6 +4,7 @@ description: "UPS Online de doble conversión 1000 VA / 800 W con onda sinusoida
 price: 460.00
 imageUrl: "/images/products/mono-apc-srv1kra.png"
 productLink: "https://www.se.com/ar/es/product/SRV1KRA/apc-easy-ups-online-srv-1000va-rm-120v/"
+brand: APC
 category: "MONOFASICO"
 status: "STOCK"
 ---

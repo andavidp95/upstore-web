@@ -4,6 +4,7 @@ description: "Smart-UPS Ultra con batería de litio 2200 VA / 1950 W, operación
 price: 5225.00
 imageUrl: "/images/products/mono-apc-srtl2k2rm1unc.png"
 productLink: "https://www.se.com/co/es/product/SRTL2K2RM1UNC/smartups-ultra-de-apc-2200-va-120-v-1u-con-bater%C3%ADa-de-iones-de-litio-con-tarjeta-de-gesti%C3%B3n-de-redes-integradas/"
+brand: APC
 category: "MONOFASICO"
 status: "STOCK"
 ---

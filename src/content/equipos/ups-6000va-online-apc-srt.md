@@ -4,6 +4,7 @@ description: "UPS DE 6000VA CON TRANSFORMADOR PARA SALIDA DE VOLTAJE 120V. Ideal
 price: 5490.00
 imageUrl: "/images/products/bifasico-apc-srt6kxlt-5ktf.png"
 productLink: "https://www.se.com/co/es/product/SRT6KXLT-5KTF/unidad-smartups-srt-de-apc-6000-va-con-transformador-reductor-de-208-240-v-a-120-v/"
+brand: APC
 category: "BIFASICO"
 status: "STOCK"
 ---

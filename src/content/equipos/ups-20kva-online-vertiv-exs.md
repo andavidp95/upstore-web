@@ -4,6 +4,7 @@ description: "UPS Trifásico Online 20 kVA / 20 kW, diseño monolítico sin tran
 price: 9250.00
 imageUrl: "/images/products/trifasico-vertiv-exs-20kva.png"
 productLink: "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/liebert-exs-ups-15-20kvakw-208220v/"
+brand: VERTIV
 category: "TRIFASICO"
 status: "STOCK"
 ---

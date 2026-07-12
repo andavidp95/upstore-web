@@ -3,6 +3,7 @@ name: "Mini UPS 20000mAH 5A 60W - SHANQIU FX 5-12Pro"
 description: "Batería de Li-polymer 20000 mAh (74 Wh) – ¡Hasta 10-12 horas de autonomía para tu router/módem! Potencia máxima 60W."
 price: 120.00
 imageUrl: "/images/products/mini-ups-shanqiu.jpg"
+brand: OTROS
 category: "MINI_UPS"
 status: "BAJO_PEDIDO"
 ---
