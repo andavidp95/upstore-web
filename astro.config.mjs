@@ -9,7 +9,7 @@ export default defineConfig({
   
   output: 'static',
   
-  site: 'https://upstore.com.ec',
+  site: 'https://upstore-ec.com',
 
   build: {
     inlineStylesheets: 'auto',

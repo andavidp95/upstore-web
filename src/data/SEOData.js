@@ -15,7 +15,7 @@ export const SEO_CONFIG = {
   },
 
   CONTACT: {
-    email: 'ventas@upstore.com.ec',
+    email: 'ventas@upstore-ec.com',
     whatsapp: {
       number: '+593987799459',
       link: 'https://wa.me/593987799459',
@@ -29,10 +29,10 @@ export const SEO_CONFIG = {
   },
 
   ASSETS: {
-    baseUrl: 'https://upstore.com.ec',
-    logo: 'https://upstore.com.ec/images/upstore-logo.svg',
-    ogImage: 'https://upstore.com.ec/images/upstore-og-image.jpg',
-    twitterCard: 'https://upstore.com.ec/images/upstore-twitter-card.jpg',
+    baseUrl: 'https://upstore-ec.com',
+    logo: 'https://upstore-ec.com/images/upstore-logo.svg',
+    ogImage: 'https://upstore-ec.com/images/upstore-og-image.jpg',
+    twitterCard: 'https://upstore-ec.com/images/upstore-twitter-card.jpg',
     appleTouchIcon: '/apple-touch-icon.png',
     favicon32: '/favicon-32x32.png',
     favicon16: '/favicon-16x16.png',
@@ -389,7 +389,7 @@ export const getFAQSchema = (pageType = 'home') => {
       },
       {
         question: "¿Puedo solicitar la eliminación de mis datos enviados?",
-        answer: "Sí, tienes derecho al olvido. Puedes solicitar la eliminación de tus datos escribiendo a ventas@upstore.com.ec en cualquier momento."
+        answer: "Sí, tienes derecho al olvido. Puedes solicitar la eliminación de tus datos escribiendo a ventas@upstore-ec.com en cualquier momento."
       },
       {
         question: "¿Los archivos que envío están protegidos legalmente?",

@@ -56,7 +56,7 @@ const getStatusConfig = (status) => {
 const statusInfo = getStatusConfig(product.status);
 const brandBadge = brandConfig[product.brand] || brandConfig['OTROS'];
 const catConfig = categoryConfig[product.category] || { name: product.category, icon: '' };
-const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.ec'}/producto/${product.slug}`;
+const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore-ec.com'}/producto/${product.slug}`;
 ---
 
 <Layout title={`${product.name} | UPStore Ecuador`}>
