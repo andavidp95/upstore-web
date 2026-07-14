@@ -24,8 +24,8 @@ Para que `/admin/` funcione en producción (Cloudflare Pages), necesitas un **Gi
 ### 1. Crear GitHub OAuth App
 1. Ve a **GitHub → Settings → Developer settings → OAuth Apps → New OAuth App**
 2. **Application name:** `UPStore CMS`
-3. **Homepage URL:** `https://upstore.com.ec`
-4. **Authorization callback URL:** `https://upstore.com.ec/.netlify/identity/callback`
+3. **Homepage URL:** `https://upstore-ec.com`
+4. **Authorization callback URL:** `https://upstore-ec.com/.netlify/identity/callback`
    - Si usas Cloudflare Pages sin Netlify: usa tu propio callback URL o un proxy como `https://decap-oauth.netlify.app/`
 5. Guarda el **Client ID** y **Client Secret**
 
