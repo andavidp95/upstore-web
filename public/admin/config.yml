@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: upstore-ec/upstore-frontend
+  repo: andavidp95/upstore-web
   branch: main
   base_url: ""
 
@@ -15,7 +15,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Nombre", name: "name", widget: "string" }
-      - { label: "Logo (ruta)", name: "logo", widget: "string", hint: "Ruta absoluta, ej: /images/partners/marca.svg" }
+      - { label: "Logo (ruta)", name: "logo", widget: "string", hint: "Ruta absoluta, ej: /images/brands/marca.svg" }
       - { label: "Sitio Web", name: "url", widget: "string", required: false }
       - { label: "Orden", name: "order", widget: "number", hint: "Menor = primero", required: false }
       - { label: "Activa", name: "active", widget: "boolean", default: true }
@@ -38,6 +38,8 @@ collections:
           - { label: "APC by Schneider Electric", value: "APC" }
           - { label: "Vertiv", value: "VERTIV" }
           - { label: "Hbit", value: "HBIT" }
+          - { label: "HKIVI", value: "HKIVI" }
+          - { label: "Shanqiu", value: "SHANQIU" }
           - { label: "Otros", value: "OTROS" }
       - label: "Categoría"
         name: "category"
@@ -62,11 +64,13 @@ collections:
         name: "formFactor"
         widget: "select"
         options:
-          - { label: "Torre", value: "TORRE" }
+          - { label: "Mini", value: "MINI" }
+          - { label: "Torre", value: "TOWER" }
           - { label: "Rack", value: "RACK" }
-          - { label: "Rack/Torre", value: "AMBOS" }
+          - { label: "Torre/Rack", value: "TOWER_RACK" }
           - { label: "Otro", value: "OTRO" }
         required: false
+      - { label: "Baterías externas", name: "externalBattery", widget: "boolean", default: false, hint: "¿Compatible con expansión de baterías externas?" }
       - { label: "Contenido (Markdown)", name: "body", widget: "markdown", required: false }
 
   - name: "baterias"
@@ -87,6 +91,8 @@ collections:
           - { label: "APC by Schneider Electric", value: "APC" }
           - { label: "Vertiv", value: "VERTIV" }
           - { label: "Hbit", value: "HBIT" }
+          - { label: "HKIVI", value: "HKIVI" }
+          - { label: "Shanqiu", value: "SHANQIU" }
           - { label: "Otros", value: "OTROS" }
       - label: "Categoría"
         name: "category"
@@ -126,6 +132,8 @@ collections:
           - { label: "APC by Schneider Electric", value: "APC" }
           - { label: "Vertiv", value: "VERTIV" }
           - { label: "Hbit", value: "HBIT" }
+          - { label: "HKIVI", value: "HKIVI" }
+          - { label: "Shanqiu", value: "SHANQIU" }
           - { label: "Otros", value: "OTROS" }
         required: false
       - label: "Categoría"
@@ -195,6 +203,8 @@ collections:
           - { label: "APC", value: "APC" }
           - { label: "Vertiv", value: "VERTIV" }
           - { label: "Hbit", value: "HBIT" }
+          - { label: "HKIVI", value: "HKIVI" }
+          - { label: "Shanqiu", value: "SHANQIU" }
           - { label: "Otros", value: "OTROS" }
       - label: "Categoría"
         name: "category"
@@ -208,5 +218,28 @@ collections:
           - { label: "Accesorio", value: "ACCESORIO" }
       - { label: "Descuento", name: "discount", widget: "string", hint: "Ej: -20%, -150$", required: false }
       - { label: "Badge", name: "badge", widget: "string", hint: "Ej: OFERTA, NUEVO", required: false }
+      - { label: "Slug del Producto", name: "productSlug", widget: "string", hint: "Slug del producto al que enlaza (sin /producto/)", required: false }
       - { label: "Orden", name: "order", widget: "number", hint: "Menor = primero", required: false }
       - { label: "Activo", name: "active", widget: "boolean", default: true }
+
+  - name: "noticias"
+    label: "Noticias"
+    folder: "src/content/noticias"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Descripción", name: "description", widget: "text" }
+      - { label: "URL de Imagen", name: "imageUrl", widget: "string" }
+      - { label: "Autor", name: "author", widget: "string", default: "UPStore" }
+      - label: "Categoría"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Noticia", value: "NOTICIA" }
+          - { label: "Proyecto", value: "PROYECTO" }
+          - { label: "Tendencia", value: "TENDENCIA" }
+          - { label: "Guía", value: "GUIA" }
+      - { label: "Orden", name: "order", widget: "number", hint: "Menor = primero", required: false }
+      - { label: "Activo", name: "active", widget: "boolean", default: true }
+      - { label: "Contenido (Markdown)", name: "body", widget: "markdown", required: false }
