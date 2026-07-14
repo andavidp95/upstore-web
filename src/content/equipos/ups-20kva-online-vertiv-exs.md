@@ -9,7 +9,8 @@ category: "TRIFASICO"
 status: "STOCK"
 capacity: "20KVA"
 voltage: "208/220V"
-formFactor: "OTRO"
+formFactor: "TOWER"
+externalBattery: true
 ---
 UPS Trifásico Online 20 kVA / 20 kW, diseño monolítico sin transformador, sin interrupciones y alta eficiencia. 
 Entrada/salida 208/220 V, estructura en torre compacta, ideal para data centers y cargas críticas. 

@@ -5,3 +5,4 @@ dist
 .wrangler
 .astro
 .env
+.env.secret

@@ -1,6 +1,4 @@
 ---
-export const prerender = true;
-
 import Layout from '../layouts/Layout.astro';
 import SEO from '../components/SEO/SEO.astro';
 import GlobalNavbar from '../components/GlobalNavbar.astro';
@@ -11,11 +9,22 @@ import { getCollection } from 'astro:content';
 
 const allProducts = await getCollection('equipos');
 const allBaterias = await getCollection('baterias');
+const realBaterias = allBaterias.filter(b => b.data.price > 0);
+const allPromos = await getCollection('promos');
+
+const promoMap = {};
+allPromos.filter(p => p.data.active !== false).forEach(p => {
+  const key = p.data.productSlug || p.slug;
+  promoMap[key] = { price: p.data.price, originalPrice: p.data.originalPrice, discount: p.data.discount, badge: p.data.badge };
+});
 
 const products = allProducts.map(p => ({
   name: p.data.name,
   description: p.data.description,
-  price: p.data.price,
+  price: promoMap[p.slug]?.price ?? p.data.price,
+  originalPrice: promoMap[p.slug]?.originalPrice ?? null,
+  discount: promoMap[p.slug]?.discount ?? null,
+  badge: promoMap[p.slug]?.badge ?? null,
   imageUrl: p.data.imageUrl,
   status: p.data.status,
   category: p.data.category,
@@ -23,21 +32,24 @@ const products = allProducts.map(p => ({
   capacity: p.data.capacity || 'OTRO',
   voltage: p.data.voltage || '120V',
   formFactor: p.data.formFactor || 'OTRO',
+  externalBattery: p.data.externalBattery || false,
   slug: p.slug
-}));
+})).sort((a, b) => a.price - b.price);
 
 const categoryConfig = {
   'MINI_UPS': { name: 'Mini UPS', icon: '🔌' },
-  'MONOFASICO': { name: 'Monofásico', icon: '⚡' },
-  'BIFASICO': { name: 'Bifásico', icon: '⚡⚡' },
-  'TRIFASICO': { name: 'Trifásico', icon: '⚡⚡⚡' }
+  'MONOFASICO': { name: 'Monofásico ⚡', icon: '' },
+  'BIFASICO': { name: 'Bifásico ⚡⚡', icon: '' },
+  'TRIFASICO': { name: 'Trifásico ⚡⚡⚡', icon: '' }
 };
 
 const brandConfig = {
-  'APC': { name: 'APC', color: 'bg-red-100 text-red-700 border-red-200' },
-  'VERTIV': { name: 'Vertiv', color: 'bg-blue-100 text-blue-700 border-blue-200' },
-  'HBIT': { name: 'Hbit', color: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
-  'OTROS': { name: 'Otros', color: 'bg-gray-100 text-gray-600 border-gray-200' }
+  'APC': { name: 'APC', logoLight: '/images/brands/apc.svg', logoDark: '/images/brands/apc-dark.svg', color: 'bg-red-100 dark:bg-red-500/10 text-red-700 dark:text-red-400 border-red-200 dark:border-red-500/20' },
+  'VERTIV': { name: 'Vertiv', logoLight: '/images/brands/vertiv.svg', logoDark: '/images/brands/vertiv-dark.svg', color: 'bg-blue-100 dark:bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-500/20' },
+  'HBIT': { name: 'Hbit', logoLight: '/images/brands/hbit.png', logoDark: '/images/brands/hbit-dark.png', color: 'bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-500/20' },
+  'HKIVI': { name: 'HKIVI', logoLight: '/images/brands/hviki.gif', logoDark: '/images/brands/hviki-dark.gif', color: 'bg-orange-100 dark:bg-orange-500/10 text-orange-700 dark:text-orange-400 border-orange-200 dark:border-orange-500/20' },
+  'SHANQIU': { name: 'Shanqiu', logoLight: '/images/brands/shanqiu.png', logoDark: '/images/brands/shanqiu-dark.png', color: 'bg-cyan-100 dark:bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 border-cyan-200 dark:border-cyan-500/20' },
+  'OTROS': { name: 'Otros', logoLight: '', logoDark: '', color: 'bg-gray-100 dark:bg-gray-700/50 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-600' }
 };
 
 const capacityGroups = [
@@ -54,24 +66,25 @@ const capacityGroups = [
 ];
 
 const formFactorConfig = {
-  'TORRE': { name: 'Torre', icon: '🖥️' },
+  'MINI': { name: 'Mini', icon: '📱' },
+  'TOWER': { name: 'Torre', icon: '🖥️' },
   'RACK': { name: 'Rack', icon: '📦' },
-  'AMBOS': { name: 'Rack/Torre', icon: '🔄' },
+  'TOWER_RACK': { name: 'Torre/Rack', icon: '🖥️📦' },
   'OTRO': { name: 'Otro', icon: '⬜' }
 };
 
 const getStatusBadge = (status) => {
   switch (status) {
-    case 'STOCK': return { class: 'bg-emerald-50 text-emerald-700 border-emerald-200', text: 'Disponible' };
-    case 'PREVENTA': return { class: 'bg-blue-50 text-blue-700 border-blue-200', text: 'Preventa' };
-    case 'POR_LLEGAR': return { class: 'bg-purple-50 text-purple-700 border-purple-200', text: 'Por llegar' };
-    case 'BAJO_PEDIDO': return { class: 'bg-gray-100 text-gray-600 border-gray-200', text: 'Bajo pedido' };
-    default: return { class: 'bg-gray-100 text-gray-500 border-gray-200', text: status };
+    case 'STOCK': return { class: 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-500/20', text: 'Disponible' };
+    case 'PREVENTA': return { class: 'bg-blue-50 dark:bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-500/20', text: 'Preventa' };
+    case 'POR_LLEGAR': return { class: 'bg-purple-50 dark:bg-purple-500/10 text-purple-700 dark:text-purple-400 border-purple-200 dark:border-purple-500/20', text: 'Por llegar' };
+    case 'BAJO_PEDIDO': return { class: 'bg-gray-100 dark:bg-gray-700/50 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-600', text: 'Bajo pedido' };
+    default: return { class: 'bg-gray-100 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 border-gray-200 dark:border-gray-600', text: status };
   }
 };
 
 const seoTitle = "Mini UPS & UPS – Sistemas de Alimentación Ininterrumpida (SAI) | UPStore Ecuador";
-const seoDescription = "UPStore Ecuador: Sistemas UPS, baterías y accesorios de respaldo energético. Marcas APC, Vertiv, Eaton, Victron Energy. Envío a todo Ecuador.";
+const seoDescription = "UPStore Ecuador: Sistemas UPS, baterías y accesorios de respaldo energético. Marcas APC, Vertiv, Hbit, HKIVI. Envío a todo Ecuador.";
 const seoKeywords = ["ups ecuador", "sistemas de respaldo energético", "ups online", "protección eléctrica", "mini ups", "baterias ups", "mantenimiento ups", "tienda ups guayaquil", "ups quito", "ups cuenca", "respaldo energético empresas ecuador"];
 const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.ec'}`;
 ---
@@ -82,64 +95,47 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
 
   <main class="pt-14 min-h-screen bg-[#f8f9fb] dark:bg-[#0f1117] transition-colors duration-500">
 
-    <!-- HERO -->
-    <section class="relative overflow-hidden">
+<!-- HERO + PROMOS + VALUE PROPS - All in one horizontal section -->
+    <section class="relative border-b border-gray-100 dark:border-white/5">
       <div class="absolute inset-0 bg-gradient-to-br from-[#e8ecf4] via-[#f0f2f8] to-[#e4e8f2] dark:from-[#12151e] dark:via-[#0f1117] dark:to-[#151922]"></div>
       <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-blue-500/5 to-transparent dark:from-blue-400/3 rounded-full blur-3xl"></div>
       <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-indigo-500/5 to-transparent dark:from-indigo-400/3 rounded-full blur-3xl"></div>
 
-      <div class="container mx-auto px-4 py-14 md:py-24 relative z-10">
-        <div class="max-w-3xl mx-auto text-center">
-          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] font-bold text-gray-900 dark:text-white leading-[1.15] mb-5 tracking-tight">
-            Respaldo energético para<br class="hidden sm:block" /> hogares y empresas
-          </h1>
-          <p class="text-gray-500 dark:text-gray-400 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
-            UPS monofásicos, trifásicos, mini UPS, baterías y accesorios con envío a todo el país.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <PromosCarousel />
-
-    <!-- VALUE PROPS - Clean horizontal strip -->
-    <section class="border-b border-gray-100 dark:border-white/5 bg-white dark:bg-[#13151d]">
-      <div class="container mx-auto px-4">
-        <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-100 dark:divide-white/5">
-          <div class="flex items-center gap-3 px-4 py-4 md:py-5">
-            <div class="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
-              <svg class="w-4 h-4 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H18.75m-7.5-3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
-            </div>
-            <div>
-              <p class="text-xs font-semibold text-gray-900 dark:text-white">Envío gratis</p>
-              <p class="text-[11px] text-gray-400 dark:text-gray-500">A todo Ecuador</p>
-            </div>
-          </div>
-          <div class="flex items-center gap-3 px-4 py-4 md:py-5">
-            <div class="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center flex-shrink-0">
-              <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            </div>
-            <div>
-              <p class="text-xs font-semibold text-gray-900 dark:text-white">Entrega 72h</p>
-              <p class="text-[11px] text-gray-400 dark:text-gray-500">Mismo día en Guayaquil</p>
+      <div class="container mx-auto px-4 py-8 md:py-12 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+          <!-- Hero text + Value props - LEFT column -->
+          <div class="text-center lg:text-left lg:pr-4">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white leading-[1.15] mb-4 tracking-tight">
+              <img src="/images/upstore-logo.svg" alt="UPStore" class="h-8 md:h-10 w-auto mb-2 inline-block" onerror="this.style.display='none'" />
+              Su tienda online en Ecuador para sistemas de respaldo de energía
+            </h1>
+            <p class="text-gray-500 dark:text-gray-400 text-base md:text-lg max-w-lg mx-auto lg:mx-0 leading-relaxed mb-6">
+              UPS monofásicos, trifásicos, mini UPS, baterías y accesorios con envío a todo Ecuador.
+            </p>
+            <!-- Value props inside hero -->
+            <div class="grid grid-cols-2 gap-x-4 gap-y-2 mt-2">
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm">🇪🇨</span>
+                <p class="text-[11px] font-medium text-gray-600 dark:text-gray-300 leading-tight">Envíos gratis a todo el Ecuador*</p>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm">⚡</span>
+                <p class="text-[11px] font-medium text-gray-600 dark:text-gray-300 leading-tight">Entrega de mini UPS en hasta 72 horas*</p>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm">💳</span>
+                <p class="text-[11px] font-medium text-gray-600 dark:text-gray-300 leading-tight">Aceptamos múltiples formas de pago</p>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm">🔋</span>
+                <p class="text-[11px] font-medium text-gray-600 dark:text-gray-300 leading-tight">Autonomía a medida</p>
+              </div>
             </div>
           </div>
-          <div class="flex items-center gap-3 px-4 py-4 md:py-5">
-            <div class="w-8 h-8 rounded-lg bg-amber-50 dark:bg-amber-500/10 flex items-center justify-center flex-shrink-0">
-              <svg class="w-4 h-4 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/></svg>
-            </div>
-            <div>
-              <p class="text-xs font-semibold text-gray-900 dark:text-white">Payphone</p>
-              <p class="text-[11px] text-gray-400 dark:text-gray-500">Tarjeta y transferencia</p>
-            </div>
-          </div>
-          <div class="flex items-center gap-3 px-4 py-4 md:py-5">
-            <div class="w-8 h-8 rounded-lg bg-violet-50 dark:bg-violet-500/10 flex items-center justify-center flex-shrink-0">
-              <svg class="w-4 h-4 text-violet-600 dark:text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
-            </div>
-            <div>
-              <p class="text-xs font-semibold text-gray-900 dark:text-white">Garantía</p>
-              <p class="text-[11px] text-gray-400 dark:text-gray-500">Soporte especializado</p>
+          <!-- Promos carousel inline - RIGHT column, constrained -->
+          <div class="w-full lg:pl-4 overflow-hidden">
+            <div class="relative">
+              <PromosCarousel inline={true} />
             </div>
           </div>
         </div>
@@ -149,7 +145,7 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
     <!-- CATEGORIES - Minimal nav cards -->
     <section class="py-8 md:py-10">
       <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           <a href="#equipos" class="group relative flex items-center gap-4 bg-white dark:bg-[#181b25] rounded-xl p-4 border border-gray-100 dark:border-white/5 hover:border-gray-200 dark:hover:border-white/10 transition-all duration-300 hover:shadow-[0_2px_20px_-4px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_2px_20px_-4px_rgba(0,0,0,0.4)]">
             <div class="w-11 h-11 rounded-lg bg-gray-50 dark:bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-50 dark:group-hover:bg-blue-500/10 transition-colors">
               <svg class="w-5 h-5 text-gray-400 dark:text-gray-500 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
@@ -166,7 +162,7 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
             </div>
             <div class="flex-grow min-w-0">
               <h3 class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">Baterías</h3>
-              <p class="text-xs text-gray-400 dark:text-gray-500">{allBaterias.length} productos</p>
+              <p class="text-xs text-gray-400 dark:text-gray-500">{realBaterias.length} productos</p>
             </div>
             <svg class="w-4 h-4 text-gray-300 dark:text-gray-600 group-hover:text-amber-400 group-hover:translate-x-0.5 transition-all flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </a>
@@ -179,6 +175,16 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
               <p class="text-xs text-gray-400 dark:text-gray-500">SNMP, PDUs, racks y más</p>
             </div>
             <svg class="w-4 h-4 text-gray-300 dark:text-gray-600 group-hover:text-emerald-400 group-hover:translate-x-0.5 transition-all flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/servicios" class="group relative flex items-center gap-4 bg-white dark:bg-[#181b25] rounded-xl p-4 border border-gray-100 dark:border-white/5 hover:border-gray-200 dark:hover:border-white/10 transition-all duration-300 hover:shadow-[0_2px_20px_-4px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_2px_20px_-4px_rgba(0,0,0,0.4)]">
+            <div class="w-11 h-11 rounded-lg bg-gray-50 dark:bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-violet-50 dark:group-hover:bg-violet-500/10 transition-colors">
+              <svg class="w-5 h-5 text-gray-400 dark:text-gray-500 group-hover:text-violet-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17l-5.384 3.18A1.5 1.5 0 014.5 17.08V6.92a1.5 1.5 0 011.536-1.27l5.384 3.18a1.5 1.5 0 010 2.54z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 12c0-2.485-2.099-4.685-5.25-5.25m5.25 5.25c0 2.485-2.099 4.685-5.25 5.25m5.25-5.25v-1.5m0 6.75v-1.5"/></svg>
+            </div>
+            <div class="flex-grow min-w-0">
+              <h3 class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">Servicios Especializados</h3>
+              <p class="text-xs text-gray-400 dark:text-gray-500">Mantenimiento, reparación e instalación</p>
+            </div>
+            <svg class="w-4 h-4 text-gray-300 dark:text-gray-600 group-hover:text-violet-400 group-hover:translate-x-0.5 transition-all flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </a>
         </div>
       </div>
@@ -193,9 +199,9 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
             <button class="filter-brand active px-3 py-1.5 rounded-lg text-xs font-medium transition-all bg-gray-900 dark:bg-white dark:text-gray-900 text-white" data-brand="all">
               Marcas
             </button>
-            {Object.entries(brandConfig).filter(([k]) => k !== 'OTROS').map(([key, config]) => (
-              <button class="filter-brand px-3 py-1.5 rounded-lg text-xs font-medium transition-all bg-white dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20" data-brand={key}>
-                {config.name}
+            {Object.entries(brandConfig).filter(([k]) => !['OTROS'].includes(k)).map(([key, config]) => (
+              <button class="filter-brand px-3 py-1.5 rounded-lg text-xs font-medium transition-all bg-white dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20 flex items-center gap-1.5" data-brand={key}>
+                {config.logoLight ? <><img src={config.logoLight} alt={config.name} class="h-3.5 w-auto object-contain dark:hidden" onerror="this.style.display='none'" /><img src={config.logoDark} alt={config.name} class="h-3.5 w-auto object-contain hidden dark:block" onerror="this.style.display='none'" /></> : config.name}
               </button>
             ))}
           </div>
@@ -229,11 +235,14 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
           <button class="filter-ff active px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all bg-gray-900 dark:bg-white dark:text-gray-900 text-white" data-ff="all">
             Todos
           </button>
-          {Object.entries(formFactorConfig).filter(([k]) => k !== 'OTRO').map(([key, config]) => (
+          {Object.entries(formFactorConfig).filter(([k]) => !['OTRO', 'TOWER_RACK'].includes(k)).map(([key, config]) => (
             <button class="filter-ff px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all bg-white dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20" data-ff={key}>
               {config.name}
             </button>
           ))}
+          <button class="filter-ff px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all bg-white dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20" data-ff="TOWER_RACK">
+            Torre/Rack
+          </button>
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4" id="products-grid">
@@ -244,43 +253,73 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
 
             return (
             <div
-              class="product-card bg-white dark:bg-[#181b25] rounded-xl border border-gray-100 dark:border-white/5 overflow-hidden hover:border-gray-200 dark:hover:border-white/10 hover:shadow-[0_4px_24px_-6px_rgba(0,0,0,0.07)] dark:hover:shadow-[0_4px_24px_-6px_rgba(0,0,0,0.5)] transition-all duration-300 flex flex-col"
+              class={`product-card bg-white dark:bg-[#181b25] rounded-xl border overflow-hidden transition-all duration-300 flex flex-col ${product.badge ? 'border-indigo-200 dark:border-indigo-500/30 hover:border-indigo-400 dark:hover:border-indigo-500/50 shadow-[0_0_12px_-3px_rgba(99,102,241,0.12)]' : 'border-gray-100 dark:border-white/5 hover:border-gray-200 dark:hover:border-white/10 hover:shadow-[0_4px_24px_-6px_rgba(0,0,0,0.07)]'}`}
               data-category={product.category}
               data-brand={product.brand}
               data-capacity={product.capacity}
               data-ff={product.formFactor}
             >
-              <a href={`/producto/${product.slug}`} class="block relative bg-gray-50 dark:bg-[#1a1d27]">
+              <a href={`/producto/${product.slug}`} class="block relative bg-gray-50 dark:bg-[#12141c]">
                 <img
                   src={product.imageUrl}
                   alt={product.name}
-                  class="w-full h-36 md:h-44 object-contain p-4"
+                  class="w-full h-44 md:h-52 object-contain p-3 mix-blend-multiply dark:mix-blend-normal"
                   loading="lazy"
                   onerror="this.style.display='none'"
                 />
-                <span class={`absolute top-2 left-2 text-[10px] font-medium px-2 py-0.5 rounded-md ${brandBadge.class}`}>
-                  {brandBadge.name}
+                <span class="absolute top-2 left-2">
+                  {brandBadge.logoLight ? (
+                    <>
+                      <img src={brandBadge.logoLight} alt={brandBadge.name} class="h-6 md:h-7 w-auto object-contain dark:hidden" onerror="this.style.display='none'" />
+                      <img src={brandBadge.logoDark} alt={brandBadge.name} class="h-6 md:h-7 w-auto object-contain hidden dark:block" onerror="this.style.display='none'" />
+                    </>
+                  ) : null}
+                  <span class={brandBadge.logoLight ? "hidden" : "" + " text-[9px] font-bold text-gray-500 dark:text-gray-400"}>{brandBadge.name}</span>
                 </span>
-                <span class={`absolute top-2 right-2 text-[10px] font-medium px-2 py-0.5 rounded-md ${statusBadge.class}`}>
+                <span class={`absolute top-2 right-2 text-[10px] font-medium px-2 py-0.5 rounded-md border ${statusBadge.class}`}>
                   {statusBadge.text}
                 </span>
+                {product.badge && (
+                  <span class="absolute top-12 right-2 text-[10px] font-bold px-2 py-0.5 rounded-md bg-gradient-to-r from-indigo-500 to-indigo-600 text-white z-10 shadow-sm shadow-indigo-500/30 flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
+                    EN OFERTA
+                  </span>
+                )}
+                {product.formFactor && product.formFactor !== 'OTRO' && product.formFactor !== 'MINI' && (
+                  <span class="absolute bottom-2 left-2 text-[10px] font-medium px-2 py-0.5 rounded-md bg-gray-900/70 text-white backdrop-blur-sm">
+                    {formFactorConfig[product.formFactor]?.name || product.formFactor}
+                  </span>
+                )}
+{product.externalBattery && (
+              <span class="absolute bottom-2 right-2 text-[10px] font-medium px-2 py-0.5 rounded-md bg-emerald-600/80 text-white backdrop-blur-sm flex items-center gap-1">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 10.5h.375c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125H21M3.75 18h15A2.25 2.25 0 0021 15.75v-6a2.25 2.25 0 00-2.25-2.25h-15A2.25 2.25 0 001.5 9.75v6A2.25 2.25 0 003.75 18z"/></svg>
+                Autonomía extendible
+              </span>
+            )}
               </a>
-              <div class="p-3 md:p-4 flex flex-col flex-grow">
+              <div class="p-2.5 md:p-3 flex flex-col flex-grow">
                 <a href={`/producto/${product.slug}`}>
-                  <h3 class="text-[13px] font-medium text-gray-900 dark:text-white line-clamp-2 mb-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors leading-snug">
+                  <h3 class="text-[12px] font-medium text-gray-900 dark:text-white line-clamp-2 mb-1.5 hover:text-blue-600 transition-colors leading-snug">
                     {product.name}
                   </h3>
                 </a>
-                <div class="mt-auto flex items-end justify-between">
-                  <div>
-                    <span class="text-base md:text-lg font-bold text-gray-900 dark:text-white">${Number(product.price).toFixed(0)}</span>
-                    <span class="text-[10px] text-gray-400 dark:text-gray-500 ml-0.5">.00</span>
-                  </div>
+<div class="mt-auto flex items-end justify-between">
+                    <div>
+                      {product.originalPrice ? (
+                        <>
+                          <span class="text-sm md:text-base font-bold text-indigo-600">${Number(product.price).toFixed(2)}</span>
+                          <span class="text-[10px] text-gray-400 line-through ml-1">${Number(product.originalPrice).toFixed(2)}</span>
+                        </>
+                      ) : (
+                        <span class="text-sm md:text-base font-bold text-gray-900 dark:text-white">${Number(product.price).toFixed(2)}</span>
+                      )}
+                    </div>
                   <button
-                    class="text-[11px] bg-gray-900 dark:bg-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100 text-white px-3 py-1.5 rounded-lg font-medium transition-colors"
+                    class="text-[10px] bg-green-600 hover:bg-green-700 text-white px-2.5 py-1 rounded-lg font-medium transition-colors flex items-center gap-1"
                     onclick={`contactProduct('${safeName}', '${product.price}', '${product.status}')`}
                   >
-                    Consultar
+                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>
+                    Comprar ahora
                   </button>
                 </div>
               </div>
@@ -393,7 +432,7 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
         const matchCat = activeFilter === 'all' || card.dataset.category === activeFilter;
         const matchBrand = activeBrand === 'all' || card.dataset.brand === activeBrand;
         const matchCap = activeCap === 'all' || capFn(card.dataset.capacity);
-        const matchFF = activeFF === 'all' || card.dataset.ff === activeFF;
+        const matchFF = activeFF === 'all' || card.dataset.ff === activeFF || (activeFF === 'TOWER_RACK' && (card.dataset.ff === 'TOWER' || card.dataset.ff === 'RACK'));
         if (matchCat && matchBrand && matchCap && matchFF) {
           card.style.display = 'flex';
           count++;

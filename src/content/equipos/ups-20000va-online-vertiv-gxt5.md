@@ -9,7 +9,8 @@ category: "BIFASICO"
 status: "STOCK"
 capacity: "20000VA"
 voltage: "120/208V"
-formFactor: "OTRO"
+formFactor: "RACK"
+externalBattery: true
 ---
 UPS Online de alta capacidad 20 000 VA / 20 000 W con onda sinusoidal pura y salida 120/208 V. 
 Conexión hard-wired 3W + G (L-L-N-G), comunicación USB y RS-232, respaldo aproximado de 4.5 min a plena carga y 13 min a media carga. 

@@ -1,0 +1,25 @@
+---
+interface Props {
+  lightSrc: string;
+  darkSrc: string;
+  alt: string;
+  class?: string;
+  lightClass?: string;
+  darkClass?: string;
+}
+
+const { lightSrc, darkSrc, alt, class: baseClass = '', lightClass = '', darkClass = '' } = Astro.props;
+---
+
+<img
+  src={lightSrc}
+  alt={alt}
+  class={`${baseClass} ${lightClass} dark:hidden`}
+  onerror="this.style.display='none'"
+/>
+<img
+  src={darkSrc}
+  alt={alt}
+  class={`${baseClass} ${darkClass} hidden dark:block`}
+  onerror="this.style.display='none'"
+/>

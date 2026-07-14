@@ -9,7 +9,8 @@ category: "BIFASICO"
 status: "STOCK"
 capacity: "10000VA"
 voltage: "230V"
-formFactor: "TORRE"
+formFactor: "TOWER"
+externalBattery: false
 ---
 UPS Online de alta capacidad 10 000 VA / 9 000 W con onda sinusoidal pura, entrada 230 V y salida 120 V. 
 Respaldo aproximado de 3,1 min a plena carga. Conexión por bornera, diseño torre para aplicaciones críticas. 

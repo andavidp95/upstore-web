@@ -9,7 +9,8 @@ category: "MONOFASICO"
 status: "STOCK"
 capacity: "3000VA"
 voltage: "120V"
-formFactor: "OTRO"
+formFactor: "TOWER"
+externalBattery: false
 ---
 UPS Online de doble conversión 3000 VA / 2400 W con onda sinusoidal pura y salida 120 V. 
 Respaldo aproximado de 10 min al 50 % y 4 min al 100 %. Tipo torre. 

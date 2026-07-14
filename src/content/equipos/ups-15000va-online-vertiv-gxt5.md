@@ -9,7 +9,8 @@ category: "BIFASICO"
 status: "STOCK"
 capacity: "15000VA"
 voltage: "120V"
-formFactor: "OTRO"
+formFactor: "RACK"
+externalBattery: true
 ---
 UPS Online 15 000 VA / 15 000 W (GXT5), salida 120/208 V, onda sinusoidal pura. 
 Hard-wired terminal block 3W + G (L-L-N-G). Aptitud para instalaciones críticas y grandes racks; respaldo aproximado 7 min (plena carga) / 19 min (a media carga) según configuración de baterías. 

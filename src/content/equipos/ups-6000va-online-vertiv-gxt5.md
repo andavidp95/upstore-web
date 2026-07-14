@@ -9,7 +9,8 @@ category: "BIFASICO"
 status: "STOCK"
 capacity: "6000VA"
 voltage: "120V"
-formFactor: "OTRO"
+formFactor: "RACK"
+externalBattery: true
 ---
 UPS Online 6000 VA / 6000 W (GXT5), salida 120/208 V, onda sinusoidal pura. Puertos RS-232 y USB. 
 Conexión hard-wired (terminal block 3W + G - L-L-N-G). Diseñado para cargas de alta potencia en racks o salas técnicas; respaldo aproximado 2 min (plena carga) / 7 min (a media carga). 

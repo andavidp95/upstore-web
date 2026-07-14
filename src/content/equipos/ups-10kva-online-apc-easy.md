@@ -9,7 +9,8 @@ category: "TRIFASICO"
 status: "POR_LLEGAR"
 capacity: "10KVA"
 voltage: "208V/220V"
-formFactor: "OTRO"
+formFactor: "TOWER"
+externalBattery: false
 ---
 UPS trifásico online de 10 kVA / 10 kW, con onda sinusoidal pura y topología de doble conversión. 
 Entrada y salida 208/220 V trifásica, diseño sin transformador y alta eficiencia energética. 

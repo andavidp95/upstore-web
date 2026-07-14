@@ -9,7 +9,8 @@ category: "MONOFASICO"
 status: "POR_LLEGAR"
 capacity: "2000VA"
 voltage: "120V"
-formFactor: "OTRO"
+formFactor: "TOWER"
+externalBattery: false
 ---
 UPS Online de doble conversión 2000 VA / 1800 W con forma de onda sinusoidal pura y salida 120 V. 
 Respaldo aproximado de 14 min a media carga y 4 min a plena carga. Torre compacta, comunicación USB y RS-232, bypass interno. 

@@ -9,7 +9,8 @@ category: "MONOFASICO"
 status: "STOCK"
 capacity: "1000VA"
 voltage: "120V"
-formFactor: "OTRO"
+formFactor: "TOWER"
+externalBattery: true
 ---
 UPS Online 1000 VA / 900 W. Doble conversión (On-Line) con salida 120 V. Puertos RJ-45 Serial, Smart-Slot y USB. 
 Entrada NEMA 5-15P; salidas (6) NEMA 5-15R. Tiempo de respaldo aproximado: 25.4 min (450 W) / 10.5 min (900 W). Protección ~432 J. 

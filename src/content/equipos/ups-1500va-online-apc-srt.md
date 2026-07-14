@@ -9,7 +9,8 @@ category: "MONOFASICO"
 status: "STOCK"
 capacity: "1500VA"
 voltage: "120V"
-formFactor: "OTRO"
+formFactor: "TOWER"
+externalBattery: true
 ---
 UPS Online de doble conversión 1500 VA / 1350 W, onda sinusoidal pura, voltaje 120 V. 
 Dispone de 6 tomas NEMA 5-15R, ranura SmartSlot, puertos USB, RJ-45 y serial. Protección de 340 J.

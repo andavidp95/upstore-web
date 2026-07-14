@@ -1,6 +1,4 @@
 ---
-export const prerender = true; 
-
 import GlobalNavbar from '../components/GlobalNavbar.astro';
 import Layout from '../layouts/Layout.astro';
 import SEO from '../components/SEO/SEO.astro';
@@ -99,98 +97,16 @@ import SEO from '../components/SEO/SEO.astro';
         </ul>
 
         <h2 class="text-2xl font-semibold mt-8 mb-4 text-blue-600 dark:text-blue-400">
-          3. Servicios de Chatbot WhatsApp
+          3. Métodos de Contacto
         </h2>
-        
-        <div class="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 mb-6">
-          <p class="text-yellow-800 dark:text-yellow-200 font-medium">
-    🤖 Ofrecemos atención automatizada 24/7 a través de WhatsApp Business (Meta Cloud API) para consultas y soporte.
-
-          </p>
-        </div>
-
-        <h3 class="text-xl font-medium mt-6 mb-3 text-gray-900">
-          3.1. Funcionamiento del Chatbot
-        </h3>
         <p class="mb-4 text-gray-700 leading-relaxed">
-          Nuestro sistema automatizado puede responder consultas básicas y proporcionar información de productos. Cuando sea necesario intentaremos
-  conectarte con nuestro equipo humano. El chatbot opera 24/7 para respuestas automáticas; el soporte humano está sujeto a disponibilidad en
-  horario comercial. Intentamos ofrecer una respuesta humana en <strong>máximo 24 horas</strong> ; en casos complejos puede demorarse y te informaremos. Si la conversación supera la ventana de 24 horas,
-  podremos emplear plantillas aprobadas por WhatsApp (Meta) para continuar la interacción.
-
-<!-- Consentimiento para comunicaciones -->
-<div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-400 p-4 mb-6">
-  <p class="text-blue-800 dark:text-blue-200 font-semibold mb-2">
-    📢 Consentimiento para comunicaciones:
-  </p>
-  <ul class="list-disc list-inside text-gray-700 mb-2">
-    <li>Respuestas automáticas a sus consultas</li>
-    <li>Información sobre productos y servicios solicitados</li>
-    <li>Comunicaciones de marketing y promociones relacionadas con nuestros servicios</li>
-    <li>Seguimiento de pedidos y soporte técnico</li>
-  </ul>
-  <p class="text-sm text-gray-700">
-    Puede revocar este consentimiento en cualquier momento usando el comando <strong>"PARAR COMUNICACIONES"</strong> o escribiendo a <a href="mailto:ventas@upstore.com.ec" class="underline text-blue-600">ventas@upstore.com.ec</a>.
-  </p>
-</div>
-
-
-<div class="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-400 p-4 mb-6 mt-4">
-  <p class="text-red-800 dark:text-red-200 font-semibold mb-2">
-    ❌ Rechazo de términos:
-  </p>
-  <p class="text-gray-700 text-sm">
-    Si no acepta nuestros términos y condiciones, el chatbot no podrá procesar compras ni inspecciones técnicas.
-    Puede consultar información general de servicios y contactar directamente a <a href="mailto:ventas@upstore.com.ec" class="underline text-blue-600">ventas@upstore.com.ec</a> para atención directa.
-  </p>
-</div>
-
-
-
-<h3 class="text-xl font-medium mt-6 mb-3 text-gray-900">
-  3.2. Controles Disponibles
-</h3>
-<div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-400 p-4 mb-6">
-  <p class="text-blue-800 dark:text-blue-200 font-semibold mb-2">
-    Puede controlar su interacción con nuestro chatbot en cualquier momento usando los siguientes comandos:
-  </p>
-  <ul class="list-disc list-inside text-gray-700 mb-4 space-y-2">
-    <li>
-      <strong>HUMANO</strong> – Solicita atención de un agente humano.<br>
-      <span class="text-sm">Respuesta: "Hemos registrado su solicitud. Un miembro de nuestro equipo le contactará en un máximo de 24 horas."</span>
-    </li>
-    <li>
-      <strong>MIS DERECHOS</strong> – Accede al menú de gestión de privacidad y datos.<br>
-      <span class="text-sm">Respuesta: Se mostrará un menú con opciones de gestión de datos (ver sección 3.3).</span>
-    </li>
-  </ul>
-  <p class="text-blue-800 dark:text-blue-200 font-semibold mb-2">
-    Desde el menú "MIS DERECHOS" puede ejecutar:
-  </p>
-  <ul class="list-disc list-inside text-gray-700 mb-4 space-y-2">
-    <li>
-      <strong>PARAR COMUNICACIONES</strong> – Deja de recibir promociones y ofertas por WhatsApp.<br>
-      <span class="text-sm">
-        • Seguirá recibiendo: confirmaciones de pedidos, soporte técnico y mensajes transaccionales.<br>
-        • Efecto: 72 horas hábiles.<br>
-        • Reversible escribiendo a <a href="mailto:ventas@upstore.com.ec" class="underline text-blue-600">ventas@upstore.com.ec</a>
-      </span>
-    </li>
-    <li>
-      <strong>BORRAR HISTORIAL</strong> – Elimina el registro de esta conversación en nuestros sistemas.<br>
-      <span class="text-sm">
-        • Se elimina: logs de mensajes, historial conversacional, contexto temporal.<br>
-        • NO se elimina: mensajes en su WhatsApp (solo usted puede borrarlos), datos de compras, facturas, garantías, proyectos.<br>
-        • Efecto: Inmediato.<br>
-        • Los mensajes permanecen visibles en su aplicación WhatsApp.
-      </span>
-    </li>
-  </ul>
-  <p class="text-sm text-gray-700">
-    Para solicitudes más complejas (eliminación total, acceso a datos, corrección, portabilidad), debe enviar un correo formal a <a href="mailto:ventas@upstore.com.ec" class="underline text-blue-600">ventas@upstore.com.ec</a> con su cédula/RUC para verificación de identidad.<br>
-    <span class="text-xs">Tiempo de respuesta: 15 días hábiles (casos complejos: hasta 30 días con aviso previo).</span>
-  </p>
-</div>
+          Para consultas, cotizaciones o soporte, puede contactarnos a través de:
+        </p>
+        <ul class="list-disc list-inside mb-4 text-gray-700 space-y-2">
+          <li>Correo electrónico: <a href="mailto:ventas@upstore.com.ec" class="text-blue-600 hover:text-blue-700 underline">ventas@upstore.com.ec</a></li>
+          <li>WhatsApp: +593 98 779 9459</li>
+          <li>Sitio web: <a href="/" class="text-blue-600 hover:text-blue-700 underline">upstore.com.ec</a></li>
+        </ul>
 
 
         <h2 class="text-2xl font-semibold mt-8 mb-4 text-blue-600 dark:text-blue-400">
@@ -236,7 +152,7 @@ import SEO from '../components/SEO/SEO.astro';
 
         <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-400 p-4 mb-6">
           <p class="text-blue-800 dark:text-blue-200 font-medium">
-            🔒 Incluye políticas específicas para chatbot WhatsApp, UPStore y protección de datos
+            🔒 Política de privacidad y protección de datos
           </p>
         </div>
 
@@ -268,24 +184,6 @@ import SEO from '../components/SEO/SEO.astro';
           <li>Datos para garantía y soporte técnico</li>
         </ul>
 
-        <h3 class="text-xl font-medium mt-6 mb-3 text-gray-900">
-          1.3. Datos del Chatbot WhatsApp
-        </h3>
-        <div class="bg-green-50 dark:bg-green-900/20 border-l-4 border-green-400 p-4 mb-4">
-          <p class="text-green-800 dark:text-green-200 font-medium">
-            🤖 Solo recopilamos datos cuando TÚ inicias la conversación con nosotros
-          </p>
-        </div>
-        <ul class="list-disc list-inside mb-4 text-gray-700 space-y-2">
-    <li>Número de teléfono WhatsApp (solo cuando nos contactas primero).</li>
-    <li>Contenido de mensajes que nos envíes (texto, archivos y metadatos necesarios para la atención).</li>
-    <li>Fechas y horas de la conversación.</li>
-    <li>Información técnica que compartas sobre tus necesidades (si aplica).</li>
-        </ul>
-          <p class="text-sm text-gray-600">
-Nota técnica: usamos WhatsApp Cloud API (Meta) para mensajería, n8n para automatización de workflows, Redis para contexto temporal (7 días) y PostgreSQL para logs permanentes (30 días con limpieza automática). Infraestructura alojada en servidores seguros con cifrado.
-  </p>
-
         <h2 class="text-2xl font-semibold mt-8 mb-4 text-blue-600 dark:text-blue-400">
           2. Cómo Usamos tu Información
         </h2>
@@ -299,67 +197,6 @@ Nota técnica: usamos WhatsApp Cloud API (Meta) para mensajería, n8n para autom
   <li>Mejorar nuestros servicios automatizados con datos anonimizados.</li>
   <li>Cumplir obligaciones legales y fiscales.</li>
         </ul>
-
-        <h2 class="text-2xl font-semibold mt-8 mb-4 text-blue-600 dark:text-blue-400">
-          3. Servicios de Chatbot y Mensajería Automatizada
-        </h2>
-        
-        <h3 class="text-xl font-medium mt-6 mb-3 text-gray-900">
-          3.1. Consentimiento y Control
-        </h3>
-        <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-400 p-4 mb-4">
-          <p class="text-blue-800 dark:text-blue-200">
-            <strong>✅ Solo enviamos mensajes cuando:</strong><br>
-            • Nos contactas primero<br>
-            • Solicitas información específica<br>
-            • Hay una conversación activa en curso
-          </p>
-        </div>
-
-
-<h3 class="text-xl font-medium mt-6 mb-3 text-gray-900">
-  3.2. Seguridad y Almacenamiento de Datos del Chatbot
-</h3>
-<div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-400 p-4 mb-6">
-  <ul class="list-disc list-inside text-gray-700 mb-4 space-y-2">
-    <li>
-      <strong>Almacenamiento temporal (Redis):</strong>
-      <ul class="list-disc list-inside ml-6 text-sm mt-1 space-y-1">
-        <li>Contexto de conversación activa: último mensaje, consentimiento, hasta 12 mensajes recientes.</li>
-        <li>Expiración automática: 7 días de inactividad.</li>
-        <li>Uso: mantener coherencia conversacional y recordar preferencias durante la sesión.</li>
-      </ul>
-    </li>
-    <li>
-      <strong>Almacenamiento permanente (Base de datos PostgreSQL):</strong>
-      <ul class="list-disc list-inside ml-6 text-sm mt-1 space-y-1">
-        <li>Logs completos de conversaciones: mensajes, timestamps, metadatos técnicos.</li>
-        <li>Retención automática: 30 días desde la fecha de cada ejecución.</li>
-        <li>Limpieza automática: Sistema elimina automáticamente conversaciones mayores a 30 días cada madrugada.</li>
-        <li>Uso: soporte técnico, mejora del servicio, cumplimiento legal.</li>
-      </ul>
-    </li>
-    <li>
-      <strong>Eliminación:</strong>
-      <ul class="list-disc list-inside ml-6 text-sm mt-1 space-y-1">
-        <li>Bajo solicitud del usuario (comando "BORRAR HISTORIAL"): inmediata en producción.</li>
-        <li>Automática: cada 30 días para todas las conversaciones antiguas.</li>
-        <li>Excepciones: datos de facturación y compras se conservan según obligaciones fiscales (7 años).</li>
-      </ul>
-    </li>
-    <li>
-      <strong>Seguridad:</strong>
-      <ul class="list-disc list-inside ml-6 text-sm mt-1 space-y-1">
-        <li>Cifrado en tránsito (TLS/SSL).</li>
-        <li>Acceso restringido solo a personal autorizado.</li>
-        <li>Credenciales gestionadas de forma segura en n8n.</li>
-        <li>Respaldos automatizados con purga sincronizada.</li>
-        <li>No vendemos ni compartimos datos con terceros para marketing.</li>
-      </ul>
-    </li>
-  </ul>
-</div>
-
 
         <h2 class="text-2xl font-semibold mt-8 mb-4 text-blue-600 dark:text-blue-400">
           4. Protección y Seguridad de Datos
@@ -412,29 +249,9 @@ Actualmente no usamos cookies propias ni otras tecnologías de seguimiento en es
     <strong>⏰ Períodos de conservación:</strong>
   </p>
   <ul class="list-disc list-inside text-gray-700 mb-2">
-    <li>
-      <strong>Chatbot WhatsApp:</strong>
-      <ul class="list-disc list-inside ml-6 text-sm mt-1 space-y-1">
-        <li>Conversaciones activas (Redis): 7 días desde última interacción (expiración automática).</li>
-        <li>Logs completos (PostgreSQL): 30 días desde cada ejecución (limpieza automática diaria).</li>
-        <li>Eliminación bajo solicitud: inmediata tras comando "BORRAR HISTORIAL".</li>
-      </ul>
-    </li>
-    <li>
-      <strong>Otros datos:</strong>
-      <ul class="list-disc list-inside ml-6 text-sm mt-1 space-y-1">
-        <li>Datos de contacto: mientras exista relación comercial o hasta que solicite su eliminación.</li>
-        <li>Historial de facturación: 7 años (obligación fiscal ecuatoriana - SRI).</li>
-        <li>Datos de compras UPStore: mientras exista garantía activa o relación comercial.</li>
-        <li>Archivos de proyecto: mientras exista relación contractual o hasta solicitud de eliminación.</li>
-      </ul>
-    </li>
-    <li>
-      <strong>Excepciones legales:</strong>
-      <ul class="list-disc list-inside ml-6 text-sm mt-1 space-y-1">
-        <li>Datos de facturación (facturas electrónicas, comprobantes, información tributaria) se conservan 7 años independientemente de solicitudes de eliminación, conforme a la normativa fiscal ecuatoriana (Ley Orgánica de Régimen Tributario Interno y Reglamento de Comprobantes de Venta).</li>
-      </ul>
-    </li>
+    <li>Datos de contacto: mientras exista relación comercial o hasta que solicite su eliminación.</li>
+    <li>Historial de facturación: 7 años (obligación fiscal ecuatoriana - SRI).</li>
+    <li>Datos de compras: mientras exista garantía activa o relación comercial.</li>
   </ul>
 </div>
 
@@ -478,7 +295,7 @@ Actualmente no usamos cookies propias ni otras tecnologías de seguimiento en es
 
         <p class="text-xs text-gray-400 mt-12">
           Última actualización:27 de noviembre de 2025<br>
-          Versión 2.0 - Incluye políticas para chatbot WhatsApp y UPStore
+          Versión 3.0 - Actualización de términos y políticas
         </p>
       </section>
     </div>

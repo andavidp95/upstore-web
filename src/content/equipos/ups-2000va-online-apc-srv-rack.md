@@ -10,6 +10,7 @@ status: "STOCK"
 capacity: "2000VA"
 voltage: "120V"
 formFactor: "RACK"
+externalBattery: false
 ---
 UPS Online de doble conversión 2000 VA / 1600 W con onda senoidal pura y salida 120 V en formato rack. 
 Respaldo aproximado de 11,4 min al 50 % de carga y 4,2 min al 100 %. 

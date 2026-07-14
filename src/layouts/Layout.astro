@@ -163,9 +163,15 @@ const useSEOComponent = Object.keys(seoProps).length > 0 && seoProps.title;
     <!-- Botón flotante de WhatsApp usando el componente -->
     {showWhatsApp && <WhatsAppButton {...whatsAppProps} />}
         
-    <!-- Script del sistema de temas -->
-    <script>
-      import('../scripts/theme.js');
+    <script is:inline>
+      (function() {
+        const saved = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = saved === 'dark' || (!saved && prefersDark);
+        if (isDark) document.documentElement.classList.add('dark');
+        else document.documentElement.classList.remove('dark');
+        window.themeMode = isDark ? 'dark' : 'light';
+      })();
     </script>
   </body>
 </html>

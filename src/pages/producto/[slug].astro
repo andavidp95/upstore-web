@@ -1,6 +1,4 @@
 ---
-export const prerender = true;
-
 import Layout from '../../layouts/Layout.astro';
 import SEO from '../../components/SEO/SEO.astro';
 import GlobalNavbar from '../../components/GlobalNavbar.astro';
@@ -9,13 +7,24 @@ import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   const upstoreProducts = await getCollection('equipos');
+  const allPromos = await getCollection('promos');
+  
+  const promoMap = {};
+  allPromos.filter(p => p.data.active !== false).forEach(p => {
+    const key = p.data.productSlug || p.slug;
+    promoMap[key] = { price: p.data.price, originalPrice: p.data.originalPrice, discount: p.data.discount, badge: p.data.badge, name: p.data.name };
+  });
+
   return upstoreProducts.map((p) => ({
     params: { slug: p.slug },
-    props: { product: { ...p.data, slug: p.slug } },
+    props: { 
+      product: { ...p.data, slug: p.slug },
+      promo: promoMap[p.slug] || null
+    },
   }));
 }
 
-const { product } = Astro.props;
+const { product, promo } = Astro.props;
 if (!product) { return Astro.redirect('/'); }
 
 const categoryConfig = {
@@ -26,19 +35,21 @@ const categoryConfig = {
 };
 
 const brandConfig = {
-  'APC': { name: 'APC', color: 'bg-red-100 text-red-700 border-red-200' },
-  'VERTIV': { name: 'Vertiv', color: 'bg-blue-100 text-blue-700 border-blue-200' },
-  'HBIT': { name: 'Hbit', color: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
-  'OTROS': { name: 'Otros', color: 'bg-gray-100 text-gray-600 border-gray-200' }
+  'APC': { name: 'APC', logoLight: '/images/brands/apc.svg', logoDark: '/images/brands/apc-dark.svg', color: 'bg-red-100 dark:bg-red-500/10 text-red-700 dark:text-red-400 border-red-200 dark:border-red-500/20' },
+  'VERTIV': { name: 'Vertiv', logoLight: '/images/brands/vertiv.svg', logoDark: '/images/brands/vertiv-dark.svg', color: 'bg-blue-100 dark:bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-500/20' },
+  'HBIT': { name: 'Hbit', logoLight: '/images/brands/hbit.png', logoDark: '/images/brands/hbit-dark.png', color: 'bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-500/20' },
+  'HKIVI': { name: 'HKIVI', logoLight: '/images/brands/hviki.gif', logoDark: '/images/brands/hviki-dark.gif', color: 'bg-orange-100 dark:bg-orange-500/10 text-orange-700 dark:text-orange-400 border-orange-200 dark:border-orange-500/20' },
+  'SHANQIU': { name: 'Shanqiu', logoLight: '/images/brands/shanqiu.png', logoDark: '/images/brands/shanqiu-dark.png', color: 'bg-cyan-100 dark:bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 border-cyan-200 dark:border-cyan-500/20' },
+  'OTROS': { name: 'Otros', logoLight: '', logoDark: '', color: 'bg-gray-100 dark:bg-gray-700/50 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-600' }
 };
 
 const getStatusConfig = (status) => {
   switch (status) {
-    case 'STOCK': return { class: 'bg-green-50 text-green-700 border-green-200', text: 'Disponible', btnClass: 'bg-green-600 hover:bg-green-700', btnText: 'Comprar Ahora' };
-    case 'PREVENTA': return { class: 'bg-blue-50 text-blue-700 border-blue-200', text: 'Preventa', btnClass: 'bg-blue-600 hover:bg-blue-700', btnText: 'Reservar ahora' };
-    case 'POR_LLEGAR': return { class: 'bg-purple-50 text-purple-700 border-purple-200', text: 'Por llegar', btnClass: 'bg-purple-600 hover:bg-purple-700', btnText: 'Reservar ahora' };
-    case 'BAJO_PEDIDO': return { class: 'bg-gray-100 text-gray-600 border-gray-200', text: 'Bajo pedido', btnClass: 'bg-gray-700 hover:bg-gray-800', btnText: 'Pedir ahora' };
-    default: return { class: 'bg-gray-100 text-gray-500 border-gray-200', text: status, btnClass: 'bg-gray-600 hover:bg-gray-700', btnText: 'Consultar' };
+    case 'STOCK': return { class: 'bg-green-50 dark:bg-green-500/10 text-green-700 dark:text-green-400 border-green-200 dark:border-green-500/20', text: 'Disponible' };
+    case 'PREVENTA': return { class: 'bg-blue-50 dark:bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-500/20', text: 'Preventa' };
+    case 'POR_LLEGAR': return { class: 'bg-purple-50 dark:bg-purple-500/10 text-purple-700 dark:text-purple-400 border-purple-200 dark:border-purple-500/20', text: 'Por llegar' };
+    case 'BAJO_PEDIDO': return { class: 'bg-gray-100 dark:bg-gray-700/50 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-600', text: 'Bajo pedido' };
+    default: return { class: 'bg-gray-100 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 border-gray-200 dark:border-gray-600', text: status };
   }
 };
 
@@ -68,7 +79,7 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
 
       <div class="bg-white dark:bg-[#181b25] rounded-2xl border border-gray-100 dark:border-white/5 overflow-hidden flex flex-col md:flex-row transition-colors duration-500">
 
-        <div class="md:w-1/2 p-0 flex justify-center items-center bg-gray-50 dark:bg-[#1a1d27] relative overflow-hidden min-h-[300px] md:min-h-[500px]">
+        <div class="md:w-1/2 p-0 flex justify-center items-center bg-gray-50 dark:bg-[#12141c] relative overflow-hidden min-h-[300px] md:min-h-[500px]">
           <img
             src={product.imageUrl}
             alt={product.name}
@@ -77,15 +88,32 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
             draggable="false"
           />
           <div class="absolute top-4 left-4 z-20">
-            <span class={`text-[11px] font-medium px-2.5 py-1 rounded border ${brandBadge.class}`}>
+            {brandBadge.logoLight ? (
+              <>
+                <img src={brandBadge.logoLight} alt={brandBadge.name} class="h-8 md:h-9 w-auto object-contain dark:hidden" onerror="this.style.display='none'" />
+                <img src={brandBadge.logoDark} alt={brandBadge.name} class="h-8 md:h-9 w-auto object-contain hidden dark:block" onerror="this.style.display='none'" />
+              </>
+            ) : null}
+            <span class={`text-xs font-semibold px-3 py-1.5 rounded-lg border ${brandBadge.color} ${brandBadge.logoLight ? 'hidden' : ''}`}>
               {brandBadge.name}
             </span>
           </div>
           <div class="absolute top-4 right-4 z-20">
-            <span class={`text-[11px] font-medium px-2.5 py-1 rounded border ${statusInfo.class}`}>
+            <span class={`text-xs font-semibold px-3 py-1.5 rounded-lg border ${statusInfo.class}`}>
               {statusInfo.text}
             </span>
           </div>
+          {promo && (
+            <>
+              <div class="absolute top-4 left-1/2 -translate-x-1/2 z-20">
+                <span class="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-lg shadow-indigo-500/30 flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
+                  EN OFERTA
+                </span>
+              </div>
+              <div class="absolute inset-0 border-2 border-indigo-400/30 rounded-2xl pointer-events-none z-10"></div>
+            </>
+          )}
         </div>
 
         <div class="md:w-1/2 p-6 lg:p-8 border-t md:border-t-0 md:border-l border-gray-100 dark:border-white/5 flex flex-col">
@@ -107,7 +135,7 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
             {product.formFactor && product.formFactor !== 'OTRO' && (
               <>
                 <span class="text-gray-300 dark:text-gray-600">·</span>
-                <span class="text-xs text-gray-400 dark:text-gray-500">{product.formFactor === 'AMBOS' ? 'Rack/Torre' : product.formFactor}</span>
+                <span class="text-xs text-gray-400 dark:text-gray-500">{product.formFactor === 'OTRO' ? 'Otro' : product.formFactor}</span>
               </>
             )}
           </div>
@@ -116,10 +144,30 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
             {product.name}
           </h1>
 
-          <div class="mb-6">
-            <span class="text-3xl font-extrabold text-gray-900 dark:text-white">${Number(product.price).toFixed(2)}</span>
+<div class="mb-6">
+            {promo ? (
+              <div class="flex items-baseline gap-3">
+                <span class="text-3xl font-extrabold text-indigo-600">${Number(promo.price).toFixed(2)}</span>
+                <span class="text-lg text-gray-400 line-through">${Number(product.price).toFixed(2)}</span>
+                {promo.discount && (
+                  <span class="text-xs font-bold text-white bg-gradient-to-r from-indigo-500 to-indigo-600 px-2 py-0.5 rounded-full">{promo.discount}</span>
+                )}
+              </div>
+            ) : (
+              <span class="text-3xl font-extrabold text-gray-900 dark:text-white">${Number(product.price).toFixed(2)}</span>
+            )}
             <span class="text-sm text-gray-400 ml-2">IVA incluido</span>
           </div>
+
+{product.externalBattery && (
+            <div class="flex items-center gap-2 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 rounded-lg px-3 py-2 mb-4">
+              <svg class="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 10.5h.375c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125H21M3.75 18h15A2.25 2.25 0 0021 15.75v-6a2.25 2.25 0 00-2.25-2.25h-15A2.25 2.25 0 001.5 9.75v6A2.25 2.25 0 003.75 18z"/></svg>
+              <div>
+                <p class="text-xs font-semibold text-emerald-700 dark:text-emerald-400">Autonomía extendible disponible</p>
+                <p class="text-[10px] text-emerald-600/70 dark:text-emerald-400/60">Compatible con bancos de batería externos para mayor respaldo</p>
+              </div>
+            </div>
+          )}
 
           <div class="prose prose-sm max-w-none text-gray-600 dark:text-gray-300 whitespace-pre-line mb-6 leading-relaxed">
             {product.description}
@@ -139,28 +187,54 @@ const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.
 
           <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700">
             <button
-              class={`w-full ${statusInfo.btnClass} text-white text-base font-semibold py-3 px-6 rounded-lg transition-all duration-200 hover:shadow-lg flex items-center justify-center`}
+              class="w-full bg-green-600 hover:bg-green-700 text-white text-base font-semibold py-3 px-6 rounded-lg transition-all duration-200 hover:shadow-lg flex items-center justify-center"
               onclick={`contactProduct('${encodeURIComponent(product.name)}', '${product.price}', '${product.status}')`}
             >
               <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>
-              {statusInfo.btnText}
+              Comprar ahora
             </button>
-            <p class="text-center text-xs text-gray-400 mt-3">Te responderemos por WhatsApp a la brevedad</p>
+            <p class="text-center text-xs text-gray-400 mt-3">Le responderemos por WhatsApp a la brevedad</p>
           </div>
 
-          <div class="mt-4 pt-4 border-t border-gray-100 dark:border-white/5">
-            <div class="flex items-center justify-between text-[11px] text-gray-400 dark:text-gray-500">
-              <div class="flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H18.75m-7.5-3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
-                <span>Envío a todo Ecuador</span>
+          <div class="mt-4 pt-4 border-t border-gray-100 dark:border-white/5 space-y-3">
+            <div class="flex items-center gap-2 text-[11px] text-gray-500 dark:text-gray-400">
+              <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H18.75m-7.5-3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+              <span>Envío a todo Ecuador</span>
+              <span class="text-gray-300 dark:text-gray-600">·</span>
+              <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+              <span>Garantía del fabricante</span>
+            </div>
+
+            <div class="flex flex-col gap-1.5 text-[11px]">
+              <div class="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+                <svg class="w-3.5 h-3.5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="font-medium">Transferencia bancaria</span>
+                <span class="text-[10px] text-green-600 dark:text-green-400 font-semibold">Sin recargo</span>
               </div>
-              <div class="flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
-                <span>Garantía incluida</span>
+              <div class="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+                <svg class="w-3.5 h-3.5 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/></svg>
+                <span class="font-medium">Payphone</span>
+                <span class="text-[10px] text-amber-600 dark:text-amber-400 font-semibold">+6.01%</span>
               </div>
-              <div class="flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/></svg>
-                <span>Payphone · Tarjeta · Transferencia</span>
+              <div class="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+                <svg class="w-3.5 h-3.5 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/></svg>
+                <span class="font-medium">Tarjeta de Débito / Crédito</span>
+                <span class="text-[10px] text-amber-600 dark:text-amber-400 font-semibold">+6.01%</span>
+              </div>
+            </div>
+
+            <div class="flex gap-6 pt-3 border-t border-gray-100 dark:border-white/5">
+              <div class="flex-1">
+                <p class="text-[10px] text-gray-400 dark:text-gray-500 mb-1.5">Envíos seguros</p>
+                <a href="https://www.servientrega.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center hover:opacity-80 transition-opacity">
+                  <img src="/images/trust/servientrega.png" alt="Servientrega" class="h-14 w-auto object-contain" onerror="this.style.display='none'" />
+                </a>
+              </div>
+              <div class="flex-1">
+                <p class="text-[10px] text-gray-400 dark:text-gray-500 mb-1.5">Pagos seguros</p>
+                <a href="https://www.payphone.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center hover:opacity-80 transition-opacity">
+                  <img src="/images/trust/payphone.png" alt="Payphone" class="h-14 w-auto object-contain" onerror="this.style.display='none'" />
+                </a>
               </div>
             </div>
           </div>

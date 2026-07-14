@@ -9,7 +9,8 @@ category: "TRIFASICO"
 status: "STOCK"
 capacity: "30KVA"
 voltage: "208V/220V"
-formFactor: "OTRO"
+formFactor: "TOWER"
+externalBattery: false
 ---
 UPS trifásico online de 30 kVA / 30 kW, con onda sinusoidal pura y topología de doble conversión. 
 Entrada y salida 208/220 V trifásica, diseño sin transformador y alta eficiencia energética. 

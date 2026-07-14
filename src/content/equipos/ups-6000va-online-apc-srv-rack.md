@@ -10,6 +10,7 @@ status: "STOCK"
 capacity: "6000VA"
 voltage: "230V"
 formFactor: "RACK"
+externalBattery: false
 ---
 UPS Online 6000 VA / 5400 W de doble conversión con entrada 230 V y salida 120 V en formato rack. 
 Onda sinusoidal pura, respaldo aproximado de 8 min a plena carga. Entrada por bornera. 

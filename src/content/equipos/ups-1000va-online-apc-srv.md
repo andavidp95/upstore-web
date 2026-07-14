@@ -9,7 +9,8 @@ category: "MONOFASICO"
 status: "STOCK"
 capacity: "1000VA"
 voltage: "120V"
-formFactor: "OTRO"
+formFactor: "TOWER"
+externalBattery: false
 ---
 UPS Online de doble conversión con potencia nominal 1000 VA / 800 W, forma de onda sinusoidal pura y voltaje de salida 120 V. 
 Respaldo aproximado de 10 min al 50 % de carga y 4 min al 100 %. 

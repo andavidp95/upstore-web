@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SEO from '../components/SEO/SEO.astro';
+import GlobalNavbar from '../components/GlobalNavbar.astro';
+import GlobalFooter from '../components/GlobalFooter.astro';
+import { getCollection } from 'astro:content';
+
+const allNoticias = await getCollection('noticias');
+const noticias = allNoticias
+  .filter(item => item.data.title !== 'Próximamente')
+  .map(item => ({
+    title: item.data.title,
+    description: item.data.description,
+    imageUrl: item.data.imageUrl,
+    author: item.data.author,
+    category: item.data.category,
+    slug: item.slug
+  }));
+
+const seoTitle = "Noticias UPS – Tendencias y Proyectos | UPStore Ecuador";
+const seoDescription = "Noticias sobre sistemas UPS, tendencias energéticas y proyectos de instalación en Ecuador.";
+const canonicalUrl = `${import.meta.env.PUBLIC_SITE_URL || 'https://upstore.com.ec'}/noticias`;
+---
+
+<Layout title={seoTitle}>
+  <SEO pageType="home" title={seoTitle} description={seoDescription} canonical={canonicalUrl} />
+  <GlobalNavbar />
+
+  <main class="pt-20 pb-16 min-h-screen bg-[#f8f9fb] dark:bg-[#0f1117] transition-colors duration-500">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">Noticias</h1>
+        <p class="text-gray-500 dark:text-gray-400 max-w-xl mx-auto">Tendencias, proyectos y novedades sobre sistemas de respaldo energético</p>
+      </div>
+
+      {noticias.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {noticias.map((noticia) => (
+            <div class="bg-white dark:bg-[#181b25] border border-gray-100 dark:border-white/5 rounded-xl overflow-hidden hover:border-gray-200 dark:hover:border-white/10 hover:shadow-[0_2px_20px_-4px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_2px_20px_-4px_rgba(0,0,0,0.4)] transition-all duration-300">
+              <div class="h-48 bg-gray-100 dark:bg-[#1a1d27] flex items-center justify-center">
+                <svg class="w-12 h-12 text-gray-300 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+              </div>
+              <div class="p-5">
+                <h2 class="text-base font-semibold text-gray-900 dark:text-white mb-2">{noticia.title}</h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{noticia.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-16">
+          <svg class="w-16 h-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+          <p class="text-gray-400 dark:text-gray-500 text-base">Próximamente publicaremos noticias y novedades.</p>
+        </div>
+      )}
+    </div>
+  </main>
+  <GlobalFooter />
+</Layout>

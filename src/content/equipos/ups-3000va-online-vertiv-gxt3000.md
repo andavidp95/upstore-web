@@ -9,7 +9,8 @@ category: "MONOFASICO"
 status: "STOCK"
 capacity: "3000VA"
 voltage: "120V"
-formFactor: "OTRO"
+formFactor: "TOWER"
+externalBattery: false
 ---
 UPS Online 3000 VA / 2700 W con onda pura y voltaje 120 V. Tipo torre. 
 Incluye 6 tomas NEMA 5-20R y 1 NEMA 5-30R, puertos USB/RS-232, respaldo ≈11,4 min a media carga, cable L5-30P entrada. 

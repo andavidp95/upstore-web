@@ -35,7 +35,7 @@ const socialLinks = [
         </div>
       </a>
 
-      <div class="hidden md:flex items-center gap-0.5">
+      <div class="hidden md:flex items-center justify-center gap-0.5 flex-1 min-w-0">
         {navLinks.map((link) => (
           <a
             href={link.href}
@@ -49,7 +49,7 @@ const socialLinks = [
         ))}
       </div>
 
-      <div class="flex items-center gap-0.5">
+      <div class="flex items-center gap-0.5 flex-shrink-0">
         {socialLinks.map((social) => (
           <a
             href={social.url}
@@ -65,12 +65,12 @@ const socialLinks = [
         ))}
         <button
           id="darkModeToggle"
-          class="relative w-9 h-9 flex items-center justify-center text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white transition-colors hover:bg-gray-50 dark:hover:bg-white/5 rounded-lg"
+          class="relative w-9 h-9 flex items-center justify-center text-gray-600 dark:text-gray-200 hover:text-amber-500 dark:hover:text-amber-400 transition-colors hover:bg-gray-100 dark:hover:bg-white/10 rounded-lg"
           aria-label="Modo oscuro"
           title="Alternar modo oscuro"
         >
-          <svg class="w-[18px] h-[18px] sun-icon transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-          <svg class="w-[18px] h-[18px] moon-icon hidden transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <svg class="w-5 h-5 sun-icon hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zM12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg class="w-5 h-5 moon-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M21.752 15.002A9.72 9.72 0 0112 2.25c-4.294 0-8.126 2.555-9.752 6.252a9.719 9.719 0 000 3.496A9.72 9.72 0 0012 21.75a9.719 9.719 0 008.248-3.496z"/></svg>
         </button>
       </div>
     </div>
@@ -97,11 +97,11 @@ const socialLinks = [
 
   function updateIcons() {
     if (html.classList.contains('dark')) {
-      sunIcon.classList.add('hidden');
-      moonIcon.classList.remove('hidden');
-    } else {
-      moonIcon.classList.add('hidden');
       sunIcon.classList.remove('hidden');
+      moonIcon.classList.add('hidden');
+    } else {
+      moonIcon.classList.remove('hidden');
+      sunIcon.classList.add('hidden');
     }
   }
 
